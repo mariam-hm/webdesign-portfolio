@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function ProjectCard({ projectSummary }) {
   return (
     <div>
@@ -11,9 +13,8 @@ export default function ProjectCard({ projectSummary }) {
       </ul>
       <Image
         src={projectSummary.thumbnail}
-        alt={projectSummary.client + projectSummary.title}
+        alt={projectSummary.client + " - " + projectSummary.title}
         quality={100}
-        placeholder="blur"
       />
     </div>
   );

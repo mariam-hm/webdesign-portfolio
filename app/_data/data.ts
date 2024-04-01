@@ -1,5 +1,5 @@
-import aprilOnThumb from "./_assets/imgs-april-on/thumbnail-gif.gif";
-import kotbThumb from "./_assets/imgs-april-on/thumbnail-gif.gif";
+import aprilOnThumb from "../_assets/imgs-april-on/thumbnail-gif.gif";
+import kotbThumb from "../_assets/imgs-april-on/thumbnail-gif.gif";
 
 export const projectsSummaries = [
   {

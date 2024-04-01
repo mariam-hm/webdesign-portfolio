@@ -1,3 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Calistoga&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Calistoga&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 
+p-2 = 8px
+p-4 = 16px
+p-6 = 24px
+p-8 = 32px
+
+p-14 = 56px
+*/
+
+:root {
+  --font-calistoga: "Calistoga";
+  --font-lato: "Lato";
+}
+
+html {
+  font-family: var(--font-lato);
+}
+
+body {
+  @apply container mx-auto md:max-w-screen-lg;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-calistoga);
+}
+
+h1,
+h2 {
+  @apply text-5xl;
+}
+
+h2 {
+  @apply py-4 text-center
+  border-b-2;
+}
+
+h3 {
+  @apply text-3xl pt-14;
+}
+
+h4 {
+  @apply text-xl;
+}
+
+ul {
+  @apply pt-6 pl-8 list-disc;
+}
+
+p {
+  @apply pt-6;
+}
+
+aside {
+  @apply bg-lime-200;
+}

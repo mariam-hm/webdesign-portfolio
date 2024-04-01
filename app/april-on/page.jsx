@@ -27,7 +27,7 @@ import statusLabelsAfterAnnotated from "../_assets/imgs-april-on/annotated-scree
 
 export default function AprilOnPage() {
   return (
-    <div>
+    <div className="page-container">
       {/* ====== HEADER ====== */}
       <header>
         <Image src={aprilOnLogo} alt="april-on-logo" quality={100} />
@@ -43,7 +43,7 @@ export default function AprilOnPage() {
             <span>UX Designer</span>
           </div>
           <div>
-            <span>Process</span>
+            <span className="recap-label">Process</span>
             <span>Problem solving, UI Design, Wireframing, Programmingr</span>
           </div>
           <div>

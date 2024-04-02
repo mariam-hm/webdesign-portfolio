@@ -1,0 +1,119 @@
+.page-container {
+  --color-primary: #add04e;
+  --color-primary-light: #e7f1ca;
+  --color-primary-dark: #64840d;
+}
+
+header {
+  @apply flex flex-col justify-center items-center h-screen static;
+}
+
+h1 {
+  color: #004161;
+  @apply mb-28;
+}
+
+/* TODO: */
+/* .header__img--big {
+  @apply absolute
+  w-full;
+}
+
+.header__img--small {
+  @apply absolute
+  -translate-x-1/2
+  -translate-y-1/2
+
+  top-2/3
+  left-1/2;
+} */
+
+h2 {
+  border-color: #add04e;
+  @apply py-4 text-center
+  border-b-2
+  mb-6
+  mt-10;
+}
+
+.overview {
+  background-color: var(--color-primary-light);
+  color: #004161;
+  @apply flex
+  flex-col
+  justify-center
+  items-start
+  p-20
+  rounded-md;
+}
+
+.overview__item {
+  @apply flex
+  flex-row
+  justify-start
+  items-center;
+}
+
+.overview .overview__label {
+  font-family: "Calistoga";
+  @apply text-xl
+  w-36;
+}
+
+.tldr {
+  @apply flex
+  gap-14
+  mt-14;
+}
+
+.tldr__vs {
+  @apply w-1/2
+  flex
+  flex-col;
+}
+
+ul {
+  @apply pl-8 list-disc;
+}
+
+h3 {
+  @apply text-3xl;
+}
+
+.text-block {
+  @apply flex
+  flex-col
+  mt-14
+  gap-4;
+}
+
+.image {
+  @apply rounded-md mt-6
+  hover:shadow-lg
+  hover:-translate-y-1
+  transition-all;
+}
+
+.duplex {
+  @apply flex
+  gap-8
+  mt-14;
+}
+
+.duplex .duplex__text-block {
+  @apply flex
+  flex-col
+  w-1/2
+  gap-6;
+}
+
+.duplex .duplex__image {
+  @apply flex
+  w-1/2;
+}
+
+.duplex .duplex__title {
+  @apply flex
+  flex-col
+  gap-1;
+}

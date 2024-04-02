@@ -1,7 +1,10 @@
+import "./styles.css";
 import Image from "next/image";
 
 import aprilOnLogo from "../_assets/imgs-april-on/header/april-on-logo-bubble.png";
 import headerMockup from "../_assets/imgs-april-on/header/header-mockup.png";
+import headerAssetsSmall from "../_assets/imgs-april-on/header/header-assets-small.png";
+import headerAssetsBig from "../_assets/imgs-april-on/header/header-assets-big.png";
 
 // Normal screens
 import quoteDetailsBefore from "../_assets/imgs-april-on/quote-details-before.jpg";
@@ -29,36 +32,60 @@ export default function AprilOnPage() {
   return (
     <div className="page-container">
       {/* ====== HEADER ====== */}
-      <header>
-        <Image src={aprilOnLogo} alt="april-on-logo" quality={100} />
+      <header className="header">
+        <Image
+          src={aprilOnLogo}
+          width={200}
+          alt="april-on-logo"
+          quality={100}
+        />
         <h1>Redesigning the status system for clarity</h1>
-        <Image src={headerMockup} alt="header-mockup" quality={100} />
+        {/* TODO: */}
+        {/* <Image
+          className="header__img--big"
+          src={headerAssetsBig}
+          alt="header__img--big"
+          quality={100}
+        />
+        <Image
+          className="header__img--small"
+          src={headerAssetsSmall}
+          width={1200}
+          alt="header__img--small"
+          quality={100}
+        /> */}
+        <Image
+          src={headerMockup}
+          width={800}
+          alt="header-mockup"
+          quality={100}
+        />
       </header>
 
       <main>
         {/* ====== KEY INFORMATION ====== */}
-        <aside>
-          <div>
-            <span>Role</span>
+        <aside className="overview">
+          <div className="overview__item">
+            <span className="overview__label">Role</span>
             <span>UX Designer</span>
           </div>
-          <div>
-            <span className="recap-label">Process</span>
+          <div className="overview__item">
+            <span className="overview__label">Process</span>
             <span>Problem solving, UI Design, Wireframing, Programmingr</span>
           </div>
-          <div>
-            <span>Timeline</span>
+          <div className="overview__item">
+            <span className="overview__label">Timeline</span>
             <span>4 months</span>
           </div>
-          <div>
-            <span>Team</span>
-            <span>
+          <div className="overview__item">
+            <span className="overview__label">Team</span>
+            <span className="overview__info">
               Samira Durand (Manager of the Digital and Marketing team), Michael
               Babin (Lead programmer), Tristan Viens (Back-End Programmer)
             </span>
           </div>
-          <div>
-            <span>Tools</span>
+          <div className="overview__item">
+            <span className="overview__label">Tools</span>
             <span>Figma, VSCode</span>
           </div>
         </aside>
@@ -75,40 +102,49 @@ export default function AprilOnPage() {
             and streamlining user workflows.
           </p>
 
-          <h3>Before</h3>
-          <ul>
-            <li>Unclear labels and confusion with the actions</li>
-            <li>Lack of guidance on the quote details screen</li>
-            <li>
-              Difficulty identifying the files needing attention in the list
-              screen
-            </li>
-          </ul>
+          <div className="tldr">
+            <div className="tldr__vs">
+              <h3>Before</h3>
+              <ul>
+                <li>Unclear labels and confusion with the actions</li>
+                <li>Lack of guidance on the quote details screen</li>
+                <li>
+                  Difficulty identifying the files needing attention in the list
+                  screen
+                </li>
+                <br />
+              </ul>
 
-          <Image
-            src={quoteDetailsBefore}
-            alt={"quote-details-before"}
-            quality={100}
-          />
+              <Image
+                className="image"
+                src={quoteDetailsBefore}
+                alt={"quote-details-before"}
+                quality={100}
+              />
+            </div>
 
-          <h3>After</h3>
-          <ul>
-            <li>Better labels for statuses and actions</li>
-            <li>Clearer process to the user for better understanding</li>
-            <li>Intuitive and accessible next step</li>
-            <li>Guide users towards items tha need attention</li>
-          </ul>
+            <div className="tldr__vs">
+              <h3>After</h3>
+              <ul>
+                <li>Better labels for statuses and actions</li>
+                <li>Clearer process to the user for better understanding</li>
+                <li>Intuitive and accessible next step</li>
+                <li>Guide users towards items tha need attention</li>
+              </ul>
 
-          <Image
-            src={quoteDetailsAfter}
-            alt={"quote-details-after"}
-            quality={100}
-          />
+              <Image
+                className="image"
+                src={quoteDetailsAfter}
+                alt={"quote-details-after"}
+                quality={100}
+              />
+            </div>
+          </div>
         </div>
         {/* ====== PROCESS ====== */}
         <div>
           <h2>Process</h2>
-          <div>
+          <div className="text-block">
             <h3>About the company and the product</h3>
             <p>
               APRIL is an international insurance company operating as a
@@ -126,7 +162,7 @@ export default function AprilOnPage() {
             </p>
           </div>
 
-          <div>
+          <div className="text-block">
             <h3>Situation</h3>
             <p>
               APRIL On is the primary platform through which users purchase
@@ -139,7 +175,7 @@ export default function AprilOnPage() {
             </p>
           </div>
 
-          <div>
+          <div className="text-block">
             <h3>About the user</h3>
             <p>
               The jobs of insurance brokers can be stressful. They are tasked
@@ -152,7 +188,7 @@ export default function AprilOnPage() {
             </p>
           </div>
 
-          <div>
+          <div className="text-block">
             <h3>User flow</h3>
             <p>
               The status system is present in most of the part of the app where
@@ -162,10 +198,15 @@ export default function AprilOnPage() {
               process, as it is the where the user will be able to do all the
               actions that move their file forward.
             </p>
-            <Image src={userFlow} alt={"user-flow"} quality={100} />
+            <Image
+              className="image"
+              src={userFlow}
+              alt={"user-flow"}
+              quality={100}
+            />
           </div>
 
-          <div>
+          <div className="text-block">
             <h3>Research</h3>
             <p>
               During the research phase, we gathered valuable insights from
@@ -182,10 +223,13 @@ export default function AprilOnPage() {
             </p>
           </div>
 
-          <div>
-            <div>
-              <h4>Pain point #1</h4>
-              <h3>Unclear labels for statuses and actions</h3>
+          <div className="duplex">
+            <div className="duplex__text-block">
+              <div className="duplex__title">
+                <h4>Pain point #1</h4>
+                <h3>Unclear labels for statuses and actions</h3>
+              </div>
+
               <ul>
                 <li>
                   Some status labels don't match the corresponding actions. For
@@ -214,16 +258,20 @@ export default function AprilOnPage() {
             </div>
 
             <Image
+              className="duplex__image image"
               src={statusLabelsBeforeAnnotated}
               alt={"status-labels-before-annotated"}
               quality={100}
             />
           </div>
 
-          <div>
-            <div>
-              <h4>Pain point #2</h4>
-              <h3>Lack of guidance on quote details</h3>
+          <div className="duplex">
+            <div className="duplex__text-block">
+              <div className="duplex__title">
+                <h4>Pain point #2</h4>
+                <h3>Lack of guidance on quote details</h3>
+              </div>
+
               <p>General lack of guidance towards the next action:</p>
               <ul>
                 <li>
@@ -244,19 +292,23 @@ export default function AprilOnPage() {
             </div>
 
             <Image
+              className="duplex__image image"
               src={quoteDetailsBeforeAnnotated}
               alt={"quote-details-before-annotated"}
               quality={100}
             />
           </div>
 
-          <div>
-            <div>
-              <h4>Pain point #3</h4>
-              <h3>
-                Difficulty identifying the files needing attention on list
-                screen
-              </h3>
+          <div className="duplex">
+            <div className="duplex__text-block">
+              <div className="duplex__title">
+                <h4>Pain point #3</h4>
+                <h3>
+                  Difficulty identifying the files needing attention on list
+                  screen
+                </h3>
+              </div>
+
               <p>General lack of guidance towards the next action:</p>
               <ul>
                 <li>
@@ -274,13 +326,14 @@ export default function AprilOnPage() {
             </div>
 
             <Image
+              className="duplex__image image"
               src={quoteListBeforeAnnotated}
               alt={"quote-list-before-annotated"}
               quality={100}
             />
           </div>
 
-          <div>
+          <div className="text-block">
             <h3>Design goal</h3>
             <p>
               Our biggest (and most interesting) challenge lies in solving the
@@ -291,10 +344,19 @@ export default function AprilOnPage() {
             </p>
           </div>
 
-          <div>
-            <div>
-              <h4>Solution #1</h4>
-              <h3>Better labels for more clarity</h3>
+          <div className="duplex">
+            <Image
+              className="duplex__image image"
+              src={statusLabelsAfterAnnotated}
+              alt={"status-labels-after-annotated"}
+              quality={100}
+            />
+            <div className="duplex__text-block">
+              <div className="duplex__title">
+                <h4>Solution #1</h4>
+                <h3>Better labels for more clarity</h3>
+              </div>
+
               <ul>
                 <li>
                   Status and action labels are now aligned: for instance,
@@ -326,18 +388,21 @@ export default function AprilOnPage() {
                 </li>
               </ul>
             </div>
-
-            <Image
-              src={statusLabelsAfterAnnotated}
-              alt={"status-labels-after-annotated"}
-              quality={100}
-            />
           </div>
 
-          <div>
-            <div>
-              <h4>Solution #2</h4>
-              <h3>Show process and next step in quote details screen</h3>
+          <div className="duplex">
+            <Image
+              className="duplex__image image"
+              src={quoteDetailsAfterAnnotated}
+              alt={"quote-details-after-annotated"}
+              quality={100}
+            />
+            <div className="duplex__text-block">
+              <div className="duplex__title">
+                <h4>Solution #2</h4>
+                <h3>Show process and next step in quote details screen</h3>
+              </div>
+
               <ul>
                 <li>
                   Introduction of an info box to clarify the next action and
@@ -364,18 +429,23 @@ export default function AprilOnPage() {
                 </li>
               </ul>
             </div>
-
-            <Image
-              src={quoteDetailsAfterAnnotated}
-              alt={"quote-details-after-annotated"}
-              quality={100}
-            />
           </div>
 
-          <div>
-            <div>
-              <h4>Solution #3</h4>
-              <h3>Highlight items that need attention in quote list screen</h3>
+          <div className="duplex">
+            <Image
+              className="duplex__image image"
+              src={quoteListAfterAnnotated}
+              alt={"quote-list-after-annotated"}
+              quality={100}
+            />
+            <div className="duplex__text-block">
+              <div className="duplex__title">
+                <h4>Solution #3</h4>
+                <h3>
+                  Highlight items that need attention in quote list screen
+                </h3>
+              </div>
+
               <ul>
                 <li>
                   Implementation of two distinct notification types: one for
@@ -398,12 +468,6 @@ export default function AprilOnPage() {
                 </li>
               </ul>
             </div>
-
-            <Image
-              src={quoteListAfterAnnotated}
-              alt={"quote-list-after-annotated"}
-              quality={100}
-            />
           </div>
         </div>
         {/* PROCESS END DIV */}

@@ -71,7 +71,7 @@ export default function AprilOnPage() {
           </div>
           <div className="overview__item">
             <span className="overview__label">Process</span>
-            <span>Problem solving, UI Design, Wireframing, Programmingr</span>
+            <span>Problem solving, UI Design, Wireframing, Programming</span>
           </div>
           <div className="overview__item">
             <span className="overview__label">Timeline</span>

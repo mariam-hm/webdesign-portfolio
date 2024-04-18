@@ -115,3 +115,132 @@ h3 {
   flex-col
   gap-1;
 }
+
+.moodboard-grid {
+  display: grid;
+  grid-template-rows: repeat(8, 80px);
+  grid-template-columns: 30% 30% 20% 20%;
+  gap: 16px;
+}
+
+.grid-item {
+  @apply rounded-md
+  relative
+  overflow-hidden
+  hover:shadow-lg
+  hover:-translate-y-1
+  transition-all;
+}
+
+.grid-img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  inset: 0px;
+  object-fit: cover;
+  color: transparent;
+}
+
+.mood-01 {
+  /* grid-area: <name> | <row-start> / <column-start> / <row-end> / <column-end>; */
+  grid-area: 1/1/4/2;
+}
+
+.mood-02 {
+  grid-area: 1/2/5/3;
+}
+
+.mood-03 {
+  grid-area: 1/3/3/5;
+}
+
+.mood-04 {
+  grid-area: 4/1/7/2;
+}
+
+.mood-05 {
+  grid-area: 5/2/8/3;
+}
+
+.mood-06 {
+  grid-area: 3/3/6/5;
+}
+
+.mood-07 {
+  grid-area: 7/1/9/2;
+}
+
+.mood-08 {
+  grid-area: 8/2/9/3;
+}
+
+.mood-09 {
+  grid-area: 6/3/9/4;
+}
+
+.mood-10 {
+  grid-area: 6/4/9/5;
+}
+
+.graphics-grid {
+  display: grid;
+  grid-template-rows: repeat(10, 75px);
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+}
+
+.item {
+  background-color: #f8aa36;
+}
+
+.graph-01 {
+  grid-area: 1/1/4/4;
+}
+
+.graph-02 {
+  grid-area: 1/4/4/6;
+}
+
+.graph-03 {
+  grid-area: 1/6/5/8;
+}
+
+.graph-04 {
+  grid-area: 1/8/3/10;
+}
+
+.graph-05 {
+  grid-area: 3/8/5/10;
+}
+
+.graph-06 {
+  grid-area: 1/10/5/13;
+}
+
+.graph-07 {
+  grid-area: 4/1/8/3;
+}
+
+.graph-08 {
+  grid-area: 4/3/7/6;
+}
+
+.graph-09 {
+  grid-area: 5/6/10/10;
+}
+
+.graph-10 {
+  grid-area: 5/10/7/13;
+}
+
+.graph-11 {
+  grid-area: 8/1/10/3;
+}
+
+.graph-12 {
+  grid-area: 7/3/10/6;
+}
+
+.graph-13 {
+  grid-area: 7/10/10/13;
+}

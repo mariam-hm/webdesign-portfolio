@@ -123,47 +123,50 @@ export default function KidsOnTheBlockPage() {
             through a process of wireframing and prototyping.
           </p>
 
-          <div className="tldr">
-            <div className="tldr__vs">
-              <h3>Final website</h3>
-              <ul>
-                <li>
+          <div className="tldr flex-col">
+            <h3>Final website</h3>
+            <div className="flex flex-row">
+              <div className="tldr__vs">
+                <p>
                   A vibrant and playful brand identity, created with hand-drawn
                   elements, that evokes a sense of warmth to effectively
                   communicate the values of childhood, empathy, and acceptance
-                  for the non-profit organizatio
-                </li>
-                <li>
+                  for the non-profit organization
+                </p>
+                <Image
+                  className="image"
+                  src={bestFeature01}
+                  alt={"bestFeature01"}
+                  quality={100}
+                />
+              </div>
+              <div className="tldr__vs">
+                <p>
                   Booking a show and communicating with the association is made
                   easy and straightforward for teachers
-                </li>
-                <li>
+                </p>
+                <Image
+                  className="image"
+                  src={bestFeature02}
+                  alt={"bestFeature02"}
+                  quality={100}
+                />
+              </div>
+
+              <div className="tldr__vs">
+                <p>
                   Users can easily access detailed information about each skit
                   and puppet, allowing them to make confident decisions that
                   best suit the needs and preferences of their class and
                   students
-                </li>
-                <br />
-              </ul>
-
-              <Image
-                className="image"
-                src={bestFeature01}
-                alt={"bestFeature01"}
-                quality={100}
-              />
-              <Image
-                className="image"
-                src={bestFeature02}
-                alt={"bestFeature02"}
-                quality={100}
-              />
-              <Image
-                className="image"
-                src={bestFeature03}
-                alt={"bestFeature03"}
-                quality={100}
-              />
+                </p>
+                <Image
+                  className="image"
+                  src={bestFeature03}
+                  alt={"bestFeature03"}
+                  quality={100}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -208,74 +211,94 @@ export default function KidsOnTheBlockPage() {
             </p>
           </div>
 
-          <div>
+          <div className="text-block">
             <h4>Moodboard</h4>
             <p>
               I started by collecting picture and drawings that matched the
               aesthetic I was looking for.
             </p>
 
-            <div>
-              <Image
-                className="image"
-                src={moodboard01}
-                alt={"moodboard01"}
-                quality={100}
-              />
-              <Image
-                className="image"
-                src={moodboard02}
-                alt={"moodboard02"}
-                quality={100}
-              />
-              <Image
-                className="image"
-                src={moodboard03}
-                alt={"moodboard03"}
-                quality={100}
-              />
-              <Image
-                className="image"
-                src={moodboard04}
-                alt={"moodboard04"}
-                quality={100}
-              />
-              <Image
-                className="image"
-                src={moodboard05}
-                alt={"moodboard05"}
-                quality={100}
-              />
-              <Image
-                className="image"
-                src={moodboard06}
-                alt={"moodboard06"}
-                quality={100}
-              />
-              <Image
-                className="image"
-                src={moodboard07}
-                alt={"moodboard07"}
-                quality={100}
-              />
-              <Image
-                className="image"
-                src={moodboard08}
-                alt={"moodboard08"}
-                quality={100}
-              />
-              <Image
-                className="image"
-                src={moodboard09}
-                alt={"moodboard09"}
-                quality={100}
-              />
-              <Image
-                className="image"
-                src={moodboard10}
-                alt={"moodboard10"}
-                quality={100}
-              />
+            <div className="moodboard-grid">
+              <div className="grid-item mood-01">
+                <Image
+                  className="grid-img"
+                  src={moodboard01}
+                  alt={"moodboard01"}
+                  quality={100}
+                />
+              </div>
+              <div className="grid-item mood-02">
+                <Image
+                  className="grid-img"
+                  src={moodboard02}
+                  alt={"moodboard02"}
+                  quality={100}
+                />
+              </div>
+              <div className="grid-item mood-03">
+                <Image
+                  className="grid-img"
+                  src={moodboard03}
+                  alt={"moodboard03"}
+                  quality={100}
+                />
+              </div>
+              <div className="grid-item mood-04">
+                <Image
+                  className="grid-img"
+                  src={moodboard04}
+                  alt={"moodboard04"}
+                  quality={100}
+                />
+              </div>
+              <div className="grid-item mood-05">
+                <Image
+                  className="grid-img"
+                  src={moodboard05}
+                  alt={"moodboard05"}
+                  quality={100}
+                />
+              </div>
+              <div className="grid-item mood-06">
+                <Image
+                  className="grid-img"
+                  src={moodboard06}
+                  alt={"moodboard06"}
+                  quality={100}
+                />
+              </div>
+              <div className="grid-item mood-07">
+                <Image
+                  className="grid-img"
+                  src={moodboard07}
+                  alt={"moodboard07"}
+                  quality={100}
+                />
+              </div>
+              <div className="grid-item mood-08">
+                <Image
+                  className="grid-img"
+                  src={moodboard08}
+                  alt={"moodboard08"}
+                  quality={100}
+                />
+              </div>
+              <div className="grid-item mood-09">
+                <Image
+                  className="grid-img"
+                  src={moodboard09}
+                  alt={"moodboard09"}
+                  quality={100}
+                />
+              </div>
+              <div className="grid-item mood-10">
+                <Image
+                  className="grid-img"
+                  src={moodboard10}
+                  alt={"moodboard10"}
+                  quality={100}
+                />
+              </div>
             </div>
 
             <div className="text-block">
@@ -379,85 +402,111 @@ export default function KidsOnTheBlockPage() {
                 depth and relevance to the imagery.
               </p>
 
-              <div>
-                <Image
-                  className="image"
-                  src={graphic01}
-                  alt={"graphic01"}
-                  quality={100}
-                />
-                <Image
-                  className="image"
-                  src={graphic02}
-                  alt={"graphic02"}
-                  quality={100}
-                />
-                <Image
-                  className="image"
-                  src={graphic03}
-                  alt={"graphic03"}
-                  quality={100}
-                />
-                <Image
-                  className="image"
-                  src={graphic04}
-                  alt={"graphic04"}
-                  quality={100}
-                />
-                <Image
-                  className="image"
-                  src={graphic05}
-                  alt={"graphic05"}
-                  quality={100}
-                />
-                <Image
-                  className="image"
-                  src={graphic06}
-                  alt={"graphic06"}
-                  quality={100}
-                />
-                <Image
-                  className="image"
-                  src={graphic07}
-                  alt={"graphic07"}
-                  quality={100}
-                />
-                <Image
-                  className="image"
-                  src={graphic08}
-                  alt={"graphic08"}
-                  quality={100}
-                />
-                <Image
-                  className="image"
-                  src={graphic09}
-                  alt={"graphic09"}
-                  quality={100}
-                />
-                <Image
-                  className="image"
-                  src={graphic10}
-                  alt={"graphic10"}
-                  quality={100}
-                />
-                <Image
-                  className="image"
-                  src={graphic11}
-                  alt={"graphic11"}
-                  quality={100}
-                />
-                <Image
-                  className="image"
-                  src={graphic12}
-                  alt={"graphic12"}
-                  quality={100}
-                />
-                <Image
-                  className="image"
-                  src={graphic13}
-                  alt={"graphic13"}
-                  quality={100}
-                />
+              <div className="graphics-grid">
+                <div className="grid-item graph-01">
+                  <Image
+                    className="grid-img"
+                    src={graphic01}
+                    alt={"graphic01"}
+                    quality={100}
+                  />
+                </div>
+                <div className="grid-item graph-02">
+                  <Image
+                    className="grid-img"
+                    src={graphic02}
+                    alt={"graphic02"}
+                    quality={100}
+                  />
+                </div>
+                <div className="grid-item graph-03">
+                  <Image
+                    className="grid-img"
+                    src={graphic03}
+                    alt={"graphic03"}
+                    quality={100}
+                  />
+                </div>
+                <div className="grid-item graph-04">
+                  <Image
+                    className="grid-img"
+                    src={graphic04}
+                    alt={"graphic04"}
+                    quality={100}
+                  />
+                </div>
+                <div className="grid-item graph-05">
+                  <Image
+                    className="grid-img"
+                    src={graphic05}
+                    alt={"graphic05"}
+                    quality={100}
+                  />
+                </div>
+                <div className="grid-item graph-06">
+                  <Image
+                    className="grid-img"
+                    src={graphic06}
+                    alt={"graphic06"}
+                    quality={100}
+                  />
+                </div>
+                <div className="grid-item graph-07">
+                  <Image
+                    className="grid-img"
+                    src={graphic07}
+                    alt={"graphic07"}
+                    quality={100}
+                  />
+                </div>
+                <div className="grid-item graph-08">
+                  <Image
+                    className="grid-img"
+                    src={graphic08}
+                    alt={"graphic08"}
+                    quality={100}
+                  />
+                </div>
+                <div className="grid-item graph-09">
+                  <Image
+                    className="grid-img"
+                    src={graphic09}
+                    alt={"graphic09"}
+                    quality={100}
+                  />
+                </div>
+                <div className="grid-item graph-10">
+                  <Image
+                    className="grid-img"
+                    src={graphic10}
+                    alt={"graphic10"}
+                    quality={100}
+                  />
+                </div>
+                <div className="grid-item graph-11">
+                  <Image
+                    className="grid-img"
+                    src={graphic11}
+                    alt={"graphic11"}
+                    quality={100}
+                  />
+                </div>
+                <div className="grid-item graph-12">
+                  <Image
+                    className="grid-img"
+                    src={graphic12}
+                    alt={"graphic12"}
+                    quality={100}
+                  />
+                </div>
+                <div className="grid-item graph-13">
+                  <Image
+                    className="grid-img"
+                    src={graphic13}
+                    alt={"graphic13"}
+                    quality={100}
+                  />
+                </div>
               </div>
             </div>
 
@@ -517,61 +566,69 @@ export default function KidsOnTheBlockPage() {
                 guiding users seamlessly to their desired sections.
               </p>
 
-              <Image
-                className="image"
-                src={wireframeBw01}
-                alt={"wireframeBw01"}
-                quality={100}
-              />
+              <div className="tldr">
+                <Image
+                  className="image tldr__vs"
+                  src={wireframeBw01}
+                  alt={"wireframeBw01"}
+                  quality={100}
+                />
 
-              <Image
-                className="image"
-                src={wireframeColor01}
-                alt={"wireframeColor01"}
-                quality={100}
-              />
+                <Image
+                  className="image tldr__vs"
+                  src={wireframeColor01}
+                  alt={"wireframeColor01"}
+                  quality={100}
+                />
+              </div>
 
-              <Image
-                className="image"
-                src={wireframeBw02}
-                alt={"wireframeBw02"}
-                quality={100}
-              />
+              <div className="tldr">
+                <Image
+                  className="image "
+                  src={wireframeBw02}
+                  alt={"wireframeBw02"}
+                  quality={100}
+                />
 
-              <Image
-                className="image"
-                src={wireframeColor02}
-                alt={"wireframeColor02"}
-                quality={100}
-              />
+                <Image
+                  className="image "
+                  src={wireframeColor02}
+                  alt={"wireframeColor02"}
+                  quality={100}
+                />
+              </div>
 
-              <Image
-                className="image"
-                src={wireframeBw03}
-                alt={"wireframeBw03"}
-                quality={100}
-              />
+              <div className="tldr">
+                <Image
+                  className="image "
+                  src={wireframeBw03}
+                  alt={"wireframeBw03"}
+                  quality={100}
+                />
 
-              <Image
-                className="image"
-                src={wireframeColor03}
-                alt={"wireframeColor03"}
-                quality={100}
-              />
+                <Image
+                  className="image "
+                  src={wireframeColor03}
+                  alt={"wireframeColor03"}
+                  quality={100}
+                />
+              </div>
 
-              <Image
-                className="image"
-                src={wireframeBw04}
-                alt={"wireframeBw04"}
-                quality={100}
-              />
+              <div className="tldr">
+                <Image
+                  className="image"
+                  src={wireframeBw04}
+                  alt={"wireframeBw04"}
+                  quality={100}
+                />
 
-              <Image
-                className="image"
-                src={wireframeColor04}
-                alt={"wireframeColor04"}
-                quality={100}
-              />
+                <Image
+                  className="image"
+                  src={wireframeColor04}
+                  alt={"wireframeColor04"}
+                  quality={100}
+                />
+              </div>
             </div>
           </div>
         </div>

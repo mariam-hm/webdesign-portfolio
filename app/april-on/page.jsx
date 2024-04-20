@@ -28,6 +28,8 @@ import quoteListAfterAnnotated from "../_assets/imgs-april-on/annotated-screens/
 import statusLabelsBeforeAnnotated from "../_assets/imgs-april-on/annotated-screens/status-labels-before-annotated.jpg";
 import statusLabelsAfterAnnotated from "../_assets/imgs-april-on/annotated-screens/status-labels-after-annotated.jpg";
 
+import kotbThumb from "../_assets/imgs-kotb/thumbnail.jpg";
+
 export default function AprilOnPage() {
   return (
     <div className="page-container">
@@ -490,7 +492,7 @@ export default function AprilOnPage() {
         <div>
           <h2>Learning</h2>
 
-          <div>
+          <div className="text-block">
             <h3>Challenges and lessons</h3>
             <ul>
               <li>
@@ -517,7 +519,7 @@ export default function AprilOnPage() {
             </ul>
           </div>
 
-          <div>
+          <div className="text-block">
             <h3>Challenges and lessons</h3>
             <ul>
               <li>
@@ -529,7 +531,7 @@ export default function AprilOnPage() {
             </ul>
           </div>
 
-          <div>
+          <div className="text-block">
             <h3>Next steps</h3>
             <p>The implementation of the design was split in 4 parts: </p>
             <ul>
@@ -551,7 +553,21 @@ export default function AprilOnPage() {
 
         <div>
           <h2>Thanks for reading</h2>
-          <h3>Visit one of my other projects if you feel like it</h3>
+
+          <div className="flex flex-col justify-start items-center">
+            <h3>Visit one of my other projects if you feel like it</h3>
+
+            <div className="flex flex-col justify-start items-center max-w-2xl">
+              <Image
+                className="image"
+                src={kotbThumb}
+                alt={"kotbThumb"}
+                quality={100}
+              />
+              <h4>APRIL ON:</h4>
+              <h4>Redesigning the status system for clarity</h4>
+            </div>
+          </div>
         </div>
       </main>
     </div>

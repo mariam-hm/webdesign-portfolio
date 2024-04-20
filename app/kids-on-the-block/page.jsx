@@ -1,5 +1,7 @@
 import "./styles.css";
 import Image from "next/image";
+import { EmblaCarouselDouble } from "../components/EmblaCarouselDouble";
+import { EmblaCarousel } from "../components/EmblaCarousel";
 
 import bestFeature01 from "../_assets/imgs-kotb/best-features-01.png";
 import bestFeature02 from "../_assets/imgs-kotb/best-features-02.png";
@@ -63,7 +65,124 @@ import screenshot09 from "../_assets/imgs-kotb/final-screens/screenshot-09.png";
 import screenshot10 from "../_assets/imgs-kotb/final-screens/screenshot-10.png";
 import screenshot11 from "../_assets/imgs-kotb/final-screens/screenshot-11.png";
 
+import aprilOnThumb from "../_assets/imgs-april-on/thumbnail.jpg";
+
 export default function KidsOnTheBlockPage() {
+  const SLIDE_COUNT = 5;
+  const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
+
+  const wireframesSlides = [
+    {
+      imageLeft: {
+        src: wireframeBw01,
+        alt: "wireframeBw01",
+      },
+      imageRight: {
+        src: wireframeColor01,
+        alt: "wireframeColor01",
+      },
+    },
+    {
+      imageLeft: {
+        src: wireframeBw02,
+        alt: "wireframeBw02",
+      },
+      imageRight: {
+        src: wireframeColor02,
+        alt: "wireframeColor02",
+      },
+    },
+    {
+      imageLeft: {
+        src: wireframeBw03,
+        alt: "wireframeBw03",
+      },
+      imageRight: {
+        src: wireframeColor03,
+        alt: "wireframeColor03",
+      },
+    },
+    {
+      imageLeft: {
+        src: wireframeBw04,
+        alt: "wireframeBw04",
+      },
+      imageRight: {
+        src: wireframeColor04,
+        alt: "wireframeColor04",
+      },
+    },
+  ];
+
+  const finalScreensSlides = [
+    {
+      image: {
+        src: screenshot01,
+        alt: "screenshot01",
+      },
+    },
+    {
+      image: {
+        src: screenshot02,
+        alt: "screenshot02",
+      },
+    },
+    {
+      image: {
+        src: screenshot03,
+        alt: "screenshot03",
+      },
+    },
+    {
+      image: {
+        src: screenshot04,
+        alt: "screenshot04",
+      },
+    },
+    {
+      image: {
+        src: screenshot05,
+        alt: "screenshot05",
+      },
+    },
+    {
+      image: {
+        src: screenshot06,
+        alt: "screenshot06",
+      },
+    },
+    {
+      image: {
+        src: screenshot07,
+        alt: "screenshot07",
+      },
+    },
+    {
+      image: {
+        src: screenshot08,
+        alt: "screenshot08",
+      },
+    },
+    {
+      image: {
+        src: screenshot09,
+        alt: "screenshot09",
+      },
+    },
+    {
+      image: {
+        src: screenshot10,
+        alt: "screenshot10",
+      },
+    },
+    {
+      image: {
+        src: screenshot11,
+        alt: "screenshot11",
+      },
+    },
+  ];
+
   return (
     <div className="page-container">
       <header className="header">
@@ -125,7 +244,7 @@ export default function KidsOnTheBlockPage() {
 
           <div className="tldr flex-col">
             <h3>Final website</h3>
-            <div className="flex flex-row">
+            <div className="flex flex-row gap-x-4">
               <div className="tldr__vs">
                 <p>
                   A vibrant and playful brand identity, created with hand-drawn
@@ -315,15 +434,18 @@ export default function KidsOnTheBlockPage() {
                 has orange hair.
               </p>
 
-              <div>
+              <div className="tldr">
+                <div className="w-2/3">
+                  <Image
+                    className="image"
+                    src={colorFont01}
+                    alt={"colorFont01"}
+                    quality={100}
+                  />
+                </div>
+
                 <Image
-                  className="image"
-                  src={colorFont01}
-                  alt={"colorFont01"}
-                  quality={100}
-                />
-                <Image
-                  className="image"
+                  className="image w-1/3"
                   src={colorFont02}
                   alt={"colorFont02"}
                   quality={100}
@@ -387,7 +509,7 @@ export default function KidsOnTheBlockPage() {
             </div>
 
             <div className="text-block">
-              <h4>Graphic sssets</h4>
+              <h4>Graphic assets</h4>
               <p>
                 To achieve a handmade, traditional feel, I utilized a
                 crayon-textured brush in designing graphics. I also incorporated
@@ -405,7 +527,7 @@ export default function KidsOnTheBlockPage() {
               <div className="graphics-grid">
                 <div className="grid-item graph-01">
                   <Image
-                    className="grid-img"
+                    className="grid-img-graph"
                     src={graphic01}
                     alt={"graphic01"}
                     quality={100}
@@ -413,7 +535,7 @@ export default function KidsOnTheBlockPage() {
                 </div>
                 <div className="grid-item graph-02">
                   <Image
-                    className="grid-img"
+                    className="grid-img-graph"
                     src={graphic02}
                     alt={"graphic02"}
                     quality={100}
@@ -421,7 +543,7 @@ export default function KidsOnTheBlockPage() {
                 </div>
                 <div className="grid-item graph-03">
                   <Image
-                    className="grid-img"
+                    className="grid-img-graph"
                     src={graphic03}
                     alt={"graphic03"}
                     quality={100}
@@ -429,7 +551,7 @@ export default function KidsOnTheBlockPage() {
                 </div>
                 <div className="grid-item graph-04">
                   <Image
-                    className="grid-img"
+                    className="grid-img-graph"
                     src={graphic04}
                     alt={"graphic04"}
                     quality={100}
@@ -437,7 +559,7 @@ export default function KidsOnTheBlockPage() {
                 </div>
                 <div className="grid-item graph-05">
                   <Image
-                    className="grid-img"
+                    className="grid-img-graph"
                     src={graphic05}
                     alt={"graphic05"}
                     quality={100}
@@ -445,7 +567,7 @@ export default function KidsOnTheBlockPage() {
                 </div>
                 <div className="grid-item graph-06">
                   <Image
-                    className="grid-img"
+                    className="grid-img-graph"
                     src={graphic06}
                     alt={"graphic06"}
                     quality={100}
@@ -453,7 +575,7 @@ export default function KidsOnTheBlockPage() {
                 </div>
                 <div className="grid-item graph-07">
                   <Image
-                    className="grid-img"
+                    className="grid-img-graph"
                     src={graphic07}
                     alt={"graphic07"}
                     quality={100}
@@ -461,7 +583,7 @@ export default function KidsOnTheBlockPage() {
                 </div>
                 <div className="grid-item graph-08">
                   <Image
-                    className="grid-img"
+                    className="grid-img-graph"
                     src={graphic08}
                     alt={"graphic08"}
                     quality={100}
@@ -469,7 +591,7 @@ export default function KidsOnTheBlockPage() {
                 </div>
                 <div className="grid-item graph-09">
                   <Image
-                    className="grid-img"
+                    className="grid-img-graph"
                     src={graphic09}
                     alt={"graphic09"}
                     quality={100}
@@ -477,7 +599,7 @@ export default function KidsOnTheBlockPage() {
                 </div>
                 <div className="grid-item graph-10">
                   <Image
-                    className="grid-img"
+                    className="grid-img-graph"
                     src={graphic10}
                     alt={"graphic10"}
                     quality={100}
@@ -485,7 +607,7 @@ export default function KidsOnTheBlockPage() {
                 </div>
                 <div className="grid-item graph-11">
                   <Image
-                    className="grid-img"
+                    className="grid-img-graph"
                     src={graphic11}
                     alt={"graphic11"}
                     quality={100}
@@ -493,7 +615,7 @@ export default function KidsOnTheBlockPage() {
                 </div>
                 <div className="grid-item graph-12">
                   <Image
-                    className="grid-img"
+                    className="grid-img-graph"
                     src={graphic12}
                     alt={"graphic12"}
                     quality={100}
@@ -501,7 +623,7 @@ export default function KidsOnTheBlockPage() {
                 </div>
                 <div className="grid-item graph-13">
                   <Image
-                    className="grid-img"
+                    className="grid-img-graph"
                     src={graphic13}
                     alt={"graphic13"}
                     quality={100}
@@ -566,69 +688,7 @@ export default function KidsOnTheBlockPage() {
                 guiding users seamlessly to their desired sections.
               </p>
 
-              <div className="tldr">
-                <Image
-                  className="image tldr__vs"
-                  src={wireframeBw01}
-                  alt={"wireframeBw01"}
-                  quality={100}
-                />
-
-                <Image
-                  className="image tldr__vs"
-                  src={wireframeColor01}
-                  alt={"wireframeColor01"}
-                  quality={100}
-                />
-              </div>
-
-              <div className="tldr">
-                <Image
-                  className="image "
-                  src={wireframeBw02}
-                  alt={"wireframeBw02"}
-                  quality={100}
-                />
-
-                <Image
-                  className="image "
-                  src={wireframeColor02}
-                  alt={"wireframeColor02"}
-                  quality={100}
-                />
-              </div>
-
-              <div className="tldr">
-                <Image
-                  className="image "
-                  src={wireframeBw03}
-                  alt={"wireframeBw03"}
-                  quality={100}
-                />
-
-                <Image
-                  className="image "
-                  src={wireframeColor03}
-                  alt={"wireframeColor03"}
-                  quality={100}
-                />
-              </div>
-
-              <div className="tldr">
-                <Image
-                  className="image"
-                  src={wireframeBw04}
-                  alt={"wireframeBw04"}
-                  quality={100}
-                />
-
-                <Image
-                  className="image"
-                  src={wireframeColor04}
-                  alt={"wireframeColor04"}
-                  quality={100}
-                />
-              </div>
+              <EmblaCarouselDouble slides={wireframesSlides} />
             </div>
           </div>
         </div>
@@ -637,8 +697,75 @@ export default function KidsOnTheBlockPage() {
           <h2>Final designs</h2>
           <h3>All screens</h3>
 
+          <EmblaCarousel slides={finalScreensSlides} />
+
           <h3>Before VS After</h3>
           {/* CAROUSEL */}
+        </div>
+
+        <div className="text-block">
+          <h3>Project impact and feedback</h3>
+          <p>
+            The new website allowed the non-profit to kickstart their activity
+            for 2023 by recruiting more volunteers and getting donations. They
+            also received several bookings through the forms.
+          </p>
+          <blockquote>
+            <p>
+              We were very impressed with her patience and diligence in setting
+              everything up for us in such a short time.
+            </p>
+            <p>- Sally Olsen</p>
+          </blockquote>
+        </div>
+
+        <div className="mb-56">
+          <h2>Learning</h2>
+
+          <div className="text-block">
+            <h3>Next steps</h3>
+            <p>
+              The website will be maintained by the non-profit members and will
+              serve as their primary contact platform.
+            </p>
+          </div>
+
+          <div className="text-block">
+            <h3>What I learned</h3>
+            <p>
+              Taking initiative and ownership makes the project better and the
+              execution faster
+            </p>
+          </div>
+
+          <div className="text-block">
+            <h3>What would I have done differently?</h3>
+            <ul>
+              <li>More UX research and user testing</li>
+              <li>A more rigorous method for brand identity building</li>
+              <li>Better written content</li>
+              <li>Avoid simple UI mistakes</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <h2>Thanks for reading</h2>
+
+          <div className="flex flex-col justify-start items-center">
+            <h3>Visit one of my other projects if you feel like it</h3>
+
+            <div className="flex flex-col justify-start items-center max-w-2xl">
+              <Image
+                className="image"
+                src={aprilOnThumb}
+                alt={"aprilOnThumb"}
+                quality={100}
+              />
+              <h4>APRIL ON:</h4>
+              <h4>Redesigning the status system for clarity</h4>
+            </div>
+          </div>
         </div>
       </main>
     </div>

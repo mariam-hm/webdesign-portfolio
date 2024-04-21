@@ -1,5 +1,5 @@
 .page-container {
-  --color-primary: #f8aa36;
+  --color-primary: #f1c969;
   --color-primary-light: #ffedc0;
   --color-primary-dark: #ba7816;
 }
@@ -36,7 +36,7 @@ h2 {
 
 .overview {
   background-color: var(--color-primary-light);
-  color: #004161;
+  color: var(--color-primary-dark);
   @apply flex
   flex-col
   justify-center
@@ -94,6 +94,8 @@ h3 {
 
 .duplex {
   @apply flex
+  justify-center
+  items-center
   gap-8
   mt-14;
 }
@@ -118,8 +120,9 @@ h3 {
 
 .moodboard-grid {
   display: grid;
+  width: 100%;
   grid-template-rows: repeat(8, 80px);
-  grid-template-columns: 30% 30% 20% 20%;
+  grid-template-columns: 0.3fr 0.3fr 0.2fr 0.2fr;
   gap: 16px;
 }
 
@@ -186,9 +189,7 @@ h3 {
   display: grid;
   grid-template-rows: repeat(9, 75px);
   grid-template-columns: repeat(12, 1fr);
-  gap: 24px;
-  background-color: #f8aa36;
-  padding: 24px;
+  gap: 16px;
   border-radius: 8px;
 }
 
@@ -219,6 +220,7 @@ h3 {
   align-items: center;
   background-color: #ffffff;
   grid-area: 1/1/4/4;
+  border: 1px solid var(--color-primary-light);
 }
 
 .graph-02 {
@@ -226,6 +228,8 @@ h3 {
   align-items: center;
   background-color: #ffffff;
   grid-area: 1/4/4/6;
+
+  border: 1px solid var(--color-primary-light);
 }
 
 .graph-03 {
@@ -233,6 +237,8 @@ h3 {
   align-items: center;
   background-color: #ffffff;
   grid-area: 1/6/5/8;
+
+  border: 1px solid var(--color-primary-light);
 }
 
 .graph-04 {
@@ -240,6 +246,8 @@ h3 {
   align-items: center;
   background-color: #ffffff;
   grid-area: 1/8/3/10;
+
+  border: 1px solid var(--color-primary-light);
 }
 
 .graph-05 {
@@ -247,6 +255,8 @@ h3 {
   align-items: center;
   background-color: #ffffff;
   grid-area: 3/8/5/10;
+
+  border: 1px solid var(--color-primary-light);
 }
 
 .graph-06 {
@@ -254,6 +264,8 @@ h3 {
   align-items: center;
   background-color: #ffffff;
   grid-area: 1/10/5/13;
+
+  border: 1px solid var(--color-primary-light);
 }
 
 .graph-07 {
@@ -261,6 +273,8 @@ h3 {
   align-items: center;
   background-color: #ffffff;
   grid-area: 4/1/8/3;
+
+  border: 1px solid var(--color-primary-light);
 }
 
 .graph-08 {
@@ -268,6 +282,8 @@ h3 {
   align-items: center;
   background-color: #ffffff;
   grid-area: 4/3/7/6;
+
+  border: 1px solid var(--color-primary-light);
 }
 
 .graph-09 {
@@ -275,6 +291,8 @@ h3 {
   align-items: center;
   background-color: #ffffff;
   grid-area: 5/6/10/10;
+
+  border: 1px solid var(--color-primary-light);
 }
 
 .graph-10 {
@@ -282,6 +300,8 @@ h3 {
   align-items: center;
   background-color: #ffffff;
   grid-area: 5/10/7/13;
+
+  border: 1px solid var(--color-primary-light);
 }
 
 .graph-11 {
@@ -289,6 +309,8 @@ h3 {
   align-items: center;
   background-color: #ffffff;
   grid-area: 8/1/10/3;
+
+  border: 1px solid var(--color-primary-light);
 }
 
 .graph-12 {
@@ -296,6 +318,8 @@ h3 {
   align-items: center;
   background-color: #ffffff;
   grid-area: 7/3/10/6;
+
+  border: 1px solid var(--color-primary-light);
 }
 
 .graph-13 {
@@ -303,6 +327,8 @@ h3 {
   align-items: center;
   background-color: #ffffff;
   grid-area: 7/10/10/13;
+
+  border: 1px solid var(--color-primary-light);
 }
 
 .embla {
@@ -451,4 +477,32 @@ h3 {
   inset: 0px;
   object-fit: cover;
   color: transparent;
+}
+
+.bg-kotb-yellow {
+  background-color: var(--color-primary);
+  justify-content: center;
+  align-items: center;
+
+  @apply p-10
+  rounded-md;
+}
+
+blockquote {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  position: relative;
+  overflow: hidden;
+
+  @apply flex flex-col justify-center items-start p-10
+    rounded-md;
+}
+
+blockquote::after {
+  /* content: "❝"; */
+  content: "\201C";
+  position: absolute;
+  font-size: 16rem;
+  left: 0;
+  color: #ba781663;
 }

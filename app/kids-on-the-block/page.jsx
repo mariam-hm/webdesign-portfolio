@@ -3,6 +3,8 @@ import Image from "next/image";
 import { EmblaCarouselDouble } from "../components/EmblaCarouselDouble";
 import { EmblaCarousel } from "../components/EmblaCarousel";
 
+import kotbHeader from "../_assets/imgs-kotb/header/laptop-mockup.png";
+
 import bestFeature01 from "../_assets/imgs-kotb/best-features-01.png";
 import bestFeature02 from "../_assets/imgs-kotb/best-features-02.png";
 import bestFeature03 from "../_assets/imgs-kotb/best-features-03.png";
@@ -20,7 +22,8 @@ import moodboard10 from "../_assets/imgs-kotb/moodboard/moodboard-10.jpg";
 
 import colorFont01 from "../_assets/imgs-kotb/color-font-01.jpg";
 import colorFont02 from "../_assets/imgs-kotb/color-font-02.jpg";
-import colorFont03 from "../_assets/imgs-kotb/color-font-03.jpg";
+
+import photoshoot01 from "../_assets/imgs-kotb/pictures/brenda_anna_2.jpg";
 
 import logoKOTB from "../_assets/imgs-kotb/logo-01.jpg";
 
@@ -186,7 +189,6 @@ export default function KidsOnTheBlockPage() {
   return (
     <div className="page-container">
       <header className="header">
-        <Image src={logoKOTB} width={200} alt="april-on-logo" quality={100} />
         <h1>Back online with a strong brand identity</h1>
         {/* TODO: */}
         {/* <Image
@@ -202,6 +204,7 @@ export default function KidsOnTheBlockPage() {
           alt="header__img--small"
           quality={100}
         /> */}
+        <Image src={kotbHeader} width={800} alt="kotb-header" quality={100} />
       </header>
 
       <main>
@@ -247,10 +250,9 @@ export default function KidsOnTheBlockPage() {
             <div className="flex flex-row gap-x-4">
               <div className="tldr__vs">
                 <p>
-                  A vibrant and playful brand identity, created with hand-drawn
-                  elements, that evokes a sense of warmth to effectively
-                  communicate the values of childhood, empathy, and acceptance
-                  for the non-profit organization
+                  Several sections to introduce the concepts, gain the user’s
+                  trust with testimonies and redirect them to the most relevant
+                  pages.
                 </p>
                 <Image
                   className="image"
@@ -261,8 +263,9 @@ export default function KidsOnTheBlockPage() {
               </div>
               <div className="tldr__vs">
                 <p>
-                  Booking a show and communicating with the association is made
-                  easy and straightforward for teachers
+                  A photo album like page to introduce the characters of the
+                  show. Each puppet has its details page with a unique
+                  illustration, a quote and their story.
                 </p>
                 <Image
                   className="image"
@@ -274,10 +277,8 @@ export default function KidsOnTheBlockPage() {
 
               <div className="tldr__vs">
                 <p>
-                  Users can easily access detailed information about each skit
-                  and puppet, allowing them to make confident decisions that
-                  best suit the needs and preferences of their class and
-                  students
+                  No need to go back and forth between two pages to volunteer:
+                  the role description and the form are on one page.
                 </p>
                 <Image
                   className="image"
@@ -292,6 +293,7 @@ export default function KidsOnTheBlockPage() {
 
         {/* ====== PROCESS ====== */}
         <div>
+          <h2>Process</h2>
           <div className="text-block">
             <h3>About the organization and stakeholders</h3>
             <p>
@@ -433,25 +435,6 @@ export default function KidsOnTheBlockPage() {
                 memory of the first puppet of the non-profit, Mark Riley, that
                 has orange hair.
               </p>
-
-              <div className="tldr">
-                <div className="w-2/3">
-                  <Image
-                    className="image"
-                    src={colorFont01}
-                    alt={"colorFont01"}
-                    quality={100}
-                  />
-                </div>
-
-                <Image
-                  className="image w-1/3"
-                  src={colorFont02}
-                  alt={"colorFont02"}
-                  quality={100}
-                />
-              </div>
-
               <p>
                 I chose a brush-like typeface to enhance the handmade aesthetic
                 of the brand identity for titles, paired with a rounded
@@ -461,51 +444,64 @@ export default function KidsOnTheBlockPage() {
 
               <Image
                 className="image"
-                src={colorFont03}
-                alt={"colorFont03"}
+                src={colorFont01}
+                alt={"colorFont01"}
                 quality={100}
               />
             </div>
 
-            <div className="text-block">
-              <h4>Logo</h4>
-              <p>
-                To match the website aesthetic, I decided to go for a hand-drawn
-                logo and use the main accent color. I suggested several
-                directions and ideas that matched the themes of the non-profit
-                through my sketches and presented them to the team. <br />
-                After reviewing the sketches, I refined and implemented the
-                final the logo by incorporating the chosen fonts and declined it
-                in both a primary and secondary versions.
-              </p>
+            <div className="duplex">
+              <div className="duplex__text-block">
+                <div className="duplex__title">
+                  <h4>Sketches and </h4>
+                  <h3>New logo</h3>
+                </div>
+
+                <p>
+                  To match the website aesthetic, I decided to go for a
+                  hand-drawn logo and use the main accent color. I suggested
+                  several directions and ideas that matched the themes of the
+                  non-profit through my sketches and presented them to the team.{" "}
+                  <br />
+                  After reviewing the sketches, I refined and implemented the
+                  final the logo by incorporating the chosen fonts and declined
+                  it in both a primary and secondary versions.
+                </p>
+              </div>
 
               <Image
-                className="image"
-                src={logoKOTB}
-                alt={"logoKOTB"}
+                className="duplex__image image"
+                src={colorFont02}
+                alt={"colorFont02"}
                 quality={100}
               />
             </div>
 
-            <div className="text-block">
-              <h4>Photoshoot</h4>
-              <p>
-                The old website was lacking quality visual material, especially
-                pictures. Recognizing the necessity of suitable pictures, I took
-                the initiative to organize a dedicated photoshoot in
-                collaboration with the association members. <br />
-                We took pictures of most puppets for the kids page, as well as
-                scenes with several puppets interacting to show skits look. I
-                then used Photoshop to refine the quality of the photographs and
-                enhance the overall visual appeal.
-              </p>
-
+            <div className="duplex">
               <Image
-                className="image"
-                src={logoKOTB}
-                alt={"logoKOTB"}
+                className="duplex__image image"
+                src={photoshoot01}
+                alt={"photoshoot01"}
                 quality={100}
               />
+              <div className="duplex__text-block">
+                <div className="duplex__title">
+                  <h4>More visual assets</h4>
+                  <h3>Photoshoot</h3>
+                </div>
+
+                <p>
+                  The old website was lacking quality visual material,
+                  especially pictures. Recognizing the necessity of suitable
+                  pictures, I took the initiative to organize a dedicated
+                  photoshoot in collaboration with the association members.{" "}
+                  <br />
+                  We took pictures of most puppets for the kids page, as well as
+                  scenes with several puppets interacting to show skits look. I
+                  then used Photoshop to refine the quality of the photographs
+                  and enhance the overall visual appeal.
+                </p>
+              </div>
             </div>
 
             <div className="text-block">
@@ -682,7 +678,30 @@ export default function KidsOnTheBlockPage() {
             </div>
 
             <div className="text-block">
-              <h3>Sketches and mid fidelity wireframes</h3>
+              <h3>Ideation and sketches</h3>
+              <p>
+                The homepage has been revamped to be more colorful and engaging,
+                guiding users seamlessly to their desired sections.
+              </p>
+
+              <div className="flex">
+                <Image
+                  className="image w-1/2"
+                  src={sketches01}
+                  alt={"sketches01"}
+                  quality={100}
+                />
+                <Image
+                  className="image w-1/2"
+                  src={sketches02}
+                  alt={"sketches02"}
+                  quality={100}
+                />
+              </div>
+            </div>
+
+            <div className="text-block">
+              <h3>Mid-fidelity wireframes and colors</h3>
               <p>
                 The homepage has been revamped to be more colorful and engaging,
                 guiding users seamlessly to their desired sections.
@@ -695,12 +714,63 @@ export default function KidsOnTheBlockPage() {
 
         <div>
           <h2>Final designs</h2>
-          <h3>All screens</h3>
+          <div className="flex flex-col items-center my-12">
+            <h3>All screens</h3>
 
-          <EmblaCarousel slides={finalScreensSlides} />
+            <EmblaCarousel slides={finalScreensSlides} />
+          </div>
 
-          <h3>Before VS After</h3>
-          {/* CAROUSEL */}
+          <div>
+            <div className="flex flex-col bg-kotb-yellow">
+              <h3>Best features</h3>
+              <div className="flex flex-row gap-x-4 items-baseline">
+                <div className="flex flex-col gap-6">
+                  <Image
+                    className="image"
+                    src={bestFeature01}
+                    alt={"bestFeature01"}
+                    quality={100}
+                  />
+                  <h4>Homepage</h4>
+                  <p>
+                    A vibrant and playful brand identity, created with
+                    hand-drawn elements, that evokes a sense of warmth to
+                    effectively communicate the values of childhood, empathy,
+                    and acceptance for the non-profit organization
+                  </p>
+                </div>
+                <div className="flex flex-col gap-6">
+                  <Image
+                    className="image"
+                    src={bestFeature02}
+                    alt={"bestFeature02"}
+                    quality={100}
+                  />
+                  <h4>Photo album Kids page</h4>
+                  <p>
+                    Booking a show and communicating with the association is
+                    made easy and straightforward for teachers
+                  </p>
+                </div>
+
+                <div className="flex flex-col gap-6">
+                  <Image
+                    className="image"
+                    src={bestFeature03}
+                    alt={"bestFeature03"}
+                    quality={100}
+                  />
+                  <h4>Descriptions and forms on same page</h4>
+                  <p>
+                    Users can easily access detailed information about each skit
+                    and puppet, allowing them to make confident decisions that
+                    best suit the needs and preferences of their class and
+                    students
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="text-block">
@@ -711,11 +781,11 @@ export default function KidsOnTheBlockPage() {
             also received several bookings through the forms.
           </p>
           <blockquote>
-            <p>
+            <h4>
               We were very impressed with her patience and diligence in setting
               everything up for us in such a short time.
-            </p>
-            <p>- Sally Olsen</p>
+            </h4>
+            <p className="self-end">- Sally Olsen</p>
           </blockquote>
         </div>
 
@@ -755,7 +825,7 @@ export default function KidsOnTheBlockPage() {
           <div className="flex flex-col justify-start items-center">
             <h3>Visit one of my other projects if you feel like it</h3>
 
-            <div className="flex flex-col justify-start items-center max-w-2xl">
+            <div className="flex flex-col justify-start items-center max-w-xl">
               <Image
                 className="image"
                 src={aprilOnThumb}

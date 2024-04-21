@@ -17,15 +17,13 @@ p-14 = 56px
 :root {
   --font-calistoga: "Calistoga";
   --font-lato: "Lato";
+  --color-accent: #ff6f6b;
 }
 
 html {
   font-family: var(--font-lato);
+  scroll-behavior: smooth;
   @apply text-zinc-700;
-}
-
-body {
-  @apply mx-auto lg:max-w-screen-lg md:max-w-screen-md sm:max-w-screen-sm;
 }
 
 h1,
@@ -40,15 +38,80 @@ h2 {
   @apply text-5xl;
 }
 
+h3 {
+  @apply text-3xl;
+}
+
 h4 {
   @apply text-xl;
 }
 
 nav {
-  @apply h-14
- bg-slate-300;
+  @apply flex justify-center items-center h-14 border border-b-zinc-200 shadow-sm;
 }
 
-p {
+p,
+li {
   @apply text-lg;
+}
+
+.container {
+  @apply mx-auto lg:max-w-screen-lg md:max-w-screen-md sm:max-w-screen-sm;
+}
+
+.nav__content {
+  font-family: var(--font-calistoga);
+  width: 1024px;
+  @apply mx-auto;
+}
+
+.nav__logo {
+  color: var(--color-accent);
+}
+
+.nav__logo::after {
+  content: "";
+  display: block;
+  border-bottom: 1px solid var(--color-accent);
+  top: 6px;
+
+  transform: scaleX(0);
+}
+
+.nav__logo:hover::after {
+  transition: all 0.2s;
+  transform: scaleX(1);
+}
+
+.nav__link:hover {
+  color: var(--color-accent);
+  cursor: pointer;
+
+  transition: all 0.2s;
+}
+
+.nav__link::after {
+  content: "";
+  display: block;
+  border-bottom: 1px solid var(--color-accent);
+  top: 6px;
+
+  transform: scaleX(0);
+}
+
+.nav__link:hover::after {
+  transition: all 0.2s;
+  transform: scaleX(1);
+}
+
+.tag {
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  background-color: #ff706b0c;
+  @apply inline-flex px-2 mr-1 my-1 text-center
+    rounded-full text-sm;
+}
+
+.intro {
+  height: calc(100vh - 56px);
 }

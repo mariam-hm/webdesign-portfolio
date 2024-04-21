@@ -1,6 +1,9 @@
 import "./styles.css";
 import Image from "next/image";
 
+import { EmblaCarouselDouble } from "../components/EmblaCarouselDouble";
+import { EmblaCarousel } from "../components/EmblaCarousel";
+
 import aprilOnLogo from "../_assets/imgs-april-on/header/april-on-logo-bubble.png";
 import headerMockup from "../_assets/imgs-april-on/header/header-mockup.png";
 import headerAssetsSmall from "../_assets/imgs-april-on/header/header-assets-small.png";
@@ -12,11 +15,11 @@ import quoteDetailsAfter from "../_assets/imgs-april-on/quote-details-after.jpg"
 
 import userFlow from "../_assets/imgs-april-on/user-flow.jpg";
 
-// import quoteListBefore from "../_assets/imgs-april-on/quote-list-before.jpg";
-// import quoteListAfter from "../_assets/imgs-april-on/quote-list-after.jpg";
+import quoteListBefore from "../_assets/imgs-april-on/quote-list-before.jpg";
+import quoteListAfter from "../_assets/imgs-april-on/quote-list-after.jpg";
 
-// import statusLabelsBefore from "../_assets/imgs-april-on/status-labels-before.jpg";
-// import statusLabelsAfter from "../_assets/imgs-april-on/status-labels-after.jpg";
+import statusLabelsBefore from "../_assets/imgs-april-on/status-labels-before.jpg";
+import statusLabelsAfter from "../_assets/imgs-april-on/status-labels-after.jpg";
 
 // Annotated screens
 import quoteDetailsBeforeAnnotated from "../_assets/imgs-april-on/annotated-screens/quote-details-before-annotated.jpg";
@@ -28,9 +31,138 @@ import quoteListAfterAnnotated from "../_assets/imgs-april-on/annotated-screens/
 import statusLabelsBeforeAnnotated from "../_assets/imgs-april-on/annotated-screens/status-labels-before-annotated.jpg";
 import statusLabelsAfterAnnotated from "../_assets/imgs-april-on/annotated-screens/status-labels-after-annotated.jpg";
 
+// All screens
+import finalScreen01 from "../_assets/imgs-april-on/all-quote-details-screens/not completed-not-filled.jpg";
+import finalScreen02 from "../_assets/imgs-april-on/all-quote-details-screens/not completed-filled.jpg";
+import finalScreen03 from "../_assets/imgs-april-on/all-quote-details-screens/not-completed-declined.jpg";
+import finalScreen04 from "../_assets/imgs-april-on/all-quote-details-screens/quote-pending.jpg";
+import finalScreen05 from "../_assets/imgs-april-on/all-quote-details-screens/quote-pending-info-required.jpg";
+import finalScreen06 from "../_assets/imgs-april-on/all-quote-details-screens/quote-pending-declined.jpg";
+import finalScreen07 from "../_assets/imgs-april-on/all-quote-details-screens/quote-available.jpg";
+import finalScreen08 from "../_assets/imgs-april-on/all-quote-details-screens/quote-available-not-required.jpg";
+import finalScreen09 from "../_assets/imgs-april-on/all-quote-details-screens/bind-pending.jpg";
+import finalScreen10 from "../_assets/imgs-april-on/all-quote-details-screens/bind-pending-not-required.jpg";
+import finalScreen11 from "../_assets/imgs-april-on/all-quote-details-screens/bind-pending-not-required-1.jpg";
+import finalScreen12 from "../_assets/imgs-april-on/all-quote-details-screens/bound.jpg";
+import finalScreen13 from "../_assets/imgs-april-on/all-quote-details-screens/issued.jpg";
+
 import kotbThumb from "../_assets/imgs-kotb/thumbnail.jpg";
 
 export default function AprilOnPage() {
+  const finalscreensSlides = [
+    {
+      image: {
+        src: finalScreen01,
+        alt: "finalScreen01",
+      },
+    },
+    {
+      image: {
+        src: finalScreen02,
+        alt: "finalScreen02",
+      },
+    },
+    {
+      image: {
+        src: finalScreen03,
+        alt: "finalScreen03",
+      },
+    },
+    {
+      image: {
+        src: finalScreen04,
+        alt: "finalScreen04",
+      },
+    },
+    {
+      image: {
+        src: finalScreen05,
+        alt: "finalScreen05",
+      },
+    },
+    {
+      image: {
+        src: finalScreen06,
+        alt: "finalScreen06",
+      },
+    },
+    {
+      image: {
+        src: finalScreen07,
+        alt: "finalScreen07",
+      },
+    },
+    {
+      image: {
+        src: finalScreen08,
+        alt: "finalScreen08",
+      },
+    },
+    {
+      image: {
+        src: finalScreen09,
+        alt: "finalScreen09",
+      },
+    },
+    {
+      image: {
+        src: finalScreen10,
+        alt: "finalScreen10",
+      },
+    },
+    {
+      image: {
+        src: finalScreen11,
+        alt: "finalScreen11",
+      },
+    },
+    {
+      image: {
+        src: finalScreen12,
+        alt: "finalScreen12",
+      },
+    },
+    {
+      image: {
+        src: finalScreen13,
+        alt: "finalScreen13",
+      },
+    },
+  ];
+
+  const beforeVSAfterSlides = [
+    {
+      imageLeft: {
+        src: quoteDetailsBefore,
+        alt: "quoteDetailsBefore",
+      },
+      imageRight: {
+        src: quoteDetailsAfter,
+        alt: "quoteDetailsAfter",
+      },
+    },
+    {
+      imageLeft: {
+        src: quoteListBefore,
+        alt: "quoteListBefore",
+      },
+      imageRight: {
+        src: quoteListAfter,
+        alt: "quoteListAfter",
+      },
+    },
+    {
+      imageLeft: {
+        src: statusLabelsBefore,
+        alt: "statusLabelsBefore",
+      },
+      imageRight: {
+        src: statusLabelsAfter,
+        alt: "statusLabelsAfter",
+      },
+    },
+  ];
+
   return (
     <div className="page-container">
       {/* ====== HEADER ====== */}
@@ -476,17 +608,16 @@ export default function AprilOnPage() {
 
         <div>
           <h2>Final designs</h2>
-          <h3>All screens</h3>
-          <div>
-            <Image
-              src={quoteListAfterAnnotated}
-              alt={"quote-list-after-annotated"}
-              quality={100}
-            />
+
+          <div className="flex flex-col justify-center items-center mb-14 mt-8">
+            <h3>All screens</h3>
+            <EmblaCarousel slides={finalscreensSlides} />
           </div>
 
-          <h3>Before VS After</h3>
-          {/* CAROUSEL */}
+          <div className="flex flex-col justify-center items-center bg-april-green mb-14 mt-8">
+            <h3>Before VS After</h3>
+            <EmblaCarouselDouble slides={beforeVSAfterSlides} />
+          </div>
         </div>
 
         <div>
@@ -557,7 +688,7 @@ export default function AprilOnPage() {
           <div className="flex flex-col justify-start items-center">
             <h3>Visit one of my other projects if you feel like it</h3>
 
-            <div className="flex flex-col justify-start items-center max-w-2xl">
+            <div className="flex flex-col justify-start items-center max-w-xl">
               <Image
                 className="image"
                 src={kotbThumb}

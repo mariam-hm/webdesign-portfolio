@@ -55,7 +55,7 @@ h2 {
 .overview .overview__label {
   font-family: "Calistoga";
   @apply text-xl
-  w-36;
+  min-w-36;
 }
 
 .tldr {
@@ -504,5 +504,5 @@ blockquote::after {
   position: absolute;
   font-size: 16rem;
   left: 0;
-  color: #ba781663;
+  color: #f1c8699a;
 }

@@ -37,8 +37,8 @@ h2 {
 }
 
 .overview {
-  background-color: var(--color-primary-light);
-  color: #004161;
+  background-color: #e7f1ca;
+  color: #64840d;
   @apply flex
   flex-col
   justify-center
@@ -57,7 +57,7 @@ h2 {
 .overview .overview__label {
   font-family: "Calistoga";
   @apply text-xl
-  w-36;
+  min-w-36;
 }
 
 .tldr {
@@ -196,12 +196,12 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-primary);
+  color: var(--color-primary-dark);
   max-width: 1.5rem;
   max-height: 1.5rem;
 }
 .embla__button:disabled {
-  color: var(--color-primary-light);
+  color: #e7f1ca;
 }
 
 .embla__button__svg {
@@ -244,7 +244,7 @@ h3 {
 }
 .embla__dot:after {
   box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
-  background-color: var(--color-primary-light);
+  background-color: #e7f1ca;
   width: 0.8rem;
   height: 0.8rem;
   border-radius: 50%;
@@ -254,7 +254,7 @@ h3 {
 }
 .embla__dot--selected:after {
   box-shadow: inset 0 0 0 0.2rem var(--text-body);
-  background-color: var(--color-primary-dark);
+  background-color: #64840d;
 }
 
 .img_slide {

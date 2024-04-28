@@ -628,7 +628,7 @@ export default function AprilOnPage() {
                 perform the next action”, lacked depth. To address this, I
                 researched and explored to finally reach the heart of the
                 problem. This experience taught me the importance of always
-                verifying that we're working on the correct problem first.
+                verifying that we&apos;re working on the correct problem first.
               </li>
               <li>
                 Managing changes, ideas, and functionalities across multiple

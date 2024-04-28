@@ -324,9 +324,9 @@ export default function KidsOnTheBlockPage() {
             <h3>Situation</h3>
             <p>
               The existing website lacks user-friendliness and appears outdated.
-              There's a pressing need for the organization to establish a strong
-              online presence and have a platform to effectively communicate
-              with their stakeholders.
+              There&apos;s a pressing need for the organization to establish a
+              strong online presence and have a platform to effectively
+              communicate with their stakeholders.
             </p>
           </div>
 
@@ -508,10 +508,10 @@ export default function KidsOnTheBlockPage() {
               <br />
               By including school and art supplies, the visuals evoke a familiar
               school environment that teachers and young pupils can connect
-              with. Additionally, I integrated details related to kids'
-              disabilities and backstories, such as Renaldo’s cane, Mark’s
-              chair, Jennifer’s red ring, and Ellen’s pet snake, to add depth
-              and relevance to the imagery.
+              with. Additionally, I integrated details related to kids&apos;
+              disabilities and backstories, such as Renaldo&apos;s cane,
+              Mark&apos;s chair, Jennifer&apos;s red ring, and Ellen&apos;s pet
+              snake, to add depth and relevance to the imagery.
             </p>
 
             <div className="graphics-grid">
@@ -658,7 +658,7 @@ export default function KidsOnTheBlockPage() {
             <ul>
               <li>Make the design more lively and engaging with colors</li>
               <li>
-                Provide a clear and brief overview of the non-profit's
+                Provide a clear and brief overview of the non-profit&apos;s
                 activities
               </li>
               <li>Build trust with visitors</li>
@@ -780,19 +780,19 @@ export default function KidsOnTheBlockPage() {
           <div className="text-block">
             <h3>What would I have done differently?</h3>
             <p>
-              Reflecting on my experience, I've identified several areas for
-              improvement:
+              Reflecting on my experience, I&apos;ve identified several areas
+              for improvement:
             </p>
             <ul>
               <li>
                 Better UX research and testing: Due to limited resources, we
                 missed out on valuable user insights, which could have improved
-                the website's usability
+                the website&apos;s usability
               </li>
               <li>
                 Improved brand identity development: A more comprehensive
-                approach to creating the brand's visual identity, including a
-                look and feel board, a thorough logo design process and
+                approach to creating the brand&apos;s visual identity, including
+                a look and feel board, a thorough logo design process and
                 expansion to other media platforms, would have been beneficial
               </li>
               <li>

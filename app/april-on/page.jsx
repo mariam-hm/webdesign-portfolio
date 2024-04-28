@@ -288,7 +288,7 @@ export default function AprilOnPage() {
               APRIL ON is a Business-to-Business (B2B) web application designed
               for insurance brokers and their firms to purchase insurance
               products on behalf of their clients. It aims to simplify
-              insurance, reflecting the company's dedication to leveraging
+              insurance, reflecting the company&apos;s dedication to leveraging
               technology for streamlined processes.
             </p>
           </div>
@@ -315,7 +315,8 @@ export default function AprilOnPage() {
               deals. Additionally, they frequently use multiple online platforms
               like APRIL ON from different insurance providers to buy products
               for clients. Therefore, these platforms must be user-friendly,
-              efficient, and comprehensive to meet brokers' needs effectively.
+              efficient, and comprehensive to meet brokers&apos; needs
+              effectively.
             </p>
           </div>
 
@@ -359,8 +360,8 @@ export default function AprilOnPage() {
 
               <ul>
                 <li>
-                  Some status labels don't match the corresponding actions. For
-                  instance, transitioning from "Not sent" to "Sent" requires
+                  Some status labels don&apos;t match the corresponding actions.
+                  For instance, transitioning from "Not sent" to "Sent" requires
                   actions like Edit and Confirm, rather than Send. Certain
                   statuses like "Sent" lack clear guidance on the next steps or
                   actions required.
@@ -439,11 +440,13 @@ export default function AprilOnPage() {
               <p>General lack of guidance towards the next action:</p>
               <ul>
                 <li>
-                  User attention isn't directed to relevant quotes, as they all
-                  appear equal, making it difficult to distinguish which quote
-                  requires specific actions or attention
+                  User attention isn&apos;t directed to relevant quotes, as they
+                  all appear equal, making it difficult to distinguish which
+                  quote requires specific actions or attention
                 </li>
-                <li>Frequently used filters aren't prominently displayed</li>
+                <li>
+                  Frequently used filters aren&apos;t prominently displayed
+                </li>
                 <li>
                   Inconsistency in filter presentation: some are within a white
                   container while others are not, leading to confusion regarding
@@ -585,8 +588,8 @@ export default function AprilOnPage() {
                 </li>
                 <li>
                   Integration of matching notification icons at the start of
-                  each line, effectively directing the user's attention to the
-                  relevant quotes
+                  each line, effectively directing the user&apos;s attention to
+                  the relevant quotes
                 </li>
                 <li>
                   Adoption of a new status badge design to replace the previous
@@ -619,11 +622,11 @@ export default function AprilOnPage() {
             <h3>Challenges and lessons</h3>
             <ul>
               <li>
-                Our initial problem statement, “users don’t know how to perform
-                the next action”, lacked depth. To address this, I researched
-                and explored to finally reach the heart of the problem. This
-                experience taught me the importance of always verifying that
-                we're working on the correct problem first.
+                Our initial problem statement, “users don&apos;t know how to
+                perform the next action”, lacked depth. To address this, I
+                researched and explored to finally reach the heart of the
+                problem. This experience taught me the importance of always
+                verifying that we're working on the correct problem first.
               </li>
               <li>
                 Managing changes, ideas, and functionalities across multiple

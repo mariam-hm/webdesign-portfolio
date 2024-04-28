@@ -58,7 +58,7 @@ export const ImageDialog = ({
               disabled={prevBtnDisabled}
             />
           )} */}
-          <Dialog.Panel className="mx-auto max-h-full max-w-3xl max-h-screen bg-transparent">
+          <Dialog.Panel className="mx-auto max-h-full max-w-5xl max-h-screen bg-transparent">
             <Image
               className="rounded-lg"
               src={image}

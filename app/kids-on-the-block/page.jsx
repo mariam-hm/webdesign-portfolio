@@ -639,7 +639,7 @@ export default function KidsOnTheBlockPage() {
                 Streamlined homepage with no sidebar to guide users to sections
               </li>
               <li>
-                "Get Involved" menu item to bring all volunteering and
+                &quot;Get Involved&quot; menu item to bring all volunteering and
                 donation-related items together
               </li>
               <li>Less important information in the footer</li>

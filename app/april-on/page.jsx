@@ -361,14 +361,14 @@ export default function AprilOnPage() {
               <ul>
                 <li>
                   Some status labels don&apos;t match the corresponding actions.
-                  For instance, transitioning from "Not sent" to "Sent" requires
-                  actions like Edit and Confirm, rather than Send. Certain
-                  statuses like "Sent" lack clear guidance on the next steps or
-                  actions required.
+                  For instance, transitioning from &quot;Not sent&quot; to
+                  &quot;Sent&quot; requires actions like Edit and Confirm,
+                  rather than Send. Certain statuses like &quot;Sent&quot; lack
+                  clear guidance on the next steps or actions required.
                 </li>
                 <li>
-                  Certain statuses like "Sent" lack clear guidance on the next
-                  steps or actions required.
+                  Certain statuses like &quot;Sent&quot; lack clear guidance on
+                  the next steps or actions required.
                 </li>
                 <li>
                   Statuses primarily indicate past actions rather than guiding
@@ -489,12 +489,14 @@ export default function AprilOnPage() {
               <ul>
                 <li>
                   Status and action labels are now aligned: for instance,
-                  transitioning from "Not completed" to "Quote Pending" involves
-                  actions like "Complete my quote" followed by "Get my quote."
+                  transitioning from &quot;Not completed&quot; to &quot;Quote
+                  Pending&quot; involves actions like &quot;Complete my
+                  quote&quot; followed by &quot;Get my quote&quot;.
                 </li>
                 <li>
-                  Introduced a temporary status, "Information Required," to
-                  prompt user action rather than leaving them in uncertainty.
+                  Introduced a temporary status, &quot;Information
+                  Required&quot;, to prompt user action rather than leaving them
+                  in uncertainty.
                 </li>
                 <li>
                   The user is now required to upload the necessary documents

@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import { ImageDialog } from "./ImageDialog";
 
 import { DotButton, useDotButton } from "./EmblaCarouselDotButton";
 import {
@@ -34,20 +35,34 @@ export const EmblaCarouselDouble = (props) => {
             {slides.map((slide, index) => (
               <div className="embla__slide flex flex-row" key={index}>
                 <div className="embla__image--dbl">
-                  <Image
+                  {/* <Image
                     className="image  object-contain"
                     src={slide.imageLeft.src}
                     alt={slide.imageLeft.alt}
                     quality={100}
+                  /> */}
+                  <ImageDialog
+                    options
+                    isCarousel={true}
+                    image={slide.imageLeft.src}
+                    caption={slide.imageLeft.alt}
+                    onNextButtonClick={onNextButtonClick}
+                    onPrevButtonClick={onPrevButtonClick}
+                    prevBtnDisabled={prevBtnDisabled}
+                    nextBtnDisabled={nextBtnDisabled}
                   />
                 </div>
 
                 <div className="embla__image--dbl">
-                  <Image
-                    className="image object-contain"
-                    src={slide.imageRight.src}
-                    alt={slide.imageRight.alt}
-                    quality={100}
+                  <ImageDialog
+                    options
+                    isCarousel={true}
+                    image={slide.imageRight.src}
+                    caption={slide.imageRight.alt}
+                    onNextButtonClick={onNextButtonClick}
+                    onPrevButtonClick={onPrevButtonClick}
+                    prevBtnDisabled={prevBtnDisabled}
+                    nextBtnDisabled={nextBtnDisabled}
                   />
                 </div>
               </div>

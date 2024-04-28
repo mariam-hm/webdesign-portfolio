@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import { ImageDialog } from "./ImageDialog";
 
 import { DotButton, useDotButton } from "./EmblaCarouselDotButton";
 import {
@@ -36,11 +37,15 @@ export const EmblaCarousel = (props) => {
                 className="embla__slide--4 flex flex-row max-h-96"
                 key={index}
               >
-                <Image
-                  className="image object-cover"
-                  src={slide.image.src}
-                  alt={slide.image.alt}
-                  quality={100}
+                <ImageDialog
+                  options
+                  isCarousel={true}
+                  image={slide.image.src}
+                  caption={slide.image.alt}
+                  onNextButtonClick={onNextButtonClick}
+                  onPrevButtonClick={onPrevButtonClick}
+                  prevBtnDisabled={prevBtnDisabled}
+                  nextBtnDisabled={nextBtnDisabled}
                 />
               </div>
             ))}

@@ -18,8 +18,8 @@ export const projectsSummaries = [
     client: "Kids on the Block",
     title: "Back online with a strong brand identity",
     description:
-      "As a UX designer, I was tasked with leading the redesign and implementation of the status system in APRIL ON",
-    tags: ["UX Design", "UI Design", "Front-end development", "Desktop"],
+      "As a graphic designer, I created a new brand identity and webside for Kids on the Block",
+    tags: ["Brand Identity Design", "UX Design", "UI Design", "Desktop"],
     thumbnail: kotbThumb,
   },
 ];

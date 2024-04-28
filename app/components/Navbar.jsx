@@ -9,11 +9,11 @@ export default function Navbar() {
         </Link>
 
         <div className="flex gap-4">
-          <Link href="/">
-            <span className="nav__link">About</span>
+          <Link href="/april-on">
+            <span className="nav__link">APRIL On</span>
           </Link>
-          <Link href="#project">
-            <span className="nav__link">My work</span>
+          <Link href="/kids-on-the-block">
+            <span className="nav__link">Kids on the Block</span>
           </Link>
         </div>
       </div>

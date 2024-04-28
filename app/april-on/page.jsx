@@ -1,8 +1,10 @@
 import "./styles.css";
 import Image from "next/image";
+import Link from "next/link";
 
 import { EmblaCarouselDouble } from "../components/EmblaCarouselDouble";
 import { EmblaCarousel } from "../components/EmblaCarousel";
+import { ImageDialog } from "../components/ImageDialog";
 
 import aprilOnLogo from "../_assets/imgs-april-on/header/april-on-logo-bubble.png";
 import headerMockup from "../_assets/imgs-april-on/header/header-mockup.png";
@@ -246,14 +248,11 @@ export default function AprilOnPage() {
                   Difficulty identifying the files needing attention in the list
                   screen
                 </li>
-                <br />
               </ul>
 
-              <Image
-                className="image"
-                src={quoteDetailsBefore}
-                alt={"quote-details-before"}
-                quality={100}
+              <ImageDialog
+                image={quoteDetailsBefore}
+                caption="quote-details-before"
               />
             </div>
 
@@ -265,12 +264,9 @@ export default function AprilOnPage() {
                 <li>Intuitive and accessible next step</li>
                 <li>Guide users towards items tha need attention</li>
               </ul>
-
-              <Image
-                className="image"
-                src={quoteDetailsAfter}
-                alt={"quote-details-after"}
-                quality={100}
+              <ImageDialog
+                image={quoteDetailsAfter}
+                caption="quote-details-after"
               />
             </div>
           </div>
@@ -287,6 +283,7 @@ export default function AprilOnPage() {
               insurance lines like car and property insurance. In response to
               industry digitalization, APRIL launched its online platform, APRIL
               ON, in 2020.
+              <br />
               <br />
               APRIL ON is a Business-to-Business (B2B) web application designed
               for insurance brokers and their firms to purchase insurance
@@ -332,12 +329,7 @@ export default function AprilOnPage() {
               process, as it is the where the user will be able to do all the
               actions that move their file forward.
             </p>
-            <Image
-              className="image"
-              src={userFlow}
-              alt={"user-flow"}
-              quality={100}
-            />
+            <ImageDialog image={userFlow} caption="user-flow" />
           </div>
 
           <div className="text-block">
@@ -348,6 +340,7 @@ export default function AprilOnPage() {
               qualitative inputs, while data on delays and drop-off rates
               offered quantitative insights into user behavior. These inputs led
               to significant outcomes.
+              <br />
               <br />
               We identified issues such as unclear labels and confusion with
               actions, a lack of guidance on the quote details screen, and
@@ -391,12 +384,12 @@ export default function AprilOnPage() {
               </ul>
             </div>
 
-            <Image
-              className="duplex__image image"
-              src={statusLabelsBeforeAnnotated}
-              alt={"status-labels-before-annotated"}
-              quality={100}
-            />
+            <div className="duplex__image">
+              <ImageDialog
+                image={statusLabelsBeforeAnnotated}
+                caption="status-labels-before-annotated"
+              />
+            </div>
           </div>
 
           <div className="duplex">
@@ -425,12 +418,12 @@ export default function AprilOnPage() {
               </ul>
             </div>
 
-            <Image
-              className="duplex__image image"
-              src={quoteDetailsBeforeAnnotated}
-              alt={"quote-details-before-annotated"}
-              quality={100}
-            />
+            <div className="duplex__image">
+              <ImageDialog
+                image={quoteDetailsBeforeAnnotated}
+                caption="quote-details-before-annotated"
+              />
+            </div>
           </div>
 
           <div className="duplex">
@@ -458,13 +451,12 @@ export default function AprilOnPage() {
                 </li>
               </ul>
             </div>
-
-            <Image
-              className="duplex__image image"
-              src={quoteListBeforeAnnotated}
-              alt={"quote-list-before-annotated"}
-              quality={100}
-            />
+            <div className="duplex__image">
+              <ImageDialog
+                image={quoteListBeforeAnnotated}
+                caption="quote-list-before-annotated"
+              />
+            </div>
           </div>
 
           <div className="text-block">
@@ -479,12 +471,12 @@ export default function AprilOnPage() {
           </div>
 
           <div className="duplex">
-            <Image
-              className="duplex__image image"
-              src={statusLabelsAfterAnnotated}
-              alt={"status-labels-after-annotated"}
-              quality={100}
-            />
+            <div className="duplex__image">
+              <ImageDialog
+                image={statusLabelsAfterAnnotated}
+                caption="status-labels-after-annotated"
+              />
+            </div>
             <div className="duplex__text-block">
               <div className="duplex__title">
                 <h4>Solution #1</h4>
@@ -525,12 +517,12 @@ export default function AprilOnPage() {
           </div>
 
           <div className="duplex">
-            <Image
-              className="duplex__image image"
-              src={quoteDetailsAfterAnnotated}
-              alt={"quote-details-after-annotated"}
-              quality={100}
-            />
+            <div className="duplex__image">
+              <ImageDialog
+                image={quoteDetailsAfterAnnotated}
+                caption="quote-details-after-annotated"
+              />
+            </div>
             <div className="duplex__text-block">
               <div className="duplex__title">
                 <h4>Solution #2</h4>
@@ -566,12 +558,12 @@ export default function AprilOnPage() {
           </div>
 
           <div className="duplex">
-            <Image
-              className="duplex__image image"
-              src={quoteListAfterAnnotated}
-              alt={"quote-list-after-annotated"}
-              quality={100}
-            />
+            <div className="duplex__image">
+              <ImageDialog
+                image={quoteListAfterAnnotated}
+                caption="quote-list-after-annotated"
+              />
+            </div>
             <div className="duplex__text-block">
               <div className="duplex__title">
                 <h4>Solution #3</h4>
@@ -651,7 +643,7 @@ export default function AprilOnPage() {
           </div>
 
           <div className="text-block">
-            <h3>Challenges and lessons</h3>
+            <h3>What I would have done differently</h3>
             <ul>
               <li>
                 Define clearer success metrics: although we received a lot of
@@ -686,18 +678,24 @@ export default function AprilOnPage() {
           <h2>Thanks for reading</h2>
 
           <div className="flex flex-col justify-start items-center">
-            <h3>Visit one of my other projects if you feel like it</h3>
+            <h4 className="mb-8">
+              Visit one of my other projects if you feel like it
+            </h4>
 
-            <div className="flex flex-col justify-start items-center max-w-xl">
-              <Image
-                className="image"
-                src={kotbThumb}
-                alt={"kotbThumb"}
-                quality={100}
-              />
-              <h4>APRIL ON:</h4>
-              <h4>Redesigning the status system for clarity</h4>
-            </div>
+            <Link href="/kids-on-the-block">
+              <div className="flex flex-col justify-start items-center max-w-lg">
+                <Image
+                  className="shadow-sm rounded-md mb-6 hover:shadow-md"
+                  src={kotbThumb}
+                  alt={"kotbThumb"}
+                  quality={100}
+                />
+                <h4>Kids on the Block:</h4>
+                <h3 className="text-center">
+                  Back online with a strong brand identity
+                </h3>
+              </div>
+            </Link>
           </div>
         </div>
       </main>

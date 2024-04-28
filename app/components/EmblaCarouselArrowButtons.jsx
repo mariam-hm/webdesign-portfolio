@@ -5,11 +5,13 @@ export const usePrevNextButtons = (emblaApi) => {
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
 
   const onPrevButtonClick = useCallback(() => {
+    console.log("Previous button click");
     if (!emblaApi) return;
     emblaApi.scrollPrev();
   }, [emblaApi]);
 
   const onNextButtonClick = useCallback(() => {
+    console.log("Next button click");
     if (!emblaApi) return;
     emblaApi.scrollNext();
   }, [emblaApi]);

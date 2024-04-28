@@ -33,7 +33,7 @@ h2 {
   @apply py-4 text-center
   border-b-2
   mb-6
-  mt-10;
+  mt-24;
 }
 
 .overview {
@@ -96,6 +96,8 @@ h3 {
 
 .duplex {
   @apply flex
+  justify-center
+  items-center
   gap-8
   mt-14;
 }

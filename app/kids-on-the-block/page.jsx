@@ -1,9 +1,15 @@
 import "./styles.css";
 import Image from "next/image";
+import Link from "next/link";
 import { EmblaCarouselDouble } from "../components/EmblaCarouselDouble";
 import { EmblaCarousel } from "../components/EmblaCarousel";
+import { ImageDialog } from "../components/ImageDialog";
 
 import kotbHeader from "../_assets/imgs-kotb/header/laptop-mockup.png";
+
+import finalSolutions01 from "../_assets/imgs-kotb/final-solutions-01.jpg";
+import finalSolutions02 from "../_assets/imgs-kotb/final-solutions-02.jpg";
+import finalSolutions03 from "../_assets/imgs-kotb/final-solutions-03.png";
 
 import bestFeature01 from "../_assets/imgs-kotb/best-features-01.png";
 import bestFeature02 from "../_assets/imgs-kotb/best-features-02.png";
@@ -189,7 +195,9 @@ export default function KidsOnTheBlockPage() {
   return (
     <div className="page-container">
       <header className="header">
-        <h1>Back online with a strong brand identity</h1>
+        <h1 className="text-zinc-700">
+          Back online with a strong brand identity
+        </h1>
         {/* TODO: */}
         {/* <Image
           className="header__img--big"
@@ -246,45 +254,51 @@ export default function KidsOnTheBlockPage() {
           </p>
 
           <div className="tldr flex-col">
-            <h3>Final website</h3>
             <div className="flex flex-row gap-x-4">
               <div className="tldr__vs">
-                <p>
-                  Several sections to introduce the concepts, gain the user’s
-                  trust with testimonies and redirect them to the most relevant
-                  pages.
-                </p>
-                <Image
-                  className="image"
-                  src={bestFeature01}
-                  alt={"bestFeature01"}
-                  quality={100}
+                <h3>Easy booking</h3>
+                <ul>
+                  <li>
+                    Booking a show and communicating with the association is
+                    made easy and straightforward for teachers.
+                  </li>
+                </ul>
+                <ImageDialog
+                  image={finalSolutions01}
+                  caption="finalSolutions01"
                 />
               </div>
               <div className="tldr__vs">
-                <p>
-                  A photo album like page to introduce the characters of the
-                  show. Each puppet has its details page with a unique
-                  illustration, a quote and their story.
-                </p>
-                <Image
-                  className="image"
-                  src={bestFeature02}
-                  alt={"bestFeature02"}
-                  quality={100}
+                <h3>New brand identity</h3>
+                <ul>
+                  <li>Vibrant, warm and playful brand identity</li>
+                  <li>Hand-drawn graphic assets</li>
+                  <li>
+                    Communicates values of childhood, empathy, and acceptance
+                  </li>
+                </ul>
+                <ImageDialog
+                  image={finalSolutions02}
+                  caption="finalSolutions02"
                 />
               </div>
 
               <div className="tldr__vs">
-                <p>
-                  No need to go back and forth between two pages to volunteer:
-                  the role description and the form are on one page.
-                </p>
-                <Image
-                  className="image"
-                  src={bestFeature03}
-                  alt={"bestFeature03"}
-                  quality={100}
+                <h3>Engaging introductions</h3>
+                <ul>
+                  <li>
+                    Detailed and easily accessible information for each skit and
+                    puppet
+                  </li>
+                  <li>Facilitates confident decision-making</li>
+                  <li>
+                    Helps teachers tailor their choices to their class
+                    preferences
+                  </li>
+                </ul>
+                <ImageDialog
+                  image={finalSolutions03}
+                  caption="finalSolutions03"
                 />
               </div>
             </div>
@@ -317,7 +331,7 @@ export default function KidsOnTheBlockPage() {
           </div>
 
           <div className="text-block">
-            <h3>Brand identity</h3>
+            <h3>Designing a Brand identity</h3>
             <p>
               Before designing the website, our initial focus was on defining
               the brand identity of Kids on the Block. Our aim was to create a
@@ -333,7 +347,7 @@ export default function KidsOnTheBlockPage() {
           </div>
 
           <div className="text-block">
-            <h4>Moodboard</h4>
+            <h3>Moodboard</h3>
             <p>
               I started by collecting picture and drawings that matched the
               aesthetic I was looking for.
@@ -341,374 +355,352 @@ export default function KidsOnTheBlockPage() {
 
             <div className="moodboard-grid">
               <div className="grid-item mood-01">
-                <Image
+                <ImageDialog
                   className="grid-img"
-                  src={moodboard01}
-                  alt={"moodboard01"}
-                  quality={100}
+                  image={moodboard01}
+                  caption="moodboard01"
                 />
               </div>
               <div className="grid-item mood-02">
-                <Image
+                <ImageDialog
                   className="grid-img"
-                  src={moodboard02}
-                  alt={"moodboard02"}
-                  quality={100}
+                  image={moodboard02}
+                  caption="moodboard02"
                 />
               </div>
               <div className="grid-item mood-03">
-                <Image
+                <ImageDialog
                   className="grid-img"
-                  src={moodboard03}
-                  alt={"moodboard03"}
-                  quality={100}
+                  image={moodboard03}
+                  caption="moodboard03"
                 />
               </div>
               <div className="grid-item mood-04">
-                <Image
+                <ImageDialog
                   className="grid-img"
-                  src={moodboard04}
-                  alt={"moodboard04"}
-                  quality={100}
+                  image={moodboard04}
+                  caption="moodboard04"
                 />
               </div>
               <div className="grid-item mood-05">
-                <Image
+                <ImageDialog
                   className="grid-img"
-                  src={moodboard05}
-                  alt={"moodboard05"}
-                  quality={100}
+                  image={moodboard05}
+                  caption="moodboard05"
                 />
               </div>
               <div className="grid-item mood-06">
-                <Image
+                <ImageDialog
                   className="grid-img"
-                  src={moodboard06}
-                  alt={"moodboard06"}
-                  quality={100}
+                  image={moodboard06}
+                  caption="moodboard06"
                 />
               </div>
               <div className="grid-item mood-07">
-                <Image
+                <ImageDialog
                   className="grid-img"
-                  src={moodboard07}
-                  alt={"moodboard07"}
-                  quality={100}
+                  image={moodboard07}
+                  caption="moodboard07"
                 />
               </div>
               <div className="grid-item mood-08">
-                <Image
+                <ImageDialog
                   className="grid-img"
-                  src={moodboard08}
-                  alt={"moodboard08"}
-                  quality={100}
+                  image={moodboard08}
+                  caption="moodboard08"
                 />
               </div>
               <div className="grid-item mood-09">
-                <Image
+                <ImageDialog
                   className="grid-img"
-                  src={moodboard09}
-                  alt={"moodboard09"}
-                  quality={100}
+                  image={moodboard09}
+                  caption="moodboard09"
                 />
               </div>
               <div className="grid-item mood-10">
-                <Image
+                <ImageDialog
                   className="grid-img"
-                  src={moodboard10}
-                  alt={"moodboard10"}
-                  quality={100}
+                  image={moodboard10}
+                  caption="moodboard10"
                 />
               </div>
             </div>
+          </div>
 
-            <div className="text-block">
-              <h4>Color palette and fonts</h4>
-              <p>
-                Going along with the idea of a childhood-evoking palette, I
-                revisited the existing color scheme of the old website, red,
-                blue, yellow, and green. I opted for a more modern touch, by
-                selecting a less saturated version of these colors, integrating
-                them sparingly with white and a dark brown as the main body
-                colors.
-                <br /> I chose the reddish-orange as the main accent color as a
-                memory of the first puppet of the non-profit, Mark Riley, that
-                has orange hair.
-              </p>
-              <p>
-                I chose a brush-like typeface to enhance the handmade aesthetic
-                of the brand identity for titles, paired with a rounded
-                sans-serif font for the body text. This adds a playful touch
-                while maintaining simplicity and readability.{" "}
-              </p>
+          <div className="text-block">
+            <h3>Color palette and fonts</h3>
+            <p>
+              Going along with the idea of a childhood-evoking palette, I
+              revisited the existing color scheme of the old website, red, blue,
+              yellow, and green. I opted for a more modern touch, by selecting a
+              less saturated version of these colors, integrating them sparingly
+              with white and a dark brown as the main body colors.
+              <br /> I chose the reddish-orange as the main accent color as a
+              memory of the first puppet of the non-profit, Mark Riley, that has
+              orange hair.
+            </p>
+            <p>
+              I chose a brush-like typeface to enhance the handmade aesthetic of
+              the brand identity for titles, paired with a rounded sans-serif
+              font for the body text. This adds a playful touch while
+              maintaining simplicity and readability.{" "}
+            </p>
 
-              <Image
-                className="image"
-                src={colorFont01}
-                alt={"colorFont01"}
-                quality={100}
-              />
-            </div>
+            <ImageDialog image={colorFont01} caption="colorFont01" />
+          </div>
 
-            <div className="duplex">
-              <div className="duplex__text-block">
-                <div className="duplex__title">
-                  <h4>Sketches and </h4>
-                  <h3>New logo</h3>
-                </div>
-
-                <p>
-                  To match the website aesthetic, I decided to go for a
-                  hand-drawn logo and use the main accent color. I suggested
-                  several directions and ideas that matched the themes of the
-                  non-profit through my sketches and presented them to the team.{" "}
-                  <br />
-                  After reviewing the sketches, I refined and implemented the
-                  final the logo by incorporating the chosen fonts and declined
-                  it in both a primary and secondary versions.
-                </p>
+          <div className="duplex">
+            <div className="duplex__text-block">
+              <div className="duplex__title">
+                <h4>Research and Final</h4>
+                <h3>Designing a new logo</h3>
               </div>
 
-              <Image
-                className="duplex__image image"
-                src={colorFont02}
-                alt={"colorFont02"}
-                quality={100}
-              />
+              <p>
+                To match the website aesthetic, I decided to go for a hand-drawn
+                logo and use the main accent color. I suggested several
+                directions and ideas that matched the themes of the non-profit
+                through my sketches and presented them to the team. <br />
+                <br />
+                After reviewing the sketches, I refined and implemented the
+                final the logo by incorporating the chosen fonts and declined it
+                in both a primary and secondary versions.
+              </p>
             </div>
 
-            <div className="duplex">
-              <Image
-                className="duplex__image image"
-                src={photoshoot01}
-                alt={"photoshoot01"}
-                quality={100}
-              />
-              <div className="duplex__text-block">
-                <div className="duplex__title">
-                  <h4>More visual assets</h4>
-                  <h3>Photoshoot</h3>
-                </div>
+            <div className="duplex__image">
+              <ImageDialog image={colorFont02} caption="colorFont02" />
+            </div>
+          </div>
 
-                <p>
-                  The old website was lacking quality visual material,
-                  especially pictures. Recognizing the necessity of suitable
-                  pictures, I took the initiative to organize a dedicated
-                  photoshoot in collaboration with the association members.{" "}
-                  <br />
-                  We took pictures of most puppets for the kids page, as well as
-                  scenes with several puppets interacting to show skits look. I
-                  then used Photoshop to refine the quality of the photographs
-                  and enhance the overall visual appeal.
-                </p>
+          <div className="duplex">
+            <div className="duplex__image">
+              <ImageDialog image={photoshoot01} caption="photoshoot01" />
+            </div>
+            <div className="duplex__text-block">
+              <div className="duplex__title">
+                <h4>Better visual assets</h4>
+                <h3>Organizing a photoshoot</h3>
               </div>
-            </div>
 
-            <div className="text-block">
-              <h4>Graphic assets</h4>
               <p>
-                To achieve a handmade, traditional feel, I utilized a
-                crayon-textured brush in designing graphics. I also incorporated
-                patterns and clusters of small assets to accommodate web design
-                limitations.
+                The old website was lacking quality visual material, especially
+                pictures. Recognizing the necessity of suitable pictures, I took
+                the initiative to organize a dedicated photoshoot in
+                collaboration with the association members. <br />
                 <br />
-                By including school and art supplies, the visuals evoke a
-                familiar school environment that teachers and young pupils can
-                connect with. Additionally, I integrated details related to
-                kids' disabilities and backstories, such as Renaldo’s cane,
-                Mark’s chair, Jennifer’s red ring, and Ellen’s pet snake, to add
-                depth and relevance to the imagery.
+                We took pictures of most puppets for the kids page, as well as
+                scenes with several puppets interacting to show skits look. I
+                then used Photoshop to refine the quality of the photographs and
+                enhance the overall visual appeal.
               </p>
-
-              <div className="graphics-grid">
-                <div className="grid-item graph-01">
-                  <Image
-                    className="grid-img-graph"
-                    src={graphic01}
-                    alt={"graphic01"}
-                    quality={100}
-                  />
-                </div>
-                <div className="grid-item graph-02">
-                  <Image
-                    className="grid-img-graph"
-                    src={graphic02}
-                    alt={"graphic02"}
-                    quality={100}
-                  />
-                </div>
-                <div className="grid-item graph-03">
-                  <Image
-                    className="grid-img-graph"
-                    src={graphic03}
-                    alt={"graphic03"}
-                    quality={100}
-                  />
-                </div>
-                <div className="grid-item graph-04">
-                  <Image
-                    className="grid-img-graph"
-                    src={graphic04}
-                    alt={"graphic04"}
-                    quality={100}
-                  />
-                </div>
-                <div className="grid-item graph-05">
-                  <Image
-                    className="grid-img-graph"
-                    src={graphic05}
-                    alt={"graphic05"}
-                    quality={100}
-                  />
-                </div>
-                <div className="grid-item graph-06">
-                  <Image
-                    className="grid-img-graph"
-                    src={graphic06}
-                    alt={"graphic06"}
-                    quality={100}
-                  />
-                </div>
-                <div className="grid-item graph-07">
-                  <Image
-                    className="grid-img-graph"
-                    src={graphic07}
-                    alt={"graphic07"}
-                    quality={100}
-                  />
-                </div>
-                <div className="grid-item graph-08">
-                  <Image
-                    className="grid-img-graph"
-                    src={graphic08}
-                    alt={"graphic08"}
-                    quality={100}
-                  />
-                </div>
-                <div className="grid-item graph-09">
-                  <Image
-                    className="grid-img-graph"
-                    src={graphic09}
-                    alt={"graphic09"}
-                    quality={100}
-                  />
-                </div>
-                <div className="grid-item graph-10">
-                  <Image
-                    className="grid-img-graph"
-                    src={graphic10}
-                    alt={"graphic10"}
-                    quality={100}
-                  />
-                </div>
-                <div className="grid-item graph-11">
-                  <Image
-                    className="grid-img-graph"
-                    src={graphic11}
-                    alt={"graphic11"}
-                    quality={100}
-                  />
-                </div>
-                <div className="grid-item graph-12">
-                  <Image
-                    className="grid-img-graph"
-                    src={graphic12}
-                    alt={"graphic12"}
-                    quality={100}
-                  />
-                </div>
-                <div className="grid-item graph-13">
-                  <Image
-                    className="grid-img-graph"
-                    src={graphic13}
-                    alt={"graphic13"}
-                    quality={100}
-                  />
-                </div>
-              </div>
             </div>
+          </div>
 
-            <div className="text-block">
-              <h3>Information hierarchy</h3>
-              <p>
-                Inventory of all the pages of the old website revealed several
-                shortcomings:
-              </p>
-              <ul>
-                <li>Underutilized homepage</li>
-                <li>Redundant titles and links</li>
-                <li>Inefficient page structures</li>
-                <li>
-                  Absence of essential contact and volunteering application
-                  forms
-                </li>
-                <br />
-              </ul>
+          <div className="text-block">
+            <h3>Graphic assets</h3>
+            <p>
+              To achieve a handmade, traditional feel, I utilized a
+              crayon-textured brush in designing graphics. I also incorporated
+              patterns and clusters of small assets to accommodate web design
+              limitations.
+              <br />
+              <br />
+              By including school and art supplies, the visuals evoke a familiar
+              school environment that teachers and young pupils can connect
+              with. Additionally, I integrated details related to kids'
+              disabilities and backstories, such as Renaldo’s cane, Mark’s
+              chair, Jennifer’s red ring, and Ellen’s pet snake, to add depth
+              and relevance to the imagery.
+            </p>
 
-              <Image
-                className="image"
-                src={informationHierarchy01}
-                alt={"informationHierarchy01"}
-                quality={100}
-              />
-
-              <p>
-                New organization plan to reduce confusion and optimize the
-                overall usability:
-              </p>
-              <ul>
-                <li>
-                  Streamlined homepage with no sidebar to guide users to
-                  sections
-                </li>
-                <li>
-                  "Get Involved" menu item to bring all volunteering and
-                  donation-related items together
-                </li>
-                <li>Less important information in the footer</li>
-                <br />
-              </ul>
-
-              <Image
-                className="image"
-                src={informationHierarchy02}
-                alt={"informationHierarchy02"}
-                quality={100}
-              />
-            </div>
-
-            <div className="text-block">
-              <h3>Ideation and sketches</h3>
-              <p>
-                The homepage has been revamped to be more colorful and engaging,
-                guiding users seamlessly to their desired sections.
-              </p>
-
-              <div className="flex">
-                <Image
-                  className="image w-1/2"
-                  src={sketches01}
-                  alt={"sketches01"}
-                  quality={100}
+            <div className="graphics-grid">
+              <div className="grid-item graph-01">
+                <ImageDialog
+                  className="grid-img-graph"
+                  image={graphic01}
+                  caption="graphic01"
                 />
-                <Image
-                  className="image w-1/2"
-                  src={sketches02}
-                  alt={"sketches02"}
-                  quality={100}
+              </div>
+              <div className="grid-item graph-02">
+                <ImageDialog
+                  className="grid-img-graph"
+                  image={graphic02}
+                  caption="graphic02"
+                />
+              </div>
+              <div className="grid-item graph-03">
+                <ImageDialog
+                  className="grid-img-graph"
+                  image={graphic03}
+                  caption="graphic03"
+                />
+              </div>
+              <div className="grid-item graph-04">
+                <ImageDialog
+                  className="grid-img-graph"
+                  image={graphic04}
+                  caption="graphic04"
+                />
+              </div>
+              <div className="grid-item graph-05">
+                <ImageDialog
+                  className="grid-img-graph"
+                  image={graphic05}
+                  caption="graphic05"
+                />
+              </div>
+              <div className="grid-item graph-06">
+                <ImageDialog
+                  className="grid-img-graph"
+                  image={graphic06}
+                  caption="graphic06"
+                />
+              </div>
+              <div className="grid-item graph-07">
+                <ImageDialog
+                  className="grid-img-graph"
+                  image={graphic07}
+                  caption="graphic07"
+                />
+              </div>
+              <div className="grid-item graph-08">
+                <ImageDialog
+                  className="grid-img-graph"
+                  image={graphic08}
+                  caption="graphic08"
+                />
+              </div>
+              <div className="grid-item graph-09">
+                <ImageDialog
+                  className="grid-img-graph"
+                  image={graphic09}
+                  caption="graphic09"
+                />
+              </div>
+              <div className="grid-item graph-10">
+                <ImageDialog
+                  className="grid-img-graph"
+                  image={graphic10}
+                  caption="graphic10"
+                />
+              </div>
+              <div className="grid-item graph-11">
+                <ImageDialog
+                  className="grid-img-graph"
+                  image={graphic11}
+                  caption="graphic11"
+                />
+              </div>
+              <div className="grid-item graph-12">
+                <ImageDialog
+                  className="grid-img-graph"
+                  image={graphic12}
+                  caption="graphic12"
+                />
+              </div>
+              <div className="grid-item graph-13">
+                <ImageDialog
+                  className="grid-img-graph"
+                  image={graphic13}
+                  caption="graphic13"
                 />
               </div>
             </div>
+          </div>
 
-            <div className="text-block">
-              <h3>Mid-fidelity wireframes and colors</h3>
-              <p>
-                The homepage has been revamped to be more colorful and engaging,
-                guiding users seamlessly to their desired sections.
-              </p>
+          <div className="text-block">
+            <h3>Information hierarchy</h3>
+            <p>
+              Inventory of all the pages of the old website revealed several
+              shortcomings:
+            </p>
+            <ul>
+              <li>Underutilized homepage</li>
+              <li>Redundant titles and links</li>
+              <li>Inefficient page structures</li>
+              <li>
+                Absence of essential contact and volunteering application forms
+              </li>
+              <br />
+            </ul>
 
-              <EmblaCarouselDouble slides={wireframesSlides} />
+            <ImageDialog
+              image={informationHierarchy01}
+              caption="informationHierarchy01"
+            />
+
+            <p>
+              New organization plan to reduce confusion and optimize the overall
+              usability:
+            </p>
+            <ul>
+              <li>
+                Streamlined homepage with no sidebar to guide users to sections
+              </li>
+              <li>
+                "Get Involved" menu item to bring all volunteering and
+                donation-related items together
+              </li>
+              <li>Less important information in the footer</li>
+              <br />
+            </ul>
+
+            <ImageDialog
+              image={informationHierarchy02}
+              caption="informationHierarchy02"
+            />
+          </div>
+
+          <div className="text-block">
+            <h3>Ideation and sketches</h3>
+            <p>For the homepage, our objectives were to:</p>
+            <ul>
+              <li>Make the design more lively and engaging with colors</li>
+              <li>
+                Provide a clear and brief overview of the non-profit's
+                activities
+              </li>
+              <li>Build trust with visitors</li>
+              <li>
+                Clearly guide users towards key actions such as booking a show,
+                making donations, or volunteering
+              </li>
+            </ul>
+
+            <div className="flex">
+              <div className="w-1/2">
+                <ImageDialog image={sketches01} caption="sketches01" />
+              </div>
+              <div className="w-1/2">
+                <ImageDialog image={sketches02} caption="sketches02" />
+              </div>
             </div>
+          </div>
+
+          <div className="text-block">
+            <h3>Mid-fidelity wireframes and colors</h3>
+            <p>
+              In creating the wireframes, our primary challenge lay in selecting
+              and employing colors across the website:
+            </p>
+            <ul>
+              <li>
+                We opted for a reddish-orange accent color due to its high
+                saturation, ensuring visual impact
+              </li>
+              <li>
+                Yellow was chosen as a secondary color to maintain a lively and
+                colorful atmosphere without overwhelming the user with crowded
+                pages
+              </li>
+              <li>
+                Dark blue was utilized to emphasize specific sections, providing
+                clarity within the design
+              </li>
+            </ul>
+
+            <EmblaCarouselDouble slides={wireframesSlides} />
           </div>
         </div>
 
@@ -725,47 +717,30 @@ export default function KidsOnTheBlockPage() {
               <h3>Best features</h3>
               <div className="flex flex-row gap-x-4 items-baseline">
                 <div className="flex flex-col gap-6">
-                  <Image
-                    className="image"
-                    src={bestFeature01}
-                    alt={"bestFeature01"}
-                    quality={100}
-                  />
+                  <ImageDialog image={bestFeature01} caption="bestFeature01" />
                   <h4>Homepage</h4>
                   <p>
-                    A vibrant and playful brand identity, created with
-                    hand-drawn elements, that evokes a sense of warmth to
-                    effectively communicate the values of childhood, empathy,
-                    and acceptance for the non-profit organization
+                    Several sections to introduce the concepts, gain the user’s
+                    trust with testimonies and redirect them to the most
+                    relevant pages.
                   </p>
                 </div>
                 <div className="flex flex-col gap-6">
-                  <Image
-                    className="image"
-                    src={bestFeature02}
-                    alt={"bestFeature02"}
-                    quality={100}
-                  />
+                  <ImageDialog image={bestFeature02} caption="bestFeature02" />
                   <h4>Photo album Kids page</h4>
                   <p>
-                    Booking a show and communicating with the association is
-                    made easy and straightforward for teachers
+                    A photo album like page to introduce the characters of the
+                    show. Each puppet has its details page with a unique
+                    illustration, a quote and their story.
                   </p>
                 </div>
 
                 <div className="flex flex-col gap-6">
-                  <Image
-                    className="image"
-                    src={bestFeature03}
-                    alt={"bestFeature03"}
-                    quality={100}
-                  />
+                  <ImageDialog image={bestFeature03} caption="bestFeature03" />
                   <h4>Descriptions and forms on same page</h4>
                   <p>
-                    Users can easily access detailed information about each skit
-                    and puppet, allowing them to make confident decisions that
-                    best suit the needs and preferences of their class and
-                    students
+                    No need to go back and forth between two pages to volunteer:
+                    the role description and the form are on one page.
                   </p>
                 </div>
               </div>
@@ -793,29 +768,52 @@ export default function KidsOnTheBlockPage() {
           <h2>Learning</h2>
 
           <div className="text-block">
-            <h3>Next steps</h3>
+            <h3>Challenges and lessons</h3>
             <p>
-              The website will be maintained by the non-profit members and will
-              serve as their primary contact platform.
-            </p>
-          </div>
-
-          <div className="text-block">
-            <h3>What I learned</h3>
-            <p>
-              Taking initiative and ownership makes the project better and the
-              execution faster
+              Taking initiative and ownership not only improves the project but
+              also speeds up its completion, motivating the team to be more
+              involved. This way, I can access more resources than expected and
+              develop things further.
             </p>
           </div>
 
           <div className="text-block">
             <h3>What would I have done differently?</h3>
+            <p>
+              Reflecting on my experience, I've identified several areas for
+              improvement:
+            </p>
             <ul>
-              <li>More UX research and user testing</li>
-              <li>A more rigorous method for brand identity building</li>
-              <li>Better written content</li>
-              <li>Avoid simple UI mistakes</li>
+              <li>
+                Better UX research and testing: Due to limited resources, we
+                missed out on valuable user insights, which could have improved
+                the website's usability
+              </li>
+              <li>
+                Improved brand identity development: A more comprehensive
+                approach to creating the brand's visual identity, including a
+                look and feel board, a thorough logo design process and
+                expansion to other media platforms, would have been beneficial
+              </li>
+              <li>
+                Enhanced written content: Despite constraints, revising certain
+                pages and forms for clarity and conciseness could have improved
+                user engagement
+              </li>
+              <li>
+                Prevention of UI mistakes: Redundant hero sections on the
+                homepage indicate the need for better design management and
+                research to prevent such errors in the future
+              </li>
             </ul>
+          </div>
+
+          <div className="text-block">
+            <h3>Next steps</h3>
+            <p>
+              The website will be maintained by the non-profit members and will
+              serve as their primary contact platform.
+            </p>
           </div>
         </div>
 
@@ -823,18 +821,24 @@ export default function KidsOnTheBlockPage() {
           <h2>Thanks for reading</h2>
 
           <div className="flex flex-col justify-start items-center">
-            <h3>Visit one of my other projects if you feel like it</h3>
+            <h4 className="mb-8">
+              Visit one of my other projects if you feel like it
+            </h4>
 
-            <div className="flex flex-col justify-start items-center max-w-xl">
-              <Image
-                className="image"
-                src={aprilOnThumb}
-                alt={"aprilOnThumb"}
-                quality={100}
-              />
-              <h4>APRIL ON:</h4>
-              <h4>Redesigning the status system for clarity</h4>
-            </div>
+            <Link href="/april-on">
+              <div className="flex flex-col justify-start items-center max-w-lg">
+                <Image
+                  className="shadow-sm rounded-md mb-6 hover:shadow-md"
+                  src={aprilOnThumb}
+                  alt={"aprilOnThumb"}
+                  quality={100}
+                />
+                <h4>APRIL ON:</h4>
+                <h3 className="text-center">
+                  Redesigning the status system for clarity
+                </h3>
+              </div>
+            </Link>
           </div>
         </div>
       </main>

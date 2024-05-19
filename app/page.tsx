@@ -1,10 +1,22 @@
 import ProjectCard from "./components/ProjectCard";
 import { projectsSummaries } from "./_data/data";
+import { fetchEntries } from "@/contentful/contentfulService";
 
-export default function Home() {
+export default async function Home() {
+  const entries = await fetchEntries();
+  console.log(entries);
+
   return (
     <main>
-      <div className="intro flex flex-col justify-center items-center">
+      <div className="flex">
+        {entries.map((entry: any) => (
+          <div key={entry.heading}>
+            <h3>{entry.heading}</h3>
+            <h4>{entry.subHeading}</h4>
+          </div>
+        ))}
+      </div>
+      {/* <div className="intro flex flex-col justify-center items-center">
         <div className="flex flex-col justify-center items-start w-4/5">
           <h1 className="mb-8 text-zinc-700">
             👋 Hello, I’m <span style={{ color: "#FF6F6B" }}>Mariam</span>
@@ -27,7 +39,7 @@ export default function Home() {
             key={projectSummary.id}
           />
         ))}
-      </div>
+      </div> */}
     </main>
   );
 }

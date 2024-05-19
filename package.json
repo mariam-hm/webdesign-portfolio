@@ -1,6 +1,6 @@
 {
   "name": "webdesign-portfolio",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.19",
+    "contentful": "^10.11.0",
+    "dotenv": "^16.4.5",
     "embla-carousel-react": "^8.0.2",
     "next": "14.1.4",
     "react": "^18",

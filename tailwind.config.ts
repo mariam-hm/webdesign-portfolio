@@ -42,17 +42,17 @@ const config: Config = {
             },
             h1: {
               fontFamily: theme("fontFamily.calistoga").join(", "),
-              fontSize: theme("fontSize.5xl"),
+              fontSize: theme("fontSize.3xl"),
               color: theme("colors.zinc.700"),
             },
             h2: {
               fontFamily: theme("fontFamily.calistoga").join(", "),
-              fontSize: theme("fontSize.5xl"),
+              fontSize: theme("fontSize.3xl"),
               color: theme("colors.zinc.700"),
             },
             h3: {
               fontFamily: theme("fontFamily.calistoga").join(", "),
-              fontSize: theme("fontSize.3xl"),
+              fontSize: theme("fontSize.2xl"),
               color: theme("colors.zinc.700"),
             },
             h4: {
@@ -62,6 +62,7 @@ const config: Config = {
             },
             h5: {
               fontFamily: theme("fontFamily.calistoga").join(", "),
+              fontSize: theme("fontSize.lg"),
               color: theme("colors.zinc.700"),
             },
             h6: {

@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 // import type { ThemeConfig } from "tailwindcss/types/config";
-// ? Added this type for theme line 32, but it's not working wel...
+// ? Added this type for theme line 32, but it's not working well...
 
 const defaultTheme = require("tailwindcss/defaultTheme");
 
@@ -43,24 +43,30 @@ const config: Config = {
             h1: {
               fontFamily: theme("fontFamily.calistoga").join(", "),
               fontSize: theme("fontSize.5xl"),
+              color: theme("colors.zinc.700"),
             },
             h2: {
               fontFamily: theme("fontFamily.calistoga").join(", "),
               fontSize: theme("fontSize.5xl"),
+              color: theme("colors.zinc.700"),
             },
             h3: {
               fontFamily: theme("fontFamily.calistoga").join(", "),
               fontSize: theme("fontSize.3xl"),
+              color: theme("colors.zinc.700"),
             },
             h4: {
               fontFamily: theme("fontFamily.calistoga").join(", "),
               fontSize: theme("fontSize.xl"),
+              color: theme("colors.zinc.700"),
             },
             h5: {
               fontFamily: theme("fontFamily.calistoga").join(", "),
+              color: theme("colors.zinc.700"),
             },
             h6: {
               fontFamily: theme("fontFamily.calistoga").join(", "),
+              color: theme("colors.zinc.700"),
             },
             p: {
               fontFamily: theme("fontFamily.lato").join(", "),

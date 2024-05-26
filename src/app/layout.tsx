@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Calistoga, Lato } from "next/font/google";
+import { LocalizationProvider } from "./LocalizationContext";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="prose font-lato">{children}</body>
+      <body className="prose">{children}</body>
     </html>
   );
 }

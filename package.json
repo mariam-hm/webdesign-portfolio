@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cf-export": "contentful space export --config src/contentful/export-config.json --management-token CFPAT-Z0M4F7er3XCoxx6WLZUMuA7h9F1HJfF-OGniCbUv_hI --space-id zir79y5zbvz3",
+    "cf-generate-types": "cf-content-types-generator src/contentful/export.json --out src/types/contentful"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.13",
@@ -18,6 +20,8 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "cf-content-types-generator": "^2.15.1",
+    "contentful-cli": "^3.3.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "postcss": "^8",

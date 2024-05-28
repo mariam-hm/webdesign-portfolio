@@ -1169,7 +1169,7 @@
         "id": "page",
         "type": "ContentType",
         "createdAt": "2024-05-24T23:12:47.941Z",
-        "updatedAt": "2024-05-24T23:21:37.053Z",
+        "updatedAt": "2024-05-27T23:05:23.049Z",
         "environment": {
           "sys": {
             "id": "master",
@@ -1177,8 +1177,8 @@
             "linkType": "Environment"
           }
         },
-        "publishedVersion": 3,
-        "publishedAt": "2024-05-24T23:21:37.053Z",
+        "publishedVersion": 5,
+        "publishedAt": "2024-05-27T23:05:23.049Z",
         "firstPublishedAt": "2024-05-24T23:12:48.311Z",
         "createdBy": {
           "sys": {
@@ -1194,8 +1194,8 @@
             "id": "5UdbkVlws2NkVyCoEeNlEB"
           }
         },
-        "publishedCounter": 2,
-        "version": 4,
+        "publishedCounter": 3,
+        "version": 6,
         "publishedBy": {
           "sys": {
             "type": "Link",
@@ -1253,6 +1253,19 @@
           "items": {
             "type": "Link",
             "validations": [
+              {
+                "linkContentType": [
+                  "heroSection",
+                  "projectInfo",
+                  "textBlock",
+                  "callout",
+                  "sectionTitle",
+                  "image",
+                  "duplexComponent",
+                  "testimonial",
+                  "otherProjects"
+                ]
+              }
             ],
             "linkType": "Entry"
           }
@@ -2177,7 +2190,7 @@
             "linkType": "Space"
           }
         },
-        "version": 4,
+        "version": 6,
         "createdAt": "2024-05-24T23:12:48.520Z",
         "createdBy": {
           "sys": {
@@ -2186,7 +2199,7 @@
             "linkType": "User"
           }
         },
-        "updatedAt": "2024-05-24T23:21:37.688Z",
+        "updatedAt": "2024-05-27T23:05:23.931Z",
         "updatedBy": {
           "sys": {
             "id": "5UdbkVlws2NkVyCoEeNlEB",
@@ -2309,6 +2322,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -2495,6 +2510,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -2569,6 +2586,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -2677,6 +2696,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -2797,6 +2818,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -2917,6 +2940,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -3037,6 +3062,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -3270,6 +3297,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -3390,6 +3419,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -3464,6 +3495,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -3773,6 +3806,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -3865,6 +3900,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -4162,6 +4199,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -4503,6 +4542,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -4577,6 +4618,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -4867,6 +4910,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -4987,6 +5032,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -5110,6 +5157,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -5347,6 +5396,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -5446,6 +5497,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -5720,6 +5773,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -5858,6 +5913,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -5932,6 +5989,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -6019,6 +6078,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -6380,6 +6441,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -6463,6 +6526,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -6550,6 +6615,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -6897,6 +6964,8 @@
     {
       "metadata": {
         "tags": [
+        ],
+        "concepts": [
         ]
       },
       "sys": {
@@ -6974,6 +7043,313 @@
         "description": {
           "en-CA": "Quote Details screen before",
           "fr-CA": "Écran détails des soumissions avant"
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ],
+        "concepts": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "zir79y5zbvz3"
+          }
+        },
+        "id": "1GsLPJS0PwOQdaaVCQrFmu",
+        "type": "Entry",
+        "createdAt": "2024-05-27T23:05:50.262Z",
+        "updatedAt": "2024-05-27T23:09:52.105Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 12,
+        "publishedAt": "2024-05-27T23:09:52.105Z",
+        "firstPublishedAt": "2024-05-27T23:09:52.105Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5UdbkVlws2NkVyCoEeNlEB"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5UdbkVlws2NkVyCoEeNlEB"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 13,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5UdbkVlws2NkVyCoEeNlEB"
+          }
+        },
+        "automationTags": [
+        ],
+        "fieldStatus": {
+          "*": {
+            "en-CA": "published",
+            "fr-CA": "published"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "page"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/zir79y5zbvz3/environments/master/entries/1GsLPJS0PwOQdaaVCQrFmu"
+      },
+      "fields": {
+        "title": {
+          "en-CA": "Kids on the Block - Brand Identity",
+          "fr-CA": "Kids on the Block - Identité de marque"
+        },
+        "slug": {
+          "en-CA": "kids-on-the-block-brand-identity"
+        },
+        "content": {
+          "en-CA": [
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Entry",
+                "id": "3AEhASYX3FHiwhIFJsrfBM"
+              }
+            },
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Entry",
+                "id": "3iFcLNeQ77ZXVNNzHGd7R4"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ],
+        "concepts": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "zir79y5zbvz3"
+          }
+        },
+        "id": "3iFcLNeQ77ZXVNNzHGd7R4",
+        "type": "Entry",
+        "createdAt": "2024-05-27T23:07:12.982Z",
+        "updatedAt": "2024-05-27T23:08:06.659Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 6,
+        "publishedAt": "2024-05-27T23:08:06.659Z",
+        "firstPublishedAt": "2024-05-27T23:07:53.473Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5UdbkVlws2NkVyCoEeNlEB"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5UdbkVlws2NkVyCoEeNlEB"
+          }
+        },
+        "publishedCounter": 2,
+        "version": 7,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5UdbkVlws2NkVyCoEeNlEB"
+          }
+        },
+        "automationTags": [
+        ],
+        "fieldStatus": {
+          "*": {
+            "en-CA": "published",
+            "fr-CA": "published"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "textBlock"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/zir79y5zbvz3/environments/master/entries/3iFcLNeQ77ZXVNNzHGd7R4"
+      },
+      "fields": {
+        "textContent": {
+          "en-CA": {
+            "data": {
+            },
+            "content": [
+              {
+                "data": {
+                },
+                "content": [
+                  {
+                    "data": {
+                    },
+                    "marks": [
+                    ],
+                    "value": "During my one month project with Kids on the Block, I lead a successful rebranding initiative. In collaboration with association members, I developed a new brand identity and revamped a website through a process of wireframing and prototyping.",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "paragraph"
+              }
+            ],
+            "nodeType": "document"
+          },
+          "fr-CA": {
+            "data": {
+            },
+            "content": [
+              {
+                "data": {
+                },
+                "content": [
+                  {
+                    "data": {
+                    },
+                    "marks": [
+                    ],
+                    "value": "During my one month project with Kids on the Block, I lead a successful rebranding initiative. In collaboration with association members, I developed a new brand identity and revamped a website through a process of wireframing and prototyping.",
+                    "nodeType": "text"
+                  }
+                ],
+                "nodeType": "paragraph"
+              }
+            ],
+            "nodeType": "document"
+          }
+        },
+        "internalName": {
+          "en-CA": "Intro - KOTB"
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ],
+        "concepts": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "zir79y5zbvz3"
+          }
+        },
+        "id": "5cmwZ355GEpU9mENKdvbY3",
+        "type": "Entry",
+        "createdAt": "2024-05-27T23:10:34.412Z",
+        "updatedAt": "2024-05-27T23:10:50.566Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 2,
+        "publishedAt": "2024-05-27T23:10:50.566Z",
+        "firstPublishedAt": "2024-05-27T23:10:50.566Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5UdbkVlws2NkVyCoEeNlEB"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5UdbkVlws2NkVyCoEeNlEB"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 3,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "5UdbkVlws2NkVyCoEeNlEB"
+          }
+        },
+        "automationTags": [
+        ],
+        "fieldStatus": {
+          "*": {
+            "en-CA": "published"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "menu"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/zir79y5zbvz3/environments/master/entries/5cmwZ355GEpU9mENKdvbY3"
+      },
+      "fields": {
+        "pageLinks": {
+          "en-CA": [
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Entry",
+                "id": "47sVDmLClGlpv3hBqUcU4U"
+              }
+            },
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Entry",
+                "id": "1GsLPJS0PwOQdaaVCQrFmu"
+              }
+            }
+          ]
         }
       }
     }

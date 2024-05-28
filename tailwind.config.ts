@@ -35,6 +35,9 @@ const config: Config = {
       typography: (theme: any) => ({
         DEFAULT: {
           css: {
+            maxWidth: "none",
+            fontFamily: theme("fontFamily.lato").join(", "),
+            fontSize: theme("fontSize.base"),
             color: theme("colors.zinc.700"),
             a: {
               color: theme("colors.primary"),
@@ -68,14 +71,6 @@ const config: Config = {
             h6: {
               fontFamily: theme("fontFamily.calistoga").join(", "),
               color: theme("colors.zinc.700"),
-            },
-            p: {
-              fontFamily: theme("fontFamily.lato").join(", "),
-              fontSize: theme("fontSize.base"),
-            },
-            li: {
-              fontFamily: theme("fontFamily.lato").join(", "),
-              fontSize: theme("fontSize.base"),
             },
           },
         },

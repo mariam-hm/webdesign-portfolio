@@ -44,7 +44,11 @@ export type Duplex = Omit<
   };
 
 export type Menu = {
-  pageLinks: string[];
+  pageLinks: {
+    title: string;
+    link: string;
+  }[];
+  name: string;
 } & ContentTypeField;
 
 export type ProjectCard = Contentful.TypeProjectCardFields & ContentTypeField;

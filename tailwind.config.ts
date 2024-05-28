@@ -71,9 +71,11 @@ const config: Config = {
             },
             p: {
               fontFamily: theme("fontFamily.lato").join(", "),
+              fontSize: theme("fontSize.base"),
             },
             li: {
               fontFamily: theme("fontFamily.lato").join(", "),
+              fontSize: theme("fontSize.base"),
             },
           },
         },

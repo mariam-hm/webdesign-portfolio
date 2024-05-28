@@ -36,7 +36,7 @@ export const fetchPage = async (slug: string, locale = "en-CA") => {
       console.log(`No page found with slug ${slug}`);
     }
   } catch (error) {
-    console.error(`Failed to fetch page with slug ${slug}:`, error);
+    console.log(`Failed to fetch page with slug ${slug}:`, error);
     // TODO Implement redirect or error handling
   }
 };
@@ -49,26 +49,29 @@ export const fetchPage = async (slug: string, locale = "en-CA") => {
 const mapObjectToType = (component: any): any => {
   switch (component.sys.contentType.sys.id) {
     case "heroSection":
-      return component.fields as SectionTitle;
+      return { ...component.fields, _type: "heroSection" } as SectionTitle;
     case "projectInfo":
       const details = component.fields.details.map((labelValueObj: any) => {
-        return labelValueObj.fields as LabelValuePair;
+        return {
+          ...labelValueObj.fields,
+          _type: "labelValuePair",
+        } as LabelValuePair;
       });
       component.fields.details = details;
-      return component.fields as ProjectInfo;
+      return { ...component.fields, _type: "projectInfo" } as ProjectInfo;
     case "sectionTitle":
-      return component.fields as SectionTitle;
+      return { ...component.fields, _type: "sectionTitle" } as SectionTitle;
     case "textBlock":
-      return component.fields as TextBlock;
+      return { ...component.fields, _type: "textBlock" } as TextBlock;
     case "duplexComponent":
-      let result = {
-        ...component.fields,
+      return {
+        heading: component.fields.heading,
         componentLeft: mapObjectToType(component.fields.componentLeft),
         componentRight: mapObjectToType(component.fields.componentRight),
-      };
-      return result as Duplex;
+        _type: "duplex",
+      } as Duplex;
     case "callout":
-      return component.fields as Callout;
+      return { ...component.fields, _type: "callout" } as Callout;
     case "image":
       const mainImg = {
         url: component.fields.mainImage.fields.file.url,
@@ -88,7 +91,11 @@ const mapObjectToType = (component: any): any => {
           })
         : [];
 
-      return { mainImage: mainImg, imageGroup: imageGrp } as Image;
+      return {
+        mainImage: mainImg,
+        imageGroup: imageGrp,
+        _type: "image",
+      } as Image;
     case "testimonial":
       const pict = {
         url: component.fields.picture.fields.file.url,
@@ -99,7 +106,7 @@ const mapObjectToType = (component: any): any => {
 
       component.fields.picture = pict;
 
-      return component.fields as Testimonial;
+      return { ...component.fields, _type: "testimonial" } as Testimonial;
     default:
       // TODO Add error handling
       console.log("Entry isn't mapped to any type");
@@ -122,5 +129,6 @@ const processPage = (data: any): Page => {
     slug: data.fields.slug,
     mainColor: data.fields.mainColor || "",
     content: content,
+    _type: "page",
   };
 };

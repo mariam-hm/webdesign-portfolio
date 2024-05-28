@@ -1,7 +1,18 @@
-import { fetchPage } from "../../contentful/contentfulClient";
+import { fetchPage } from "../../contentful/getPageData";
+import { componentMap } from "../componentMap";
 
 export default async function Page() {
   const page = await fetchPage("april-on-status-system");
+
+  const RenderComponent = ({ component }: any) => {
+    const Component = componentMap[component._type];
+
+    if (!Component) {
+      return null;
+    }
+
+    return <Component {...component} />;
+  };
 
   const pageData = {
     metadata: {
@@ -2190,5 +2201,12 @@ export default async function Page() {
     },
   };
 
-  return <div>{JSON.stringify(pageData)}</div>;
+  return (
+    <div>
+      {page &&
+        page.content.map((component, index) => (
+          <RenderComponent key={index} component={component} />
+        ))}
+    </div>
+  );
 }

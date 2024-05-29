@@ -1,7 +1,10 @@
+import { useTranslations, useLocale } from "next-intl";
+
 export default function Home() {
-  return (
-    <main>
-      <h1>Hello!</h1>
-    </main>
-  );
+  const locale = useLocale();
+
+  console.log("Locale from page: ", locale);
+
+  const translate = useTranslations("Index");
+  return <h1>{translate("title")}</h1>;
 }

@@ -2,7 +2,7 @@ import { Menu } from "@/types";
 import { client } from "./contentfulClient";
 import { EntrySkeletonType } from "contentful";
 
-export const fetchNavbar = async (locale = "en-CA") => {
+export const fetchNavbar = async (locale = "en") => {
   try {
     const response = await client.getEntries<EntrySkeletonType>({
       content_type: "menu",

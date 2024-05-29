@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { fetchPage } from "../../../contentful/getPageData";
-import { componentMap } from "../../componentMap";
-import { useLocale } from "next-intl";
+import { componentMap } from "../componentMap";
+import { fetchPage } from "@/contentful/getPageData";
 
 export const metadata: Metadata = {
   // TODO Update metadata according to the page
@@ -10,10 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const locale = useLocale();
-
-  console.log("Locale from page with slug: ", locale);
-
   const page = await fetchPage("april-on-status-system");
 
   const RenderComponent = ({ component }: any) => {

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { fetchNavbar } from "@/contentful/getLayoutData";
 import LanguageButton from "./LanguageButton";
-import LocaleSwitcher from "./LocaleSwitcher";
 
 export default async function Navbar() {
   const menu = await fetchNavbar();
@@ -20,7 +19,6 @@ export default async function Navbar() {
                 <span className="">{item.title}</span>
               </Link>
             ))}
-          <LocaleSwitcher />
         </div>
       </div>
     </nav>

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import "./globals.css";
-import Navbar from "@/components/Navbar";
+import "../globals.css";
+import { LocalizationProvider } from "../LocalizationContext";
 import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -10,15 +11,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: { lang: string };
 }>) {
   return (
-    <html lang="en">
+    <html lang={params.lang}>
       <body className="prose">
-        <Navbar />
-        {children}
-        <Footer />
+        <LocalizationProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </LocalizationProvider>
       </body>
     </html>
   );

@@ -15,12 +15,12 @@ import {
 /**
  * Fetch a page by its slug from Contentful
  * @param {string} slug - The slug of the page to fetch
- * @param {string} [locale=en-CA] - The locale of the content to fetch
+ * @param {string} [locale=en] - The locale of the content to fetch
  * @returns {Promise<Page>} - The fetched and processed page data
  * TODO Add error handling
  * @throws Will throw an error if the fetch operation fails
  */
-export const fetchPage = async (slug: string, locale = "en-CA") => {
+export const fetchPage = async (slug: string, locale = "en") => {
   try {
     const response = await client.getEntries<EntrySkeletonType>({
       content_type: "page",

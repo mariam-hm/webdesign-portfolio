@@ -11,6 +11,6 @@ export const componentMap: any = {
   image: dynamic(() => import("@/components/Image")),
   duplex: dynamic(() => import("@/components/Duplex")),
   projectCard: dynamic(() => import("@/components/ProjectCardFeatured")),
-
+  projectsGroup: dynamic(() => import("@/components/ProjectsGroup")),
   // Add mappings for other components
 };

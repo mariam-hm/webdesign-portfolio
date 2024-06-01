@@ -159,8 +159,6 @@ const mapObjectToType = (component: any): any => {
 
       return { ...component.fields, _type: "testimonial" } as Testimonial;
     case "projectCard":
-      console.log("===== Enter Project card =====");
-      console.log("Component: ", component.fields);
       // Get page slug
       component.fields.page = component.fields.page.fields.slug;
 
@@ -183,10 +181,44 @@ const mapObjectToType = (component: any): any => {
       });
 
       component.fields.tags = tags;
-      // TODO Add type ProjectCard
 
-      const result = { ...component.fields, _type: "projectCard" };
-      return result;
+      return { ...component.fields, _type: "projectCard" };
+
+    case "projectsGroup":
+      let projectCards = component.fields.projectCardsGroup.map((card) => {
+        // Get page slug
+        let pageSlug = card.fields.page.fields.slug;
+
+        // Process image
+        const coverImg = {
+          url: "https:" + card.fields.coverImage.fields.file.url,
+          width: card.fields.coverImage.fields.file.details.image.width,
+          height: card.fields.coverImage.fields.file.details.image.height,
+          description: card.fields.coverImage.fields.description,
+        };
+
+        // Get tags
+        const tags = card.fields.tags.map((tag: any) => {
+          return {
+            ...tag.fields,
+            _type: "tag",
+          };
+        });
+
+        return {
+          title: card.fields.title,
+          client: card.fields.client,
+          description: card.fields.description, // We may not need it
+          coverImage: coverImg,
+          page: pageSlug,
+          tags: tags,
+          _type: "projectCardSmall",
+        };
+      });
+
+      component.fields.projectCardsGroup = projectCards;
+
+      return { ...component.fields, _type: "projectsGroup" };
 
     default:
       // TODO Add error handling

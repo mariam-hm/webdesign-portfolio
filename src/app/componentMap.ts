@@ -10,6 +10,7 @@ export const componentMap: any = {
   testimonial: dynamic(() => import("@/components/Testimonial")),
   image: dynamic(() => import("@/components/Image")),
   duplex: dynamic(() => import("@/components/Duplex")),
+  projectCard: dynamic(() => import("@/components/ProjectCardFeatured")),
 
   // Add mappings for other components
 };

@@ -2,6 +2,7 @@ import Link from "next/link";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { fetchNavbarMenu } from "@/contentful/getLayoutData";
 
+
 export default async function Navbar({ locale }: any) {
   // Internationalization
   const navbarMenu = await fetchNavbarMenu();

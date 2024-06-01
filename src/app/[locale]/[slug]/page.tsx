@@ -3,6 +3,7 @@ import { componentMap } from "../../componentMap";
 import { fetchAllPages, fetchPage } from "@/contentful/getPageData";
 import { locales } from "@/app/i18n/settings";
 import { notFound } from "next/navigation";
+import { ReactNode } from "react";
 
 export const metadata: Metadata = {
   // TODO Update metadata according to the page
@@ -51,7 +52,7 @@ export default async function Page({ params }: any) {
   return (
     <div>
       {page &&
-        page.content.map((component, index) => (
+        page.content.map((component, index: number) => (
           <RenderComponent key={index} component={component} />
         ))}
     </div>

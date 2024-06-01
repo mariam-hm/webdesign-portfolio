@@ -9,7 +9,7 @@ import Dots from "./Dots";
 const ZoomableCarousel = ({
   singleImage,
   slides,
-  slidesWidth = 80,
+  slidesWidth = 30,
   slidesPerView = 1,
   fit = "cover",
 }) => {

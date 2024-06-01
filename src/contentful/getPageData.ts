@@ -10,6 +10,7 @@ import {
   Image,
   Testimonial,
   Duplex,
+  ProjectCard,
 } from "@/types";
 
 /**
@@ -158,6 +159,34 @@ const mapObjectToType = (component: any): any => {
       component.fields.picture = pict;
 
       return { ...component.fields, _type: "testimonial" } as Testimonial;
+    case "projectCard":
+      // Get page slug
+      component.fields.page = component.fields.page.fields.slug;
+
+      // Process image
+      const coverImg = {
+        url: "https:" + component.fields.coverImage.fields.file.url,
+        width: component.fields.coverImage.fields.file.details.image.width,
+        height: component.fields.coverImage.fields.file.details.image.height,
+        description: component.fields.coverImage.fields.description,
+      };
+
+      component.fields.coverImage = coverImg;
+
+      // Process Tags
+      const tags = component.fields.tags.map((tag: any) => {
+        return {
+          ...tag.fields,
+          _type: "tag",
+        };
+      });
+
+      component.fields.tags = tags;
+      // TODO Add type ProjectCard
+
+      const result = { ...component.fields, _type: "projectCard" };
+      return result;
+
     default:
       // TODO Add error handling
       console.log("Entry isn't mapped to any type");

@@ -1,10 +1,7 @@
 import Link from "next/link";
-import { fetchNavbar } from "@/contentful/getLayoutData";
 import LanguageButton from "./LanguageButton";
 
-export default async function Navbar() {
-  const menu = await fetchNavbar();
-
+export default async function Navbar(menu: any) {
   return (
     <nav>
       <div className="flex justify-between font-calistoga">

@@ -34,7 +34,6 @@ i18next
   });
 
 export function useTranslation(lng: LocaleTypes, ns: string) {
-  console.log("useTranslation");
   const translator = useTransAlias(ns);
   const { i18n } = translator;
 

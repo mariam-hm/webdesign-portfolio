@@ -1,5 +1,6 @@
 import "./globals.css";
 
+// TODO Edit metadata
 export const metadata = {
   title: "Example Blog",
   description: "Your Example Blog Description",

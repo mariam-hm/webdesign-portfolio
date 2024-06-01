@@ -21,11 +21,27 @@ export type Image = {
 }; // * Make url, width, height accessible
 
 export type HeroSection = Contentful.TypeHeroSectionFields & ContentTypeField;
-export type Callout = Contentful.TypeCalloutFields & ContentTypeField;
+export type Callout = Omit<Contentful.TypeCalloutFields, "image"> &
+  ContentTypeField & {
+    image?: {
+      url: string;
+      width: number;
+      height: number;
+      description: string;
+    };
+  };
 export type LabelValuePair = Contentful.TypeLabelValuePairFields &
   ContentTypeField;
 export type SectionTitle = Contentful.TypeSectionTitleFields & ContentTypeField;
-export type Testimonial = Contentful.TypeTestimonialFields & ContentTypeField;
+export type Testimonial = Omit<Contentful.TypeTestimonialFields, "picture"> &
+  ContentTypeField & {
+    picture?: {
+      url: string;
+      width: number;
+      height: number;
+      description: string;
+    };
+  };
 export type TextBlock = Omit<Contentful.TypeTextBlockFields, "internalName"> &
   ContentTypeField;
 

@@ -119,10 +119,21 @@ const mapObjectToType = (component: any): any => {
         _type: "duplex",
       } as Duplex;
     case "callout":
-      return { ...component.fields, _type: "callout" } as Callout;
+      let img = {
+        url: "https:" + component.fields.image.fields.file.url,
+        width: component.fields.image.fields.file.details.image.width,
+        height: component.fields.image.fields.file.details.image.height,
+        description: component.fields.image.fields.description,
+      };
+
+      component.fields.image = img;
+      return {
+        ...component.fields,
+        _type: "callout",
+      } as Callout;
     case "image":
       const mainImg = {
-        url: component.fields.mainImage.fields.file.url,
+        url: "https:" + component.fields.mainImage.fields.file.url,
         width: component.fields.mainImage.fields.file.details.image.width,
         height: component.fields.mainImage.fields.file.details.image.height,
         description: component.fields.mainImage.fields.description,
@@ -131,7 +142,7 @@ const mapObjectToType = (component: any): any => {
       const imageGrp = component.fields.imageGroup
         ? component.fields.imageGroup.map((img: any) => {
             return {
-              url: img.fields.file.url,
+              url: "https:" + img.fields.file.url,
               width: img.fields.file.details.image.width,
               height: img.fields.file.details.image.height,
               description: img.fields.description,
@@ -146,7 +157,7 @@ const mapObjectToType = (component: any): any => {
       } as Image;
     case "testimonial":
       const pict = {
-        url: component.fields.picture.fields.file.url,
+        url: "https:" + component.fields.picture.fields.file.url,
         width: component.fields.picture.fields.file.details.image.width,
         height: component.fields.picture.fields.file.details.image.height,
         description: component.fields.picture.fields.description,

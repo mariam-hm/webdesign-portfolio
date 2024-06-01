@@ -8,6 +8,7 @@ export const componentMap: any = {
   projectInfo: dynamic(() => import("@/components/ProjectInfo")),
   callout: dynamic(() => import("@/components/Callout")),
   testimonial: dynamic(() => import("@/components/Testimonial")),
+  image: dynamic(() => import("@/components/Image")),
 
   // Add mappings for other components
 };

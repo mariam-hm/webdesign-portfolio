@@ -2,7 +2,6 @@ import Link from "next/link";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { fetchNavbarMenu } from "@/contentful/getLayoutData";
 
-
 export default async function Navbar({ locale }: any) {
   // Internationalization
   const navbarMenu = await fetchNavbarMenu();
@@ -10,7 +9,7 @@ export default async function Navbar({ locale }: any) {
   return (
     <nav>
       <div className="flex justify-between font-calistoga">
-        <Link href="/">
+        <Link href={`/${locale}`}>
           <div>Mariam Hammoud</div>
         </Link>
 

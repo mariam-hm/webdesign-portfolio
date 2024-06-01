@@ -2,7 +2,7 @@ import type { InitOptions } from "i18next";
 
 export const fallbackLng = "en";
 export const locales = [fallbackLng, "fr"] as const;
-export type LocaleTypes = (typeof locales)[number];
+export type LocaleTypes = (typeof locales)[number]; // Means can either be 'en' or 'fr'
 export const defaultNS = "common";
 
 export function getOptions(lang = fallbackLng, ns = defaultNS): InitOptions {

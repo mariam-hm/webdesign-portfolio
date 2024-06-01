@@ -2,13 +2,11 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { fallbackLng, locales } from "./app/i18n/settings";
 
+// TODO review and edit code
+
 export function middleware(request: NextRequest) {
-  console.log("Hello from the middleware!");
   // Check if there is any supported locale in the pathname
   const pathname = request.nextUrl.pathname;
-
-  //console.log("Request: ", request);
-  console.log("Pathname: ", pathname);
 
   // Check if the default locale is in the pathname
   if (
@@ -16,7 +14,6 @@ export function middleware(request: NextRequest) {
     pathname === `/${fallbackLng}`
   ) {
     console.log(
-      "URL: ",
       pathname.replace(
         `/${fallbackLng}`,
         pathname === `/${fallbackLng}` ? "/" : ""
@@ -44,12 +41,12 @@ export function middleware(request: NextRequest) {
     const RewriteUrl = request.nextUrl;
     RewriteUrl.pathname = `/${fallbackLng}${pathname}`;
 
-    console.log(
-      "Pathname missing locale: ",
-      RewriteUrl.pathname,
-      "-",
-      request.url
-    );
+    // console.log(
+    //   "Pathname missing locale: ",
+    //   RewriteUrl.pathname,
+    //   "-",
+    //   request.url
+    // );
 
     return NextResponse.rewrite(new URL(RewriteUrl, request.url));
   }

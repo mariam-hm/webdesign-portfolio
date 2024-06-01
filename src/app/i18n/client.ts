@@ -1,5 +1,7 @@
 "use client";
 
+// TODO check code and check if I'll need it
+
 import { useEffect, useState } from "react";
 import i18next, { i18n } from "i18next";
 import {
@@ -32,6 +34,7 @@ i18next
   });
 
 export function useTranslation(lng: LocaleTypes, ns: string) {
+  console.log("useTranslation");
   const translator = useTransAlias(ns);
   const { i18n } = translator;
 

@@ -42,6 +42,54 @@ export const fetchPage = async (slug: string, locale = "en") => {
 };
 
 /**
+ * Fetch a page by its slug from Contentful
+ * @param {string} slug - The slug of the page to fetch
+ * @param {string} [locale=en] - The locale of the content to fetch
+ * @returns {Promise<Page>} - The fetched and processed page data
+ * TODO Add error handling
+ * @throws Will throw an error if the fetch operation fails
+ */
+export const fetchAllPages = async (locale = "en") => {
+  try {
+    const response = await client.getEntries<EntrySkeletonType>({
+      content_type: "page",
+      include: 5, // Populates nested fields
+      locale: locale,
+    });
+
+    if (response.items.length > 0) {
+      const processedPages = response.items.map((page) => processPage(page));
+      return processedPages;
+    } else {
+      // TODO Implement redirect or error handling
+      console.log("No pages found.");
+    }
+  } catch (error) {
+    console.log("Failed to fetch pages: ", error);
+    // TODO Implement redirect or error handling
+  }
+};
+
+/**
+ *  Processes the raw page data from Contentful and outputs a page with the right types
+ * @param {any} data - The full page JSON object from Contentful
+ * @returns {Page} - The processed page data with mapped content types
+ */
+const processPage = (data: any): Page => {
+  const content = data.fields.content.map((component: any) =>
+    mapObjectToType(component)
+  );
+
+  return {
+    title: data.fields.title,
+    slug: data.fields.slug,
+    mainColor: data.fields.mainColor || "",
+    content: content,
+    _type: "page",
+  };
+};
+
+/**
  * Maps each Contentful entry to the corresponding TypeScript type
  * @param {any} component - The Contentful entry JSON object
  * @returns {any} - The mapped TypeScript type (e.g., TextBlock, Callout, Image)
@@ -112,23 +160,4 @@ const mapObjectToType = (component: any): any => {
       console.log("Entry isn't mapped to any type");
       return component.fields;
   }
-};
-
-/**
- *  Processes the raw page data from Contentful and outputs a page with the right types
- * @param {any} data - The full page JSON object from Contentful
- * @returns {Page} - The processed page data with mapped content types
- */
-const processPage = (data: any): Page => {
-  const content = data.fields.content.map((component: any) =>
-    mapObjectToType(component)
-  );
-
-  return {
-    title: data.fields.title,
-    slug: data.fields.slug,
-    mainColor: data.fields.mainColor || "",
-    content: content,
-    _type: "page",
-  };
 };

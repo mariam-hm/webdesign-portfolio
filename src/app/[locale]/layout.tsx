@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import { fetchNavbar } from "@/contentful/getLayoutData";
 
 import { locales } from "@/app/i18n/settings";
 
@@ -14,19 +13,16 @@ export async function generateStaticParams() {
   return locales.map((lng) => ({ lng }));
 }
 
-type LayoutProps = {
+export default async function Layout({
+  children,
+  params,
+}: {
   children: React.ReactNode;
   params: { locale: string };
-};
-
-export default async function Layout({ children, params }: LayoutProps) {
-  const locale = params.locale;
-  const menu = await fetchNavbar();
-
-  console.log("Locale: ", locale);
+}) {
   return (
     <main className="prose">
-      <Navbar {...menu} />
+      <Navbar locale={params.locale} />
       {children}
       <Footer />
     </main>

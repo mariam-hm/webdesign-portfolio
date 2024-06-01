@@ -132,13 +132,7 @@ const mapObjectToType = (component: any): any => {
         _type: "callout",
       } as Callout;
     case "image":
-      const mainImg = {
-        url: "https:" + component.fields.mainImage.fields.file.url,
-        width: component.fields.mainImage.fields.file.details.image.width,
-        height: component.fields.mainImage.fields.file.details.image.height,
-        description: component.fields.mainImage.fields.description,
-      };
-
+      // TODO Correct the type and mapping for image
       const imageGrp = component.fields.imageGroup
         ? component.fields.imageGroup.map((img: any) => {
             return {
@@ -149,9 +143,7 @@ const mapObjectToType = (component: any): any => {
             };
           })
         : [];
-
       return {
-        mainImage: mainImg,
         imageGroup: imageGrp,
         _type: "image",
       } as Image;

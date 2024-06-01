@@ -7,6 +7,7 @@ import CarouselControls from "./CarouselControls";
 import Dots from "./Dots";
 
 const ZoomableCarousel = ({
+  singleImage,
   slides,
   slidesWidth = 80,
   slidesPerView = 1,
@@ -52,12 +53,13 @@ const ZoomableCarousel = ({
 
   useEffect(() => {
     updateButtonStates(currentSlideIndex);
+    if (singleImage) goToSlide(currentSlideIndex);
   }, [currentSlideIndex]);
 
   return (
     <section className="section flex flex-col justify-center items-center">
       <div className="buttons-and-slide flex">
-        {slides.length > 1 && (
+        {!singleImage && slides.length > 1 && (
           <CarouselControls
             direction="prev"
             onClick={prevButtonClick}
@@ -79,7 +81,9 @@ const ZoomableCarousel = ({
                   key={img.description}
                   img={img}
                   slides={slides}
+                  singleImage={singleImage}
                   currentSlideIndex={currentSlideIndex}
+                  setCurrentSlideIndex={setCurrentSlideIndex}
                   isOpen={isOpen}
                   setIsOpen={setIsOpen}
                   goToSlide={goToSlide}
@@ -98,7 +102,7 @@ const ZoomableCarousel = ({
           </div>
         </div>
 
-        {slides.length > 1 && (
+        {!singleImage && slides.length > 1 && (
           <CarouselControls
             direction="next"
             onClick={nextButtonClick}
@@ -107,7 +111,7 @@ const ZoomableCarousel = ({
         )}
       </div>
 
-      {slides.length > 1 && (
+      {!singleImage && slides.length > 1 && (
         <Dots
           slides={slides}
           slidesPerView={slidesPerView}

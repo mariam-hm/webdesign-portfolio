@@ -6,7 +6,9 @@ import Thumbnails from "./Thumbnails";
 const GalleryModal = ({
   img,
   slides,
+  singleImage,
   currentSlideIndex,
+  setCurrentSlideIndex,
   isOpen,
   setIsOpen,
   goToSlide,
@@ -73,6 +75,8 @@ const GalleryModal = ({
     <Dialog
       open={true}
       onClose={() => {
+        console.log("CloseModal");
+        if (singleImage) setCurrentSlideIndex(0);
         setIsOpen(false);
         resetZoomAndPosition();
       }}
@@ -103,14 +107,16 @@ const GalleryModal = ({
               >
                 ⟳
               </button>
-              <button
+              {/* <button
                 onClick={() => downloadImage(img.img)}
                 className="p-2 bg-black bg-opacity-50 text-white rounded"
               >
                 ⬇
-              </button>
+              </button> */}
               <button
                 onClick={() => {
+                  console.log("CloseModal");
+                  if (singleImage) setCurrentSlideIndex(0);
                   setIsOpen(false);
                   resetZoomAndPosition();
                 }}

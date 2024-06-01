@@ -10,6 +10,6 @@ services:
     environment:
       - NODE_ENV=development
       - CONTENTFUL_SPACE_ID=${CONTENTFUL_SPACE_ID}
-      - CONTENTFUL_ACCESS_TOKEN=${CONTENTFUL_ACCESS_TOKEN}
+      - CONTENTFUL_DELIVERY_ACCESS_TOKEN=${CONTENTFUL_DELIVERY_ACCESS_TOKEN}
     volumes:
       - .:/app

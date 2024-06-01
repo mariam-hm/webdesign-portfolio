@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { componentMap } from "../componentMap";
+import { componentMap } from "../../componentMap";
 import { fetchPage } from "@/contentful/getPageData";
 
 export const metadata: Metadata = {

@@ -2,7 +2,7 @@ import { type ProjectCard } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import Tag from "./Tag";
+import Tag from "@/components/Tag";
 
 export default function ProjectCard({
   title,

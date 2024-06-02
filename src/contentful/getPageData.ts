@@ -10,6 +10,7 @@ import {
   Image,
   Testimonial,
   Duplex,
+  HeroSection,
 } from "@/types";
 
 /**
@@ -97,7 +98,27 @@ const processPage = (data: any): Page => {
 const mapObjectToType = (component: any): any => {
   switch (component.sys.contentType.sys.id) {
     case "heroSection":
-      return { ...component.fields, _type: "heroSection" } as SectionTitle;
+      let mainImg = component.fields.mainImage
+        ? processImageAsset(component.fields.mainImage)
+        : [];
+      let bgImg = component.fields.backgroundImage
+        ? processImageAsset(component.fields.backgroundImage)
+        : [];
+
+      let usedImgs = component.fields.usedImages
+        ? component.fields.usedImages.map((img: any) => processImageAsset(img))
+        : [];
+
+      return {
+        mainHeading: component.fields.mainHeading || "",
+        subheading: component.fields.subheading || "",
+        textContent: component.fields.textContent || "",
+        mainImage: mainImg,
+        backgroundImage: bgImg,
+        usedImages: usedImgs,
+        style: component.fields.style,
+        _type: "heroSection",
+      } as HeroSection;
     case "projectInfo":
       const details = component.fields.details.map((labelValueObj: any) => {
         return {
@@ -225,4 +246,13 @@ const mapObjectToType = (component: any): any => {
       console.log("Entry isn't mapped to any type");
       return component.fields;
   }
+};
+
+const processImageAsset = (imgAsset: any) => {
+  return {
+    url: "https:" + imgAsset.fields.file.url,
+    width: imgAsset.fields.file.details.image.width,
+    height: imgAsset.fields.file.details.image.height,
+    description: imgAsset.fields.description,
+  };
 };

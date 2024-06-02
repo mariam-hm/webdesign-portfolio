@@ -10,6 +10,7 @@ import {
   Image,
   Testimonial,
   Duplex,
+  HeroSection,
 } from "@/types";
 
 /**
@@ -97,7 +98,27 @@ const processPage = (data: any): Page => {
 const mapObjectToType = (component: any): any => {
   switch (component.sys.contentType.sys.id) {
     case "heroSection":
-      return { ...component.fields, _type: "heroSection" } as SectionTitle;
+      let mainImg = component.fields.mainImage
+        ? processImageAsset(component.fields.mainImage)
+        : [];
+      let bgImg = component.fields.backgroundImage
+        ? processImageAsset(component.fields.backgroundImage)
+        : [];
+
+      let usedImgs = component.fields.usedImages
+        ? component.fields.usedImages.map((img: any) => processImageAsset(img))
+        : [];
+
+      return {
+        mainHeading: component.fields.mainHeading || "",
+        subheading: component.fields.subheading || "",
+        textContent: component.fields.textContent || "",
+        mainImage: mainImg,
+        backgroundImage: bgImg,
+        usedImages: usedImgs,
+        style: component.fields.style,
+        _type: "heroSection",
+      } as HeroSection;
     case "projectInfo":
       const details = component.fields.details.map((labelValueObj: any) => {
         return {
@@ -158,9 +179,80 @@ const mapObjectToType = (component: any): any => {
       component.fields.picture = pict;
 
       return { ...component.fields, _type: "testimonial" } as Testimonial;
+    case "projectCard":
+      // Get page slug
+      component.fields.page = component.fields.page.fields.slug;
+
+      // Process image
+      const coverImg = {
+        url: "https:" + component.fields.coverImage.fields.file.url,
+        width: component.fields.coverImage.fields.file.details.image.width,
+        height: component.fields.coverImage.fields.file.details.image.height,
+        description: component.fields.coverImage.fields.description,
+      };
+
+      component.fields.coverImage = coverImg;
+
+      // Process Tags
+      const tags = component.fields.tags.map((tag: any) => {
+        return {
+          ...tag.fields,
+          _type: "tag",
+        };
+      });
+
+      component.fields.tags = tags;
+
+      return { ...component.fields, _type: "projectCard" };
+
+    case "projectsGroup":
+      let projectCards = component.fields.projectCardsGroup.map((card) => {
+        // Get page slug
+        let pageSlug = card.fields.page.fields.slug;
+
+        // Process image
+        const coverImg = {
+          url: "https:" + card.fields.coverImage.fields.file.url,
+          width: card.fields.coverImage.fields.file.details.image.width,
+          height: card.fields.coverImage.fields.file.details.image.height,
+          description: card.fields.coverImage.fields.description,
+        };
+
+        // Get tags
+        const tags = card.fields.tags.map((tag: any) => {
+          return {
+            ...tag.fields,
+            _type: "tag",
+          };
+        });
+
+        return {
+          title: card.fields.title,
+          client: card.fields.client,
+          description: card.fields.description, // We may not need it
+          coverImage: coverImg,
+          page: pageSlug,
+          tags: tags,
+          _type: "projectCardSmall",
+        };
+      });
+
+      component.fields.projectCardsGroup = projectCards;
+
+      return { ...component.fields, _type: "projectsGroup" };
+
     default:
       // TODO Add error handling
       console.log("Entry isn't mapped to any type");
       return component.fields;
   }
+};
+
+const processImageAsset = (imgAsset: any) => {
+  return {
+    url: "https:" + imgAsset.fields.file.url,
+    width: imgAsset.fields.file.details.image.width,
+    height: imgAsset.fields.file.details.image.height,
+    description: imgAsset.fields.description,
+  };
 };

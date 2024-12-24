@@ -17,9 +17,9 @@ export default function Duplex({
   };
 
   return (
-    <section>
+    <section className="container">
       <h3>{heading}</h3>
-      <div className="grid sm:grid-cols-2">
+      <div className="grid md:grid-cols-2">
         <RenderComponent component={componentLeft} />
         <RenderComponent component={componentRight} />
       </div>

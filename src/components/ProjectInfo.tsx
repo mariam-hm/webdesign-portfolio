@@ -3,7 +3,7 @@ import ProjectInfoItem from "./ProjectInfoItem";
 
 export default function ProjectInfo({ details }: ProjectInfo) {
   return (
-    <div className="bg-primary-light">
+    <div className="container bg-primary-light">
       {details.map((item: LabelValuePair) => (
         <ProjectInfoItem {...item} key={item.label} />
       ))}

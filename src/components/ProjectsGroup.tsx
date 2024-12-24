@@ -3,7 +3,7 @@ import { type ProjectCard } from "@/types";
 
 export default function ProjectsGroup({ textContent, projectCardsGroup }: any) {
   return (
-    <section>
+    <section className="container">
       <h4>{textContent}</h4>
       <div className="grid sm:grid-cols-2 md:grid-cols-3">
         {projectCardsGroup.map((card: ProjectCard) => (

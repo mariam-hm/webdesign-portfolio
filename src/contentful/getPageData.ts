@@ -11,6 +11,7 @@ import {
   Testimonial,
   Duplex,
   HeroSection,
+  Carousel,
 } from "@/types";
 
 /**
@@ -113,12 +114,13 @@ const mapObjectToType = (component: any): any => {
         mainHeading: component.fields.mainHeading || "",
         subheading: component.fields.subheading || "",
         textContent: component.fields.textContent || "",
-        mainImage: mainImg,
-        backgroundImage: bgImg,
-        usedImages: usedImgs,
-        style: component.fields.style,
+        mainImage: mainImg || null,
+        backgroundImage: bgImg || null,
+        usedImages: usedImgs || [],
+        style: component.fields.style || "basic",
         _type: "heroSection",
       } as HeroSection;
+
     case "projectInfo":
       const details = component.fields.details.map((labelValueObj: any) => {
         return {
@@ -126,12 +128,15 @@ const mapObjectToType = (component: any): any => {
           _type: "labelValuePair",
         } as LabelValuePair;
       });
-      component.fields.details = details;
+      component.fields.details = details || [];
       return { ...component.fields, _type: "projectInfo" } as ProjectInfo;
+
     case "sectionTitle":
       return { ...component.fields, _type: "sectionTitle" } as SectionTitle;
+
     case "textBlock":
       return { ...component.fields, _type: "textBlock" } as TextBlock;
+
     case "duplexComponent":
       return {
         heading: component.fields.heading,
@@ -139,43 +144,35 @@ const mapObjectToType = (component: any): any => {
         componentRight: mapObjectToType(component.fields.componentRight),
         _type: "duplex",
       } as Duplex;
-    case "callout":
-      let img = {
-        url: "https:" + component.fields.image.fields.file.url,
-        width: component.fields.image.fields.file.details.image.width,
-        height: component.fields.image.fields.file.details.image.height,
-        description: component.fields.image.fields.description,
-      };
 
+    case "callout":
+      let img = processImageAsset(component.fields.image);
       component.fields.image = img;
+
       return {
         ...component.fields,
         _type: "callout",
       } as Callout;
-    case "image":
-      // TODO Correct the type and mapping for image
-      const imageGrp = component.fields.imageGroup
-        ? component.fields.imageGroup.map((img: any) => {
-            return {
-              url: "https:" + img.fields.file.url,
-              width: img.fields.file.details.image.width,
-              height: img.fields.file.details.image.height,
-              description: img.fields.description,
-            };
-          })
-        : [];
-      return {
-        imageGroup: imageGrp,
-        _type: "image",
-      } as Image;
-    case "testimonial":
-      const pict = {
-        url: "https:" + component.fields.picture.fields.file.url,
-        width: component.fields.picture.fields.file.details.image.width,
-        height: component.fields.picture.fields.file.details.image.height,
-        description: component.fields.picture.fields.description,
-      };
 
+    case "simpleImage":
+      let image = processImageAsset(component.fields.image);
+      return image as Image;
+
+    case "image": // ! WARNING: This is the current Carousel type
+      const imageGrp = component.fields.imageGroup.map((img: any) => {
+        return processImageAsset(img);
+      });
+      return {
+        title: component.fields.title || "",
+        imageGroup: imageGrp || [],
+        slidesWidth: component.fields.slidesWidth || "80vw",
+        slidesPerView: component.fields.slidesPerView || 1,
+        coverOrContain: component.fields.coverOrContain || "cover",
+        _type: "image",
+      } as Carousel;
+
+    case "testimonial":
+      const pict = processImageAsset(component.fields.picture);
       component.fields.picture = pict;
 
       return { ...component.fields, _type: "testimonial" } as Testimonial;
@@ -184,13 +181,7 @@ const mapObjectToType = (component: any): any => {
       component.fields.page = component.fields.page.fields.slug;
 
       // Process image
-      const coverImg = {
-        url: "https:" + component.fields.coverImage.fields.file.url,
-        width: component.fields.coverImage.fields.file.details.image.width,
-        height: component.fields.coverImage.fields.file.details.image.height,
-        description: component.fields.coverImage.fields.description,
-      };
-
+      const coverImg = processImageAsset(component.fields.coverImage);
       component.fields.coverImage = coverImg;
 
       // Process Tags
@@ -206,17 +197,12 @@ const mapObjectToType = (component: any): any => {
       return { ...component.fields, _type: "projectCard" };
 
     case "projectsGroup":
-      let projectCards = component.fields.projectCardsGroup.map((card) => {
+      let projectCards = component.fields.projectCardsGroup.map((card: any) => {
         // Get page slug
         let pageSlug = card.fields.page.fields.slug;
 
         // Process image
-        const coverImg = {
-          url: "https:" + card.fields.coverImage.fields.file.url,
-          width: card.fields.coverImage.fields.file.details.image.width,
-          height: card.fields.coverImage.fields.file.details.image.height,
-          description: card.fields.coverImage.fields.description,
-        };
+        const coverImg = processImageAsset(card.fields.coverImage);
 
         // Get tags
         const tags = card.fields.tags.map((tag: any) => {

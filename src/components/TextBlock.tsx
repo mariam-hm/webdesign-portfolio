@@ -6,8 +6,9 @@ export default function TextBlock({
   subheading,
   textContent,
 }: TextBlock) {
+  // TODO Handle null values to make no empty div possible
   return (
-    <section>
+    <section className="container">
       <div>
         <h5>{subheading}</h5>
         <h4>{heading}</h4>

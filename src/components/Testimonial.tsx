@@ -8,7 +8,7 @@ export default function Testimonial({
   picture,
 }: Testimonial) {
   return (
-    <div className="bg-zinc-300 p-4 rounded-md">
+    <div className="container bg-zinc-300 p-4 rounded-md">
       {picture && (
         <Image
           src={picture.url}

@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Callout({ heading, textContent, image }: Callout) {
   return (
-    <div className="bg-zinc-300 p-4 rounded-md">
+    <div className="container bg-zinc-300 p-4 rounded-md">
       {image && (
         <Image
           src={image.url}

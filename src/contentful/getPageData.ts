@@ -52,6 +52,7 @@ export const fetchPage = async (slug: string, locale = "en") => {
  * @throws Will throw an error if the fetch operation fails
  */
 export const fetchAllPages = async (locale = "en") => {
+  console.log("Enter fetch all pages");
   try {
     const response = await client.getEntries<EntrySkeletonType>({
       content_type: "page",
@@ -60,7 +61,10 @@ export const fetchAllPages = async (locale = "en") => {
     });
 
     if (response.items.length > 0) {
-      const processedPages = response.items.map((page) => processPage(page));
+      const processedPages = response.items.map((page) => {
+        processPage(page);
+        // TODO get a pageMap for the slugs and use it to make the project cards
+      });
       return processedPages;
     } else {
       // TODO Implement redirect or error handling
@@ -72,20 +76,79 @@ export const fetchAllPages = async (locale = "en") => {
   }
 };
 
+// TODO Improve project cards logic
+// export const fetchProjectCards = async (locale = "en") => {
+//   try {
+//     const response = await client.getEntries<EntrySkeletonType>({
+//       content_type: "projectCard",
+//       include: 2, // Adjust based on the depth of nested fields you need
+//       locale: locale,
+//     });
+
+//     if (response.items.length > 0) {
+//       // Process each project card
+//       const projectCards = response.items.map((card) => {
+//         const processedImage = processImageAsset(card.fields.coverImage);
+
+//         // Map tags
+//         const processedTags = card.fields.tags.map((tag: any) => {
+//           return {
+//             ...tag.fields,
+//             _type: "tag",
+//           };
+//         });
+
+//         return {
+//           title: card.fields.title,
+//           client: card.fields.client,
+//           description: card.fields.description,
+//           coverImage: processedImage,
+//           pageSlug: card.fields.page?.fields?.slug || null, // Avoid circular reference in code
+//           tags: processedTags,
+//           _type: "projectCard",
+//         };
+//       });
+
+//       return projectCards;
+//     } else {
+//       console.log("No project cards found.");
+//     }
+//   } catch (error) {
+//     console.log("Failed to fetch project cards: ", error);
+//     // TODO Add proper error handling
+//   }
+// };
+
 /**
  *  Processes the raw page data from Contentful and outputs a page with the right types
  * @param {any} data - The full page JSON object from Contentful
  * @returns {Page} - The processed page data with mapped content types
  */
 const processPage = (data: any): Page => {
+  const pageColors =
+    data.fields.colorPalette && Object.keys(data.fields.colorPalette).length > 0
+      ? data.fields.colorPalette
+      : {
+          light: {
+            light: "#ffbab8",
+            main: "#ff6f6b",
+            dark: "#ce423e",
+          },
+          dark: {
+            light: "#ffbab8",
+            main: "#ff6f6b",
+            dark: "#ce423e",
+          },
+        };
+
   const content = data.fields.content.map((component: any) =>
-    mapObjectToType(component)
+    mapObjectToType(component, pageColors)
   );
 
   return {
     title: data.fields.title,
     slug: data.fields.slug,
-    mainColor: data.fields.mainColor || "",
+    pageColors: pageColors,
     content: content,
     _type: "page",
   };
@@ -96,7 +159,7 @@ const processPage = (data: any): Page => {
  * @param {any} component - The Contentful entry JSON object
  * @returns {any} - The mapped TypeScript type (e.g., TextBlock, Callout, Image)
  */
-const mapObjectToType = (component: any): any => {
+const mapObjectToType = (component: any, pageColors: any = null): any => {
   switch (component.sys.contentType.sys.id) {
     case "heroSection":
       let mainImg = component.fields.mainImage
@@ -118,6 +181,7 @@ const mapObjectToType = (component: any): any => {
         backgroundImage: bgImg || null,
         usedImages: usedImgs || [],
         style: component.fields.style || "basic",
+        pageColors,
         _type: "heroSection",
       } as HeroSection;
 
@@ -129,19 +193,44 @@ const mapObjectToType = (component: any): any => {
         } as LabelValuePair;
       });
       component.fields.details = details || [];
-      return { ...component.fields, _type: "projectInfo" } as ProjectInfo;
+      return {
+        ...component.fields,
+        pageColors,
+        _type: "projectInfo",
+      } as ProjectInfo;
 
     case "sectionTitle":
-      return { ...component.fields, _type: "sectionTitle" } as SectionTitle;
+      return {
+        ...component.fields,
+        pageColors,
+        _type: "sectionTitle",
+      } as SectionTitle;
 
     case "textBlock":
-      return { ...component.fields, _type: "textBlock" } as TextBlock;
+      // * HANDLE SPECIAL EMBEDDED ASSETS
+      // * Make the image info more accessible to the textblock
+      // Maybe one day I'll have to do it with video
+      component.fields.textContent.content.map((node: any) => {
+        if (
+          node.nodeType == "embedded-asset-block" &&
+          node.data.target.fields.file.contentType.includes("image")
+        ) {
+          node.image = processImageAsset(node.data.target);
+        }
+      });
+
+      return {
+        ...component.fields,
+        pageColors,
+        _type: "textBlock",
+      } as TextBlock;
 
     case "duplexComponent":
       return {
         heading: component.fields.heading,
         componentLeft: mapObjectToType(component.fields.componentLeft),
         componentRight: mapObjectToType(component.fields.componentRight),
+        pageColors,
         _type: "duplex",
       } as Duplex;
 
@@ -151,12 +240,13 @@ const mapObjectToType = (component: any): any => {
 
       return {
         ...component.fields,
+        pageColors,
         _type: "callout",
       } as Callout;
 
     case "simpleImage":
       let image = processImageAsset(component.fields.image);
-      return image as Image;
+      return { ...image, pageColors, _type: "simpleImage" } as Image;
 
     case "image": // ! WARNING: This is the current Carousel type
       const imageGrp = component.fields.imageGroup.map((img: any) => {
@@ -168,6 +258,7 @@ const mapObjectToType = (component: any): any => {
         slidesWidth: component.fields.slidesWidth || "80vw",
         slidesPerView: component.fields.slidesPerView || 1,
         coverOrContain: component.fields.coverOrContain || "cover",
+        pageColors,
         _type: "image",
       } as Carousel;
 
@@ -175,7 +266,11 @@ const mapObjectToType = (component: any): any => {
       const pict = processImageAsset(component.fields.picture);
       component.fields.picture = pict;
 
-      return { ...component.fields, _type: "testimonial" } as Testimonial;
+      return {
+        ...component.fields,
+        pageColors,
+        _type: "testimonial",
+      } as Testimonial;
     case "projectCard":
       // Get page slug
       component.fields.page = component.fields.page.fields.slug;
@@ -197,6 +292,7 @@ const mapObjectToType = (component: any): any => {
       return { ...component.fields, _type: "projectCard" };
 
     case "projectsGroup":
+      // TODO Investigate: Creates an error, probably because of the circular reference or the nested one to pages to get the slug
       let projectCards = component.fields.projectCardsGroup.map((card: any) => {
         // Get page slug
         let pageSlug = card.fields.page.fields.slug;
@@ -234,11 +330,15 @@ const mapObjectToType = (component: any): any => {
   }
 };
 
-const processImageAsset = (imgAsset: any) => {
-  return {
-    url: "https:" + imgAsset.fields.file.url,
-    width: imgAsset.fields.file.details.image.width,
-    height: imgAsset.fields.file.details.image.height,
-    description: imgAsset.fields.description,
-  };
+export const processImageAsset = (imgAsset: any) => {
+  if (imgAsset) {
+    return {
+      url: "https:" + imgAsset.fields.file.url,
+      width: imgAsset.fields.file.details.image.width,
+      height: imgAsset.fields.file.details.image.height,
+      description: imgAsset.fields.description,
+    };
+  } else {
+    return null;
+  }
 };

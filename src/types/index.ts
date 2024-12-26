@@ -7,6 +7,7 @@ import * as Contentful from "./contentful";
 // ? All types:
 
 type ContentTypeField = {
+  pageColors?: any;
   _type: string;
 };
 

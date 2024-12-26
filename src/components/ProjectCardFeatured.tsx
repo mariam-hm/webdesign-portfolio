@@ -13,16 +13,12 @@ export default function ProjectCard({
   tags,
 }: ProjectCard) {
   return (
-    <div className="flex justify-center items-center gap-12 my-28">
-      <div className="flex flex-col justify-center items-start">
-        <h4 style={{ color: "#FF6F6B" }}>{client}</h4>
+    <div>
+      <div>
+        <h4>{client}</h4>
         <h3>{title}</h3>
-        <div className="my-4">
-          {description && documentToReactComponents(description)}
-        </div>
-        <ul className="p-0">
-          {tags && tags.map((tag: any) => <Tag {...tag} key={tag.id} />)}
-        </ul>
+        <div>{description && documentToReactComponents(description)}</div>
+        <ul>{tags && tags.map((tag: any) => <Tag {...tag} key={tag.id} />)}</ul>
       </div>
       <Link href={page}>
         <Image

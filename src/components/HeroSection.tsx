@@ -8,7 +8,7 @@ export default function HeroSection(props: HeroSection) {
     case "home":
       return <HeroSectionHome {...props} />;
     case "basic":
-    case "default":
+    default:
       return <HeroSectionBasic {...props} />;
   }
 }

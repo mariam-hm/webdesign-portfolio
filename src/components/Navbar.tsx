@@ -7,13 +7,13 @@ export default async function Navbar({ locale }: any) {
   const navbarMenu = await fetchNavbarMenu(locale);
 
   return (
-    <nav>
-      <div className="flex justify-between font-calistoga">
+    <nav className="bg-light-background drop-shadow w-100">
+      <div>
         <Link href={`/${locale}`}>
           <div>Mariam Hammoud</div>
         </Link>
 
-        <div className="flex gap-4">
+        <div>
           {navbarMenu &&
             navbarMenu.pageLinks.map((item: any) => (
               <Link href={`/${locale}/${item.link}`} key={item.link}>

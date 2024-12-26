@@ -1,9 +1,14 @@
 import { type SectionTitle } from "@/types";
 
-export default function SectionTitle({ heading }: SectionTitle) {
+export default function SectionTitle({ heading, pageColors }: SectionTitle) {
   return (
-    <h3 className="container border-b-2 border-primary text-center">
-      {heading}
-    </h3>
+    <div className="container">
+      <h3
+        style={{ borderColor: `${pageColors.light.main}` }}
+        className="flex justify-center align-middle pb-2 border-b"
+      >
+        {heading}
+      </h3>
+    </div>
   );
 }

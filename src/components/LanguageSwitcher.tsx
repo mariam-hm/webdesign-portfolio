@@ -32,7 +32,7 @@ export default function LanguageSwitcher() {
 
   return (
     <Menu>
-      <MenuButton>{t("hello")}</MenuButton>
+      <MenuButton>{locale}</MenuButton>
       <MenuItems anchor="bottom">
         <MenuItem>
           <button

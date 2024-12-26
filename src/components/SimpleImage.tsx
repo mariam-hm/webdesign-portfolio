@@ -9,13 +9,8 @@ export default function SimpleImage({
   description,
 }: ImageType) {
   return (
-    <div>
-      <Image
-        src={url}
-        width={width}
-        height={height}
-        description={description}
-      />
+    <div className="flex flex-col justify-center align-middle">
+      <Image src={url} width={width} height={height} alt={description} />
     </div>
   );
 }

@@ -8,9 +8,7 @@ export const componentMap: any = {
   projectInfo: dynamic(() => import("@/components/ProjectInfo")),
   callout: dynamic(() => import("@/components/Callout")),
   testimonial: dynamic(() => import("@/components/Testimonial")),
-  image: dynamic(
-    () => import("@/components/ZoomableCarousel/ZoomableCarousel")
-  ),
+  image: dynamic(() => import("@/components/Carousel")),
   simpleImage: dynamic(() => import("@/components/SimpleImage")),
   duplex: dynamic(() => import("@/components/Duplex")),
   projectCard: dynamic(() => import("@/components/ProjectCardFeatured")),

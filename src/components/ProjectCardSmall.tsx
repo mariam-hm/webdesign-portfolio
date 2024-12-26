@@ -12,7 +12,7 @@ export default function ProjectCardSmall({
   return (
     // Don't forget the locale in the link
     <Link href={page}>
-      <div className="bg-zinc-100 shadow-md">
+      <div className="">
         <h5>{client}</h5>
         <h4>{title}</h4>
       </div>

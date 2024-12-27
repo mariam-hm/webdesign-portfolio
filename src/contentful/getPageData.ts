@@ -256,7 +256,7 @@ const mapObjectToType = (component: any, pageColors: any = null): any => {
         title: component.fields.title || "",
         imageGroup: imageGrp || [],
         slidesWidth: component.fields.slidesWidth || "80vw",
-        slidesPerView: component.fields.slidesPerView || 1,
+        slidesPerViewInit: component.fields.slidesPerView || 1,
         coverOrContain: component.fields.coverOrContain || "cover",
         pageColors,
         _type: "image",

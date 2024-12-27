@@ -10,14 +10,32 @@ export default function Carousel({
   title,
   imageGroup,
   slidesWidth,
-  slidesPerView,
+  slidesPerViewInit,
   coverOrContain,
   pageColors,
 }) {
-  let slides = imageGroup;
-  slidesPerView = 2;
-  let slidesToScroll = 2;
+  const slides = imageGroup;
 
+  const slidesToScrollInit = 2; // Keep slidesToScroll fixed as per your initial logic
+
+  // Function to calculate slides per view based on window size
+  const getSlidesPerView = () => {
+    if (typeof window !== "undefined" && window.innerWidth >= 1024)
+      return slidesPerViewInit;
+    return 1;
+  };
+
+  const getSlidesToScroll = () => {
+    if (typeof window !== "undefined" && window.innerWidth >= 1024)
+      return slidesToScrollInit;
+    return 1;
+  };
+
+  // State to manage slides per view
+  const [slidesPerView, setSlidesPerView] = useState(getSlidesPerView());
+  const [slidesToScroll, setSlidesToScroll] = useState(getSlidesToScroll());
+
+  // State to manage current slide index and button states
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
   const [nextBtnDisabled, setNextBtnDisabled] = useState(
@@ -27,8 +45,23 @@ export default function Carousel({
   const slideContainerRef = useRef<HTMLDivElement>(null);
   const [slideWidth, setSlideWidth] = useState(0);
 
+  // Track whether the component has mounted
+  const [isMounted, setIsMounted] = useState(false);
+
   useEffect(() => {
-    // Dynamically calculate the width of a single slide
+    // Mark component as mounted
+    setIsMounted(true);
+
+    // Dynamically calculate the number of slides per view
+    const handleResize = () => {
+      setSlidesPerView(getSlidesPerView());
+      setSlidesToScroll(getSlidesToScroll());
+    };
+
+    // Initial calculations
+    handleResize();
+
+    // Recalculate slide width when resizing
     const calculateSlideWidth = () => {
       if (slideContainerRef.current) {
         const firstSlide = slideContainerRef.current.querySelector(".slide");
@@ -38,14 +71,18 @@ export default function Carousel({
       }
     };
 
-    // Initial calculation
     calculateSlideWidth();
     updateButtonStates(currentSlideIndex);
 
     // Recalculate on window resize
+    window.addEventListener("resize", handleResize);
     window.addEventListener("resize", calculateSlideWidth);
-    return () => window.removeEventListener("resize", calculateSlideWidth);
-  }, []);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", calculateSlideWidth);
+    };
+  }, [currentSlideIndex]);
 
   const updateButtonStates = (index: number) => {
     setPrevBtnDisabled(index === 0);
@@ -56,11 +93,11 @@ export default function Carousel({
     console.log("prevButtonClick");
     const prevSlideIndex = currentSlideIndex - slidesToScroll;
     const minIndex = 0;
-    // Ensure we don't scroll past the last set of slides
+    // Ensure we don't scroll past the first set of slides
     if (prevSlideIndex >= minIndex) {
       goToSlide(prevSlideIndex);
     } else {
-      goToSlide(minIndex); // Go to the last valid slide index
+      goToSlide(minIndex); // Go to the first valid slide index
     }
   };
 
@@ -76,18 +113,6 @@ export default function Carousel({
     }
   };
 
-  // const goToSlide = (index: number) => {
-  //   console.log("goToSlide");
-  //   setCurrentSlideIndex(index);
-  //   if (slideContainerRef.current) {
-  //     let gapValue = 8;
-  //     slideContainerRef.current.style.transform = `translateX(-${
-  //       index * slidesToScroll * (slideWidth + gapValue)
-  //     }px)`;
-  //   }
-  //   updateButtonStates(index);
-  // };
-
   const goToSlide = (index: number) => {
     const maxIndex = slides.length - slidesPerView;
     const boundedIndex = Math.min(index, maxIndex);
@@ -101,16 +126,20 @@ export default function Carousel({
     updateButtonStates(boundedIndex);
   };
 
+  // If not mounted, return nothing (to avoid window errors)
+  if (!isMounted) {
+    return null;
+  }
+
   return (
     <div>
-      // * Let's build a new carousel here
       <section
         className="container section"
         style={
           {
             "--slides-per-view": slidesPerView.toString(), // Pass as a CSS variable
           } as React.CSSProperties
-        } // Ensure compatibility with TypeScript
+        }
       >
         <div className="viewport-and-buttons flex">
           <button
@@ -127,7 +156,11 @@ export default function Carousel({
               ref={slideContainerRef}
             >
               {imageGroup.map((image: any) => (
-                <div className="slide" style={{ padding: "0px 8px" }}>
+                <div
+                  className="slide"
+                  style={{ padding: "0px 8px" }}
+                  key={image.url}
+                >
                   <Image
                     src={image.url}
                     width={image.width}
@@ -143,7 +176,7 @@ export default function Carousel({
             disabled={nextBtnDisabled}
             onClick={nextButtonClick}
           >
-            <ChevronRightIcon className="size-8" onClick={nextButtonClick} />
+            <ChevronRightIcon className="size-8" />
           </button>
         </div>
 

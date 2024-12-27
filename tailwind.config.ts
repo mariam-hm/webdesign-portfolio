@@ -17,6 +17,7 @@ const config: Config = {
     colors: {
       // Let's call it light to be able to implement a dark mode later on
       white: "#ffffff",
+      transparent: "transparent",
       zinc: {
         50: "#fafafa",
         100: "#f4f4f5",

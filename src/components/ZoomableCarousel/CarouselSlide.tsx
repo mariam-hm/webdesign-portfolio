@@ -20,7 +20,7 @@ const CarouselSlide = ({ img, SLIDE_WIDTH_VW, setIsOpen, fit }) => {
           alt={img.description}
         />
         <div
-          className={`absolute bottom-1 py-1 px-2 mb-1 left-1/2 -translate-x-1/2 translate-y-1 bg-black/40 opacity-0 text-center rounded-md group-hover:opacity-100 group-hover:translate-y-0  transition duration-00 ease-out group-hover:ease-in ${
+          className={`absolute bottom-1 py-1 px-2 mb-1 left-1/2 -translate-x-1/2 translate-y-1 bg-zinc-950/40 opacity-0 text-center rounded-md group-hover:opacity-100 group-hover:translate-y-0  transition duration-00 ease-out group-hover:ease-in ${
             fit === "cover" ? "mb-2" : ""
           }`}
         >

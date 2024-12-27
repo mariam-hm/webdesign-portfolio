@@ -5,6 +5,7 @@ const CarouselControls = ({ direction, onClick, disabled }) => {
       disabled={disabled}
       className="disabled:opacity-50"
     >
+      PREV/NEXT
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

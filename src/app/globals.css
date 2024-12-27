@@ -3,3 +3,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.viewport {
+  width: 100%; /* Ensure viewport has a defined width */
+}
+
+.slide-container > div {
+  flex: 0 0 calc(100% / var(--slides-per-view));
+  max-width: calc(100% / var(--slides-per-view));
+}

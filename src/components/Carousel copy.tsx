@@ -16,7 +16,6 @@ export default function Carousel({
 }) {
   let slides = imageGroup;
   slidesPerView = 2;
-  let slidesToScroll = 2;
 
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
@@ -54,51 +53,28 @@ export default function Carousel({
 
   const prevButtonClick = () => {
     console.log("prevButtonClick");
-    const prevSlideIndex = currentSlideIndex - slidesToScroll;
-    const minIndex = 0;
-    // Ensure we don't scroll past the last set of slides
-    if (prevSlideIndex >= minIndex) {
-      goToSlide(prevSlideIndex);
-    } else {
-      goToSlide(minIndex); // Go to the last valid slide index
+    if (currentSlideIndex > 0) {
+      goToSlide(currentSlideIndex - 1);
     }
   };
 
   const nextButtonClick = () => {
     console.log("nextButtonClick");
-    const nextSlideIndex = currentSlideIndex + slidesToScroll;
-    const maxIndex = slides.length - slidesPerView;
-    // Ensure we don't scroll past the last set of slides
-    if (nextSlideIndex <= maxIndex) {
-      goToSlide(nextSlideIndex);
-    } else {
-      goToSlide(maxIndex); // Go to the last valid slide index
+    if (currentSlideIndex < slides.length - slidesPerView) {
+      goToSlide(currentSlideIndex + 1);
     }
   };
 
-  // const goToSlide = (index: number) => {
-  //   console.log("goToSlide");
-  //   setCurrentSlideIndex(index);
-  //   if (slideContainerRef.current) {
-  //     let gapValue = 8;
-  //     slideContainerRef.current.style.transform = `translateX(-${
-  //       index * slidesToScroll * (slideWidth + gapValue)
-  //     }px)`;
-  //   }
-  //   updateButtonStates(index);
-  // };
-
   const goToSlide = (index: number) => {
-    const maxIndex = slides.length - slidesPerView;
-    const boundedIndex = Math.min(index, maxIndex);
-    setCurrentSlideIndex(boundedIndex);
+    console.log("goToSlide");
+    setCurrentSlideIndex(index);
     if (slideContainerRef.current) {
       let gapValue = 8;
       slideContainerRef.current.style.transform = `translateX(-${
-        boundedIndex * (slideWidth + gapValue)
+        index * (slideWidth + gapValue)
       }px)`;
     }
-    updateButtonStates(boundedIndex);
+    updateButtonStates(index);
   };
 
   return (
@@ -122,7 +98,7 @@ export default function Carousel({
           </button>
           <div className="viewport overflow-hidden">
             <div
-              className="slide-container flex transition duration-500 ease-in-out"
+              className="slide-container flex"
               style={{ gap: "8px" }}
               ref={slideContainerRef}
             >
@@ -148,20 +124,19 @@ export default function Carousel({
         </div>
 
         <div className="flex justify-center align-middle flex-row mt-2">
-          {Array.from({
-            length:
-              Math.ceil((slides.length - slidesPerView) / slidesToScroll) + 1,
-          }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`${
-                index === Math.floor(currentSlideIndex / slidesToScroll)
-                  ? "bg-light-primary"
-                  : "bg-light-primary-light"
-              } mx-1 h-2 w-2 rounded-full`}
-            />
-          ))}
+          {Array.from({ length: slides.length - slidesPerView + 1 }).map(
+            (_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`${
+                  index === currentSlideIndex
+                    ? "bg-light-primary"
+                    : "bg-light-primary-light"
+                } mx-1 h-2 w-2 rounded-full`}
+              />
+            )
+          )}
         </div>
       </section>
       <div> ------------------</div>

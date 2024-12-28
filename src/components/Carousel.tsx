@@ -5,18 +5,20 @@ import { type Carousel } from "@/types";
 import Image from "next/image";
 import ZoomableCarousel from "./ZoomableCarousel/ZoomableCarousel";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import Lightbox from "./Lightbox";
 
 export default function Carousel({
   title,
   imageGroup,
-  slidesWidth,
-  slidesPerViewInit,
-  coverOrContain,
+  slidesPerViewInit = 2,
+  slidesToScrollInit = 1,
+  imageFit = "none",
   pageColors,
+  onImageClick,
+  setCurrentSlideIndex,
+  currentSlideIndex,
 }) {
   const slides = imageGroup;
-
-  const slidesToScrollInit = 2; // Keep slidesToScroll fixed as per your initial logic
 
   // Function to calculate slides per view based on window size
   const getSlidesPerView = () => {
@@ -36,17 +38,29 @@ export default function Carousel({
   const [slidesToScroll, setSlidesToScroll] = useState(getSlidesToScroll());
 
   // State to manage current slide index and button states
-  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  //const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
   const [nextBtnDisabled, setNextBtnDisabled] = useState(
     slides.length <= slidesPerView
   );
 
+  // State to manage current slide index and button states
   const slideContainerRef = useRef<HTMLDivElement>(null);
   const [slideWidth, setSlideWidth] = useState(0);
 
-  // Track whether the component has mounted
+  // Track whether the component has mounted to avoid window errors
   const [isMounted, setIsMounted] = useState(false);
+
+  // State to manage variables related to drag movements
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [currentTranslate, setCurrentTranslate] = useState(0);
+  const [prevTranslate, setPrevTranslate] = useState(0);
+
+  // * Add for momentum if I need
+  // const [deltaTime, setDeltaTime] = useState(0); // Time between touch events
+  // const [velocity, setVelocity] = useState(0); // Speed of drag
+  // const [lastTouchTime, setLastTouchTime] = useState(0); // Last touch timestamp
 
   useEffect(() => {
     // Mark component as mounted
@@ -66,23 +80,135 @@ export default function Carousel({
       if (slideContainerRef.current) {
         const firstSlide = slideContainerRef.current.querySelector(".slide");
         if (firstSlide) {
+          console.log("FirstSlide is here!!");
           setSlideWidth(firstSlide.clientWidth);
         }
       }
     };
 
-    calculateSlideWidth();
+    const timeoutId = setTimeout(calculateSlideWidth, 50); // Delay to ensure DOM is ready
     updateButtonStates(currentSlideIndex);
 
     // Recalculate on window resize
     window.addEventListener("resize", handleResize);
     window.addEventListener("resize", calculateSlideWidth);
 
+    //debugLog("useEffect");
+
     return () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("resize", calculateSlideWidth);
+      clearTimeout(timeoutId);
     };
   }, [currentSlideIndex]);
+
+  // const debugLog = (origin: string, values: any = []) => {
+  //   console.log("-------- LOGS FROM :", origin, "---------");
+  //   console.log("slideWidth: ", slideWidth);
+  //   console.log("currentSlideIndex: ", currentSlideIndex);
+
+  //   for (const key in values) {
+  //     console.log(key, " :", values[key]);
+  //   }
+
+  //   console.log("---------------------------------");
+  // };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsDragging(true);
+    setStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+
+    //const currentX = e.touches[0].clientX;
+    // Delta X transformation = currentX - startX
+    const deltaX = e.touches[0].clientX - startX;
+
+    // TODO If I want momentum dragging
+    //const currentTime = Date.now();
+
+    // const deltaTime = currentTime - lastTouchTime;
+    // setLastTouchTime(currentTime);
+
+    // const newVelocity = deltaX / deltaTime;
+    // setVelocity(newVelocity);
+
+    const newTranslate = prevTranslate + deltaX;
+    setCurrentTranslate(newTranslate);
+
+    if (slideContainerRef.current) {
+      slideContainerRef.current.style.transform = `translateX(${newTranslate}px)`;
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+    setPrevTranslate(currentTranslate);
+
+    const threshold = 0.5;
+
+    // applyMomentumScrolling();
+
+    snapToSlide();
+
+    // if (Math.abs(velocity) > threshold) {
+    //   applyMomentumScrolling();
+    // } else {
+    //   snapToSlide();
+    // }
+  };
+
+  // const applyMomentumScrolling = () => {
+  //   let momentumVelocity = velocity; // Initial speed
+
+  //   const friction = 0.25; // Decay rate (0.25 means 25% speed loss every 100ms)
+  //   const updateMomentum = () => {
+  //     if (Math.abs(momentumVelocity) < 0.1) {
+  //       // Stop if the velocity is very low
+  //       return;
+  //     }
+
+  //     // Update translate position
+  //     const newTranslate = prevTranslate + momentumVelocity;
+  //     setCurrentTranslate(newTranslate);
+  //     if (slideContainerRef.current) {
+  //       slideContainerRef.current.style.transform = `translateX(${newTranslate}px)`;
+  //     }
+
+  //     // Reduce velocity over time (friction effect)
+  //     momentumVelocity *= friction;
+
+  //     // Request the next frame
+  //     requestAnimationFrame(updateMomentum);
+  //   };
+
+  //   // Start the momentum scrolling
+  //   updateMomentum();
+  // };
+
+  const snapToSlide = () => {
+    if (slideContainerRef.current && slideWidth) {
+      console.log("currentTranslate: ", currentTranslate);
+
+      // TODO Find a way to implement slidesToScroll with this
+      const snapIndex = Math.round(-currentTranslate / (slideWidth + 8)); // Calculate nearest slide index
+      const boundedIndex = Math.max(
+        0,
+        Math.min(snapIndex, slides.length - slidesPerView)
+      );
+      const gapValue = 8;
+      const snappedTranslate = -boundedIndex * (slideWidth + gapValue);
+
+      slideContainerRef.current.style.transition = "transform 0.3s ease-out";
+      slideContainerRef.current.style.transform = `translateX(${snappedTranslate}px)`;
+
+      setPrevTranslate(snappedTranslate);
+      console.log("setCurrentSlideIndex from snapToSlide: ", snapIndex);
+      setCurrentSlideIndex(snapIndex);
+    }
+  };
 
   const updateButtonStates = (index: number) => {
     setPrevBtnDisabled(index === 0);
@@ -102,7 +228,6 @@ export default function Carousel({
   };
 
   const nextButtonClick = () => {
-    console.log("nextButtonClick");
     const nextSlideIndex = currentSlideIndex + slidesToScroll;
     const maxIndex = slides.length - slidesPerView;
     // Ensure we don't scroll past the last set of slides
@@ -117,13 +242,15 @@ export default function Carousel({
     const maxIndex = slides.length - slidesPerView;
     const boundedIndex = Math.min(index, maxIndex);
     setCurrentSlideIndex(boundedIndex);
+    let gapValue = 8;
+    let translateValue = boundedIndex * (slideWidth + gapValue);
     if (slideContainerRef.current) {
-      let gapValue = 8;
-      slideContainerRef.current.style.transform = `translateX(-${
-        boundedIndex * (slideWidth + gapValue)
-      }px)`;
+      slideContainerRef.current.style.transform = `translateX(-${translateValue}px)`;
     }
+    setCurrentTranslate(translateValue);
     updateButtonStates(boundedIndex);
+
+    //debugLog("goToSlide", [translateValue]);
   };
 
   // If not mounted, return nothing (to avoid window errors)
@@ -132,79 +259,113 @@ export default function Carousel({
   }
 
   return (
-    <div>
-      <section
-        className="container section"
-        style={
-          {
-            "--slides-per-view": slidesPerView.toString(), // Pass as a CSS variable
-          } as React.CSSProperties
-        }
-      >
-        <div className="viewport-and-buttons flex">
-          <button
-            className="disabled:text-light-primary-light"
-            disabled={prevBtnDisabled}
-            onClick={prevButtonClick}
+    <section
+      className="container section"
+      style={
+        {
+          "--slides-per-view": slidesPerView.toString(), // Pass as a CSS variable
+        } as React.CSSProperties
+      }
+    >
+      {title && <h4 className="text-center">{title}</h4>}
+      <div className="viewport-and-buttons flex mt-4">
+        <button
+          disabled={prevBtnDisabled}
+          onClick={prevButtonClick}
+          style={{
+            color: prevBtnDisabled
+              ? pageColors.light.light
+              : pageColors.light.main, // Replace with your hex codes
+          }}
+        >
+          <ChevronLeftIcon className="size-8" />
+        </button>
+        <div className="viewport overflow-hidden">
+          <div
+            className="slide-container flex transition duration-500 ease-in-out"
+            style={{ gap: "8px" }}
+            ref={slideContainerRef}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
-            <ChevronLeftIcon className="size-8" />
-          </button>
-          <div className="viewport overflow-hidden">
-            <div
-              className="slide-container flex transition duration-500 ease-in-out"
-              style={{ gap: "8px" }}
-              ref={slideContainerRef}
-            >
-              {imageGroup.map((image: any) => (
+            {imageGroup.map((image: any, index: number) => {
+              return imageFit != "none" ? (
+                <div
+                  className="slide relative h-[500px] rounded-lg overflow-hidden"
+                  style={{ padding: "0px 8px" }}
+                  key={image.url}
+                  onClick={() => {
+                    console.log(
+                      "Enter onClick Carousel Slide, onImageClick: ",
+                      onImageClick
+                    );
+                    onImageClick(index);
+                  }}
+                >
+                  <Image
+                    src={image.url}
+                    alt={image.description}
+                    fill={true}
+                    style={{ objectFit: imageFit }}
+                  />
+                </div>
+              ) : (
                 <div
                   className="slide"
                   style={{ padding: "0px 8px" }}
                   key={image.url}
+                  onClick={() => {
+                    console.log(
+                      "Enter onClick Carousel Slide, onImageClick: ",
+                      onImageClick
+                    );
+                    onImageClick(index);
+                  }}
                 >
                   <Image
                     src={image.url}
                     width={image.width}
                     height={image.height}
                     alt={image.description}
+                    className="rounded-lg overflow-hidden"
                   />
                 </div>
-              ))}
-            </div>
+              );
+            })}
           </div>
-          <button
-            className="disabled:text-light-primary-light"
-            disabled={nextBtnDisabled}
-            onClick={nextButtonClick}
-          >
-            <ChevronRightIcon className="size-8" />
-          </button>
         </div>
+        <button
+          disabled={nextBtnDisabled}
+          onClick={nextButtonClick}
+          style={{
+            color: nextBtnDisabled
+              ? pageColors.light.light
+              : pageColors.light.main, // Replace with your hex codes
+          }}
+        >
+          <ChevronRightIcon className="size-8" />
+        </button>
+      </div>
 
-        <div className="flex justify-center align-middle flex-row mt-2">
-          {Array.from({
-            length:
-              Math.ceil((slides.length - slidesPerView) / slidesToScroll) + 1,
-          }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`${
+      <div className="flex justify-center align-middle flex-row mt-2">
+        {Array.from({
+          length:
+            Math.ceil((slides.length - slidesPerView) / slidesToScroll) + 1,
+        }).map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToSlide(index)}
+            className="mx-1 h-2 w-2 rounded-full"
+            style={{
+              backgroundColor:
                 index === Math.floor(currentSlideIndex / slidesToScroll)
-                  ? "bg-light-primary"
-                  : "bg-light-primary-light"
-              } mx-1 h-2 w-2 rounded-full`}
-            />
-          ))}
-        </div>
-      </section>
-      <div> ------------------</div>
-      <ZoomableCarousel
-        singleImage={imageGroup[0]}
-        slides={imageGroup}
-        slidesWidth={slidesWidth}
-        slidesPerView={slidesPerView}
-        fit={coverOrContain}
-      />
-    </div>
+                  ? pageColors.light.main
+                  : pageColors.light.light,
+            }}
+          />
+        ))}
+      </div>
+    </section>
   );
 }

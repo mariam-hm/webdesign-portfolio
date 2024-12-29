@@ -5,25 +5,21 @@ import Image from "next/image";
 import { type Image as ImageType } from "@/types";
 import { useState, useEffect, useRef } from "react";
 import Thumbnails from "./Thumbnails";
+import { motion } from "framer-motion"; // Importing motion
 
 const Lightbox = ({
-  isLightBoxOpen,
-  slides,
-  currentIndex,
+  isLightboxOpen,
+  imageGroup,
+  currentIndex = 0,
   setCurrentIndex,
   onClose,
   pageColors,
-}: {
-  image: ImageType;
-  slides: ImageType[];
-  currentIndex: number;
-  setCurrentSlideIndex: Function;
 }) => {
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
   };
 
-  let image = slides[currentIndex];
+  let image = imageGroup[currentIndex];
 
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -32,7 +28,7 @@ const Lightbox = ({
       const wrapperRect = wrapperRef.current.getBoundingClientRect();
 
       // Get the intrinsic aspect ratio of the image
-      const image = slides[currentIndex];
+      const image = imageGroup[currentIndex];
       const imageAspectRatio = image.width / image.height;
 
       // Calculate the visible image dimensions based on the wrapper's size
@@ -74,8 +70,8 @@ const Lightbox = ({
   };
 
   return (
-    <Dialog open={isLightBoxOpen} onClose={onClose} className="relative z-50">
-      <div className="fixed inset-0 bg-zinc-950/50"></div>
+    <Dialog open={isLightboxOpen} onClose={onClose} className="relative z-50">
+      <div className="fixed inset-0 bg-zinc-950/70"></div>
 
       <div className="fixed inset-0 w-screen overflow-y-auto">
         <div className="flex min-h-full items-center justify-center">
@@ -85,42 +81,57 @@ const Lightbox = ({
               ref={wrapperRef}
               onClick={handleClickOutsideImage}
             >
-              <Image
-                src={image.url}
-                alt={image.description}
-                fill={true}
+              {/* Use motion.div to add animation to the image */}
+              <motion.div
+                key={image.url} // This ensures the animation is triggered when the image changes
+                initial={{ opacity: 0 }} // Start with the image hidden
+                animate={{ opacity: 1 }} // Fade in
+                exit={{ opacity: 0 }} // Fade out when the image disappears
+                transition={{ duration: 0.5 }} // Duration of the fade animation
                 className="pointer-events-auto"
-                style={{ objectFit: "contain" }}
-              />
+              >
+                <Image
+                  src={image.url}
+                  alt={image.description}
+                  fill={true}
+                  style={{ objectFit: "contain" }}
+                />
+              </motion.div>
             </div>
 
-            <div className="flex w-full justify-center mt-2">
-              <div className="flex justify-center space-x-2 h-[10vh]">
-                {slides.map((img, index) => (
-                  <div
-                    key={img.description}
-                    className={`relative w-16 h-16 rounded-sm overflow-hidden cursor-pointer transition duration-200 ${
-                      index === currentIndex ? "ring-2" : ""
-                    }`}
-                    style={{
-                      boxShadow:
-                        index === currentIndex
-                          ? `0 0 0 2px ${pageColors.light.main}`
-                          : undefined, // Replace #FF5733 with your hex code
-                    }}
-                    onClick={() => goToSlide(index)}
-                  >
-                    <Image
-                      src={img.url}
-                      quality={50}
-                      fill={true}
-                      className="object-cover"
-                      alt={img.description}
-                    />
-                  </div>
-                ))}
-              </div>
+            <div className="text-white italic text-center">
+              {image.description}
             </div>
+
+            {imageGroup.length > 1 && (
+              <div className="flex w-full justify-center mt-2">
+                <div className="flex justify-center space-x-2 h-[10vh]">
+                  {imageGroup.map((img, index) => (
+                    <div
+                      key={img.description}
+                      className={`relative w-16 h-16 rounded-sm overflow-hidden cursor-pointer transition duration-200 ${
+                        index === currentIndex ? "ring-2" : ""
+                      }`}
+                      style={{
+                        boxShadow:
+                          index === currentIndex
+                            ? `0 0 0 2px ${pageColors.light.main}`
+                            : undefined, // Replace #FF5733 with your hex code
+                      }}
+                      onClick={() => goToSlide(index)}
+                    >
+                      <Image
+                        src={img.url}
+                        quality={50}
+                        fill={true}
+                        className="object-cover"
+                        alt={img.description}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </DialogPanel>
         </div>
       </div>

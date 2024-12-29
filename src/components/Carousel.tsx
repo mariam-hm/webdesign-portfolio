@@ -3,35 +3,56 @@
 import { useEffect, useRef, useState } from "react";
 import { type Carousel } from "@/types";
 import Image from "next/image";
-import ZoomableCarousel from "./ZoomableCarousel/ZoomableCarousel";
+import ImageSlide from "./ImageSlide";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
-import Lightbox from "./Lightbox";
 
 export default function Carousel({
   title,
   imageGroup,
-  slidesPerViewInit = 2,
-  slidesToScrollInit = 1,
-  imageFit = "none",
+  slidesPerViewInit,
+  scrollPerView,
+  imageFit,
+  aspectRatio,
   pageColors,
-  onImageClick,
   setCurrentSlideIndex,
   currentSlideIndex,
+  onImageClick,
 }) {
   const slides = imageGroup;
+  const GAP_VALUE = 0;
 
   // Function to calculate slides per view based on window size
   const getSlidesPerView = () => {
-    if (typeof window !== "undefined" && window.innerWidth >= 1024)
-      return slidesPerViewInit;
-    return 1;
+    return typeof window !== "undefined" && window.innerWidth >= 1024
+      ? slidesPerViewInit
+      : 1;
   };
 
   const getSlidesToScroll = () => {
-    if (typeof window !== "undefined" && window.innerWidth >= 1024)
-      return slidesToScrollInit;
-    return 1;
+    return typeof window !== "undefined" && window.innerWidth >= 1024
+      ? scrollPerView
+        ? slidesPerViewInit
+        : 1
+      : 1;
   };
+
+  const getRatio = (aspectRatio: string) => {
+    switch (aspectRatio) {
+      case "16:9":
+        return 0.5625;
+      case "9:16":
+        return 1.78;
+      case "4:3":
+        return 0.75;
+      case "1:1":
+        return 1;
+      default:
+        return 0.5625;
+    }
+  };
+
+  // Aspect ratio
+  const ratio = getRatio(aspectRatio);
 
   // State to manage slides per view
   const [slidesPerView, setSlidesPerView] = useState(getSlidesPerView());
@@ -57,62 +78,49 @@ export default function Carousel({
   const [currentTranslate, setCurrentTranslate] = useState(0);
   const [prevTranslate, setPrevTranslate] = useState(0);
 
-  // * Add for momentum if I need
-  // const [deltaTime, setDeltaTime] = useState(0); // Time between touch events
-  // const [velocity, setVelocity] = useState(0); // Speed of drag
-  // const [lastTouchTime, setLastTouchTime] = useState(0); // Last touch timestamp
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
-    // Mark component as mounted
-    setIsMounted(true);
-
-    // Dynamically calculate the number of slides per view
     const handleResize = () => {
       setSlidesPerView(getSlidesPerView());
       setSlidesToScroll(getSlidesToScroll());
     };
 
-    // Initial calculations
-    handleResize();
+    handleResize(); // Initial calculations
+    window.addEventListener("resize", handleResize);
 
-    // Recalculate slide width when resizing
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
     const calculateSlideWidth = () => {
       if (slideContainerRef.current) {
         const firstSlide = slideContainerRef.current.querySelector(".slide");
         if (firstSlide) {
-          console.log("FirstSlide is here!!");
           setSlideWidth(firstSlide.clientWidth);
         }
       }
     };
 
     const timeoutId = setTimeout(calculateSlideWidth, 50); // Delay to ensure DOM is ready
-    updateButtonStates(currentSlideIndex);
 
-    // Recalculate on window resize
-    window.addEventListener("resize", handleResize);
     window.addEventListener("resize", calculateSlideWidth);
 
-    //debugLog("useEffect");
-
     return () => {
-      window.removeEventListener("resize", handleResize);
       window.removeEventListener("resize", calculateSlideWidth);
       clearTimeout(timeoutId);
     };
+  }, []);
+
+  useEffect(() => {
+    updateButtonStates(currentSlideIndex);
   }, [currentSlideIndex]);
 
-  // const debugLog = (origin: string, values: any = []) => {
-  //   console.log("-------- LOGS FROM :", origin, "---------");
-  //   console.log("slideWidth: ", slideWidth);
-  //   console.log("currentSlideIndex: ", currentSlideIndex);
-
-  //   for (const key in values) {
-  //     console.log(key, " :", values[key]);
-  //   }
-
-  //   console.log("---------------------------------");
-  // };
+  // * ----------------------- TOUCH NAVIGATION --------------------------
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setIsDragging(true);
@@ -122,19 +130,7 @@ export default function Carousel({
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!isDragging) return;
 
-    //const currentX = e.touches[0].clientX;
-    // Delta X transformation = currentX - startX
     const deltaX = e.touches[0].clientX - startX;
-
-    // TODO If I want momentum dragging
-    //const currentTime = Date.now();
-
-    // const deltaTime = currentTime - lastTouchTime;
-    // setLastTouchTime(currentTime);
-
-    // const newVelocity = deltaX / deltaTime;
-    // setVelocity(newVelocity);
-
     const newTranslate = prevTranslate + deltaX;
     setCurrentTranslate(newTranslate);
 
@@ -147,68 +143,28 @@ export default function Carousel({
     setIsDragging(false);
     setPrevTranslate(currentTranslate);
 
-    const threshold = 0.5;
-
-    // applyMomentumScrolling();
-
     snapToSlide();
-
-    // if (Math.abs(velocity) > threshold) {
-    //   applyMomentumScrolling();
-    // } else {
-    //   snapToSlide();
-    // }
   };
-
-  // const applyMomentumScrolling = () => {
-  //   let momentumVelocity = velocity; // Initial speed
-
-  //   const friction = 0.25; // Decay rate (0.25 means 25% speed loss every 100ms)
-  //   const updateMomentum = () => {
-  //     if (Math.abs(momentumVelocity) < 0.1) {
-  //       // Stop if the velocity is very low
-  //       return;
-  //     }
-
-  //     // Update translate position
-  //     const newTranslate = prevTranslate + momentumVelocity;
-  //     setCurrentTranslate(newTranslate);
-  //     if (slideContainerRef.current) {
-  //       slideContainerRef.current.style.transform = `translateX(${newTranslate}px)`;
-  //     }
-
-  //     // Reduce velocity over time (friction effect)
-  //     momentumVelocity *= friction;
-
-  //     // Request the next frame
-  //     requestAnimationFrame(updateMomentum);
-  //   };
-
-  //   // Start the momentum scrolling
-  //   updateMomentum();
-  // };
 
   const snapToSlide = () => {
     if (slideContainerRef.current && slideWidth) {
-      console.log("currentTranslate: ", currentTranslate);
-
       // TODO Find a way to implement slidesToScroll with this
       const snapIndex = Math.round(-currentTranslate / (slideWidth + 8)); // Calculate nearest slide index
       const boundedIndex = Math.max(
         0,
         Math.min(snapIndex, slides.length - slidesPerView)
       );
-      const gapValue = 8;
-      const snappedTranslate = -boundedIndex * (slideWidth + gapValue);
+      const snappedTranslate = -boundedIndex * (slideWidth + GAP_VALUE);
 
       slideContainerRef.current.style.transition = "transform 0.3s ease-out";
       slideContainerRef.current.style.transform = `translateX(${snappedTranslate}px)`;
 
       setPrevTranslate(snappedTranslate);
-      console.log("setCurrentSlideIndex from snapToSlide: ", snapIndex);
       setCurrentSlideIndex(snapIndex);
     }
   };
+
+  // * ----------------------- ARROW NAVIGATION --------------------------
 
   const updateButtonStates = (index: number) => {
     setPrevBtnDisabled(index === 0);
@@ -216,7 +172,6 @@ export default function Carousel({
   };
 
   const prevButtonClick = () => {
-    console.log("prevButtonClick");
     const prevSlideIndex = currentSlideIndex - slidesToScroll;
     const minIndex = 0;
     // Ensure we don't scroll past the first set of slides
@@ -242,15 +197,12 @@ export default function Carousel({
     const maxIndex = slides.length - slidesPerView;
     const boundedIndex = Math.min(index, maxIndex);
     setCurrentSlideIndex(boundedIndex);
-    let gapValue = 8;
-    let translateValue = boundedIndex * (slideWidth + gapValue);
+    let translateValue = boundedIndex * (slideWidth + GAP_VALUE);
     if (slideContainerRef.current) {
       slideContainerRef.current.style.transform = `translateX(-${translateValue}px)`;
     }
     setCurrentTranslate(translateValue);
     updateButtonStates(boundedIndex);
-
-    //debugLog("goToSlide", [translateValue]);
   };
 
   // If not mounted, return nothing (to avoid window errors)
@@ -283,56 +235,23 @@ export default function Carousel({
         <div className="viewport overflow-hidden">
           <div
             className="slide-container flex transition duration-500 ease-in-out"
-            style={{ gap: "8px" }}
+            style={{ gap: GAP_VALUE }}
             ref={slideContainerRef}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            {imageGroup.map((image: any, index: number) => {
-              return imageFit != "none" ? (
-                <div
-                  className="slide relative h-[500px] rounded-lg overflow-hidden"
-                  style={{ padding: "0px 8px" }}
-                  key={image.url}
-                  onClick={() => {
-                    console.log(
-                      "Enter onClick Carousel Slide, onImageClick: ",
-                      onImageClick
-                    );
-                    onImageClick(index);
-                  }}
-                >
-                  <Image
-                    src={image.url}
-                    alt={image.description}
-                    fill={true}
-                    style={{ objectFit: imageFit }}
-                  />
-                </div>
-              ) : (
-                <div
-                  className="slide"
-                  style={{ padding: "0px 8px" }}
-                  key={image.url}
-                  onClick={() => {
-                    console.log(
-                      "Enter onClick Carousel Slide, onImageClick: ",
-                      onImageClick
-                    );
-                    onImageClick(index);
-                  }}
-                >
-                  <Image
-                    src={image.url}
-                    width={image.width}
-                    height={image.height}
-                    alt={image.description}
-                    className="rounded-lg overflow-hidden"
-                  />
-                </div>
-              );
-            })}
+            {imageGroup.map((image: any, index: number) => (
+              <ImageSlide
+                key={image.url}
+                image={image}
+                index={index}
+                imageFit={imageFit}
+                slideWidth={slideWidth}
+                ratio={ratio}
+                onImageClick={onImageClick}
+              />
+            ))}
           </div>
         </div>
         <button

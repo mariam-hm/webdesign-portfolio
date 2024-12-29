@@ -248,16 +248,17 @@ const mapObjectToType = (component: any, pageColors: any = null): any => {
       let image = processImageAsset(component.fields.image);
       return { ...image, pageColors, _type: "simpleImage" } as Image;
 
-    case "image": // ! WARNING: This is the current Carousel type
+    case "image": // ! WARNING: This is actually the current Carousel type
       const imageGrp = component.fields.imageGroup.map((img: any) => {
         return processImageAsset(img);
       });
       return {
         title: component.fields.title || "",
         imageGroup: imageGrp || [],
-        slidesWidth: component.fields.slidesWidth || "80vw",
         slidesPerViewInit: component.fields.slidesPerView || 1,
-        coverOrContain: component.fields.coverOrContain || "cover",
+        scrollPerView: component.fields.scrollPerView || false,
+        imageFit: component.fields.imageFit || "none",
+        aspectRatio: component.fields.aspectRatio || "16:9",
         pageColors,
         _type: "image",
       } as Carousel;

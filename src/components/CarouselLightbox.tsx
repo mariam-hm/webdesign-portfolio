@@ -4,10 +4,15 @@ import { useState } from "react";
 import Carousel from "./Carousel"; // Carousel Component
 import Lightbox from "./Lightbox"; // Lightbox Component
 
-const CarouselLightbox = ({ imageGroup, pageColors }) => {
+const CarouselLightbox = ({
+  imageGroup,
+  slidesPerViewInit,
+  scrollPerView,
+  imageFit,
+  aspectRatio,
+  pageColors,
+}) => {
   //console.log(imageGroup);
-
-  let images = imageGroup;
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
@@ -24,12 +29,14 @@ const CarouselLightbox = ({ imageGroup, pageColors }) => {
     setIsLightboxOpen(false);
   };
 
-  console.log("openLightbox in CarouselLightbox: ", openLightbox);
-
   return (
     <div>
       <Carousel
-        imageGroup={images}
+        imageGroup={imageGroup}
+        slidesPerViewInit={slidesPerViewInit}
+        scrollPerView={scrollPerView}
+        imageFit={imageFit}
+        aspectRatio={aspectRatio}
         currentSlideIndex={currentIndex}
         setCurrentSlideIndex={setCurrentIndex}
         onImageClick={openLightbox}
@@ -38,8 +45,8 @@ const CarouselLightbox = ({ imageGroup, pageColors }) => {
 
       {isLightboxOpen && (
         <Lightbox
-          isLightBoxOpen={isLightboxOpen}
-          slides={images}
+          isLightboxOpen={isLightboxOpen}
+          imageGroup={imageGroup}
           currentIndex={currentIndex}
           setCurrentIndex={setCurrentIndex}
           onClose={closeLightbox}

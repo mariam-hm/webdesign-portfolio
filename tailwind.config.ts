@@ -106,6 +106,9 @@ const config: Config = {
     },
 
     extend: {
+      content: {
+        DEFAULT: '""', // Default content for pseudo-elements
+      },
       container: {
         center: true,
         padding: "2rem",

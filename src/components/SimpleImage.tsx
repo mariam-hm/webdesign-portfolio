@@ -22,7 +22,7 @@ const SimpleImage = ({ url, width, height, description, pageColors }) => {
   };
 
   return (
-    <div className="container group">
+    <div className="container group cursor-pointer">
       <Image
         className="rounded-md group-hover:-translate-y-1 group-hover:drop-shadow-md transition ease-in-out duration-300"
         src={url}

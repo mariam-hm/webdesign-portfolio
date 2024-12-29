@@ -222,6 +222,7 @@ export default function Carousel({
       {title && <h4 className="text-center">{title}</h4>}
       <div className="viewport-and-buttons flex mt-4">
         <button
+          className="cursor-pointer"
           disabled={prevBtnDisabled}
           onClick={prevButtonClick}
           style={{
@@ -255,6 +256,7 @@ export default function Carousel({
           </div>
         </div>
         <button
+          className="cursor-pointer"
           disabled={nextBtnDisabled}
           onClick={nextButtonClick}
           style={{

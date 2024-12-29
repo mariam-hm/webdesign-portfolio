@@ -11,7 +11,7 @@ function ImageSlide({
 }) {
   return imageFit != "none" ? (
     <div
-      className="slide group relative p-1 rounded-lg overflow-hidden hover:drop-shadow-md transition ease-in-out duration-300"
+      className="slide group cursor-pointer relative p-1 rounded-lg overflow-hidden hover:drop-shadow-md transition ease-in-out duration-300"
       style={{
         padding: "0px 8px",
         height: slideWidth * ratio + "px",
@@ -29,7 +29,7 @@ function ImageSlide({
     </div>
   ) : (
     <div
-      className="slide box-border group p-1 hover:drop-shadow-md transition ease-in-out duration-300"
+      className="slide cursor-pointer box-border group p-1 hover:drop-shadow-md transition ease-in-out duration-300"
       onClick={() => {
         onImageClick(index);
       }}

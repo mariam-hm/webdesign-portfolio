@@ -39,6 +39,9 @@ export async function generateStaticParams() {
 export default async function Page({ params }: any) {
   const page = await fetchPage(params.slug, params.locale);
 
+  console.log("======================= PAGE ====================");
+  console.log(page);
+
   const RenderComponent = ({ component }: any) => {
     const Component = componentMap[component._type];
 

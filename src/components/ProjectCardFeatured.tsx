@@ -14,7 +14,8 @@ export default function ProjectCard({
 }: ProjectCard) {
   return (
     <div>
-      <div>
+      Project card featured here!!!
+      {/* <div>
         <h4>{client}</h4>
         <h3>{title}</h3>
         <div>{description && documentToReactComponents(description)}</div>
@@ -29,7 +30,7 @@ export default function ProjectCard({
           height={coverImage.height}
           quality={100}
         />
-      </Link>
+      </Link> */}
     </div>
   );
 }

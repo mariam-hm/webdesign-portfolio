@@ -159,7 +159,15 @@ const processPage = (data: any): Page => {
  * @param {any} component - The Contentful entry JSON object
  * @returns {any} - The mapped TypeScript type (e.g., TextBlock, Callout, Image)
  */
-const mapObjectToType = (component: any, pageColors: any = null): any => {
+const mapObjectToType = (
+  component: any,
+  pageColors: any = null,
+  origin = ""
+): any => {
+  console.log("------------ COMPONENT, from", origin, "----------------");
+  console.log(component);
+  if (!component.sys && component._type) return component;
+
   switch (component.sys.contentType.sys.id) {
     case "heroSection":
       let mainImg = component.fields.mainImage
@@ -228,8 +236,14 @@ const mapObjectToType = (component: any, pageColors: any = null): any => {
     case "duplexComponent":
       return {
         heading: component.fields.heading,
-        componentLeft: mapObjectToType(component.fields.componentLeft),
-        componentRight: mapObjectToType(component.fields.componentRight),
+        componentLeft: mapObjectToType(
+          component.fields.componentLeft,
+          pageColors
+        ),
+        componentRight: mapObjectToType(
+          component.fields.componentRight,
+          pageColors
+        ),
         pageColors,
         _type: "duplex",
       } as Duplex;
@@ -273,9 +287,6 @@ const mapObjectToType = (component: any, pageColors: any = null): any => {
         _type: "testimonial",
       } as Testimonial;
     case "projectCard":
-      // Get page slug
-      component.fields.page = component.fields.page.fields.slug;
-
       // Process image
       const coverImg = processImageAsset(component.fields.coverImage);
       component.fields.coverImage = coverImg;
@@ -290,39 +301,19 @@ const mapObjectToType = (component: any, pageColors: any = null): any => {
 
       component.fields.tags = tags;
 
-      return { ...component.fields, _type: "projectCard" };
+      return { ...component.fields, pageColors, _type: "projectCard" };
 
     case "projectsGroup":
       // TODO Investigate: Creates an error, probably because of the circular reference or the nested one to pages to get the slug
-      let projectCards = component.fields.projectCardsGroup.map((card: any) => {
-        // Get page slug
-        let pageSlug = card.fields.page.fields.slug;
-
-        // Process image
-        const coverImg = processImageAsset(card.fields.coverImage);
-
-        // Get tags
-        const tags = card.fields.tags.map((tag: any) => {
-          return {
-            ...tag.fields,
-            _type: "tag",
-          };
-        });
-
-        return {
-          title: card.fields.title,
-          client: card.fields.client,
-          description: card.fields.description, // We may not need it
-          coverImage: coverImg,
-          page: pageSlug,
-          tags: tags,
-          _type: "projectCardSmall",
-        };
+      const cardsGroup = component.fields.projectCardsGroup.map((card: any) => {
+        console.log("---------- CARD ----------");
+        console.log(card);
+        mapObjectToType(card, pageColors, "from project group");
       });
 
-      component.fields.projectCardsGroup = projectCards;
+      component.fields.projectCardsGroup = cardsGroup;
 
-      return { ...component.fields, _type: "projectsGroup" };
+      return { ...component.fields, pageColors, _type: "projectsGroup" };
 
     default:
       // TODO Add error handling

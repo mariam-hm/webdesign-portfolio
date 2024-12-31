@@ -1,7 +1,8 @@
 export default function Footer() {
+  // TODO Enter this in locale files
   return (
-    <div className="flex flex-row justify-center items-center text-zinc-300 mt-60 mb-4">
-      Homemade website © 2024
+    <div className="mt-8 mb-2 text-center text-zinc-300">
+      Mariam Hammoud © 2024
     </div>
   );
 }

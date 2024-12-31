@@ -32,9 +32,11 @@ export default function LanguageSwitcher() {
 
   return (
     <Menu>
-      <MenuButton>{t("hello")}</MenuButton>
-      <MenuItems anchor="bottom">
-        <MenuItem>
+      <MenuButton className="font-calistoga hover:text-light-primary uppercase transition duration-200">
+        {locale}
+      </MenuButton>
+      <MenuItems anchor="bottom" className="drop-shadow">
+        <MenuItem className="flex justify-start items-center px-4 py-2 bg-white hover:bg-zinc-100 font-calistoga text-zinc-700">
           <button
             onClick={() => handleLocaleChange("en")}
             className="block w-full text-left data-[focus]:bg-blue-100"
@@ -42,7 +44,7 @@ export default function LanguageSwitcher() {
             English
           </button>
         </MenuItem>
-        <MenuItem>
+        <MenuItem className="flex justify-start items-center px-4 py-2 bg-white hover:bg-zinc-100 font-calistoga text-zinc-700">
           <button
             onClick={() => handleLocaleChange("fr")}
             className="block data-[focus]:bg-blue-100"

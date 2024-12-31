@@ -5,21 +5,21 @@ import Image from "next/image";
 export default function Testimonial({
   author,
   textContent,
-  picture,
+  image,
 }: Testimonial) {
   return (
-    <div className="bg-zinc-300 p-4 rounded-md">
-      {picture && (
+    <div className="container">
+      {image && (
         <Image
-          src={picture.url}
-          alt={picture.description}
-          width={picture.width}
-          height={picture.height}
+          src={image.url}
+          alt={image.description}
+          width={image.width}
+          height={image.height}
           className="rounded-full"
         />
       )}
       <div>{textContent && documentToReactComponents(textContent)}</div>
-      <p className="flex justify-end">{author}</p>
+      <p>{author}</p>
     </div>
   );
 }

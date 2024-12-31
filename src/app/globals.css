@@ -1,5 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Calistoga&family=Lato:wght@100;300;400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Calistoga&family=Lato:wght@100;200;300;400;500;700;800;900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.viewport {
+  width: 100%; /* Ensure viewport has a defined width */
+}
+
+.slide-container > div {
+  flex: 0 0 calc(100% / var(--slides-per-view));
+  max-width: calc(100% / var(--slides-per-view));
+}

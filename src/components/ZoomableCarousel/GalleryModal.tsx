@@ -81,29 +81,29 @@ const GalleryModal = ({
         resetZoomAndPosition();
       }}
     >
-      <div className="fixed inset-0 bg-black/80" aria-hidden="true" />
+      <div className="fixed inset-0 bg-zinc-950/80" aria-hidden="true" />
       <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
         <DialogPanel className="flex flex-col justify-between w-[80vw] h-[90vh] bg-transparent">
           <div className="relative flex flex-col w-full h-full rounded-lg overflow-hidden">
             <div className="absolute top-2 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
               <button
                 onClick={zoomIn}
-                className="p-2 bg-black bg-opacity-50 text-white rounded"
+                className="p-2 bg-zinc-950 bg-opacity-50 text-white rounded"
               >
                 +
               </button>
-              <div className="p-2 bg-black bg-opacity-50 text-white rounded">
+              <div className="p-2 bg-zinc-950 bg-opacity-50 text-white rounded">
                 {Math.round(zoomLevel * 100)}%
               </div>
               <button
                 onClick={zoomOut}
-                className="p-2 bg-black bg-opacity-50 text-white rounded"
+                className="p-2 bg-zinc-950 bg-opacity-50 text-white rounded"
               >
                 -
               </button>
               <button
                 onClick={resetZoomAndPosition}
-                className="p-2 bg-black bg-opacity-50 text-white rounded"
+                className="p-2 bg-zinc-950 bg-opacity-50 text-white rounded"
               >
                 ⟳
               </button>

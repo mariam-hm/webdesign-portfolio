@@ -9,16 +9,40 @@ export default function HeroSectionBasic({
   backgroundImage,
 }) {
   return (
-    <div style={{ backgroundImage: `url(${backgroundImage.url})` }}>
-      <h2>{mainHeading}</h2>
-      <h4>{subheading}</h4>
-      <Image
-        src={mainImage.url}
-        width={mainImage.width}
-        height={mainImage.height}
-        alt={mainImage.description}
-      />
-      <div>{textContent && documentToReactComponents(textContent)}</div>
+    <div
+      className="relative w-full h-screen bg-cover bg-center"
+      style={{
+        backgroundImage: `url(${backgroundImage.url})`,
+      }}
+    >
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-zinc-950 bg-opacity-50 z-10"></div>
+
+      {/* Content */}
+      <div className="relative z-20 text-white text-center flex flex-col justify-center items-center h-full">
+        {subheading && (
+          <h4 className="text-lg font-medium mt-0 mb-2">{subheading}</h4>
+        )}
+        {mainHeading && (
+          <h2 className="text-4xl font-bold mt-0 mb-6">{mainHeading}</h2>
+        )}
+
+        {mainImage && (
+          <div className="flex justify-center items-center mb-6">
+            <Image
+              src={mainImage.url}
+              width={mainImage.width}
+              height={mainImage.height}
+              alt={mainImage.description}
+              className="rounded-lg"
+            />
+          </div>
+        )}
+
+        <div className="text-lg max-w-4xl mx-auto">
+          {textContent && documentToReactComponents(textContent)}
+        </div>
+      </div>
     </div>
   );
 }

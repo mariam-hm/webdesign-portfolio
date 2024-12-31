@@ -1,75 +1,115 @@
 import * as Contentful from "./contentful";
 
+// TODO in contentful:
+// Remake the Carousel and Image Types so they get the right ids
+// Rename the testimonial property picture to image
+
+// ? All types:
+
 type ContentTypeField = {
+  pageColors?: any;
   _type: string;
 };
 
-export type Image = {
-  mainImage: {
-    url: string;
-    width: number;
-    height: number;
-    description: string;
-  };
-  imageGroup?: Array<{
-    url: string;
-    width: number;
-    height: number;
-    description: string;
-  }> &
-    ContentTypeField;
-}; // * Make url, width, height accessible
+// * Carousel
+export type Carousel = Omit<
+  Contentful.TypeImageFields,
+  "imageGroup" | "internalName"
+> & {
+  imageGroup: Array<Image>;
+} & ContentTypeField;
 
-export type HeroSection = Contentful.TypeHeroSectionFields & ContentTypeField;
-export type Callout = Omit<Contentful.TypeCalloutFields, "image"> &
-  ContentTypeField & {
-    image?: {
-      url: string;
-      width: number;
-      height: number;
-      description: string;
-    };
-  };
-export type LabelValuePair = Contentful.TypeLabelValuePairFields &
+// * Image
+export type Image = {
+  // Make url, width, height accessible
+  url: string;
+  width: number;
+  height: number;
+  description: string;
+} & ContentTypeField;
+
+// * Hero section
+export type HeroSection = Omit<
+  Contentful.TypeHeroSectionFields,
+  "mainImage" | "backgroundImage" | "usedImages" | "internalName"
+> & {
+  mainImage: Image;
+  backgroundImage: Image;
+  usedImages: Array<Image>;
+} & ContentTypeField;
+
+// * Callout
+export type Callout = Omit<
+  Contentful.TypeCalloutFields,
+  "image" | "internalName"
+> & {
+  image?: Image;
+} & ContentTypeField;
+
+// * Label Value pair
+export type LabelValuePair = Omit<
+  Contentful.TypeLabelValuePairFields,
+  "internalName"
+> &
   ContentTypeField;
-export type SectionTitle = Contentful.TypeSectionTitleFields & ContentTypeField;
+
+// * Section title
+export type SectionTitle = Omit<
+  Contentful.TypeSectionTitleFields,
+  "internalName"
+> &
+  ContentTypeField;
+
+// * Testimonial
 export type Testimonial = Omit<Contentful.TypeTestimonialFields, "picture"> &
   ContentTypeField & {
-    picture?: {
-      url: string;
-      width: number;
-      height: number;
-      description: string;
-    };
+    image?: Image;
   };
+
+// * Text block
 export type TextBlock = Omit<Contentful.TypeTextBlockFields, "internalName"> &
   ContentTypeField;
 
-export type ProjectInfo = Omit<Contentful.TypeProjectInfoFields, "details"> &
+// * Project Info
+export type ProjectInfo = Omit<
+  Contentful.TypeProjectInfoFields,
+  "details" | "internalName"
+> &
   ContentTypeField & {
     details: Array<LabelValuePair>;
   };
 
+// * Project Info
 export type Duplex = Omit<
   Contentful.TypeDuplexComponentFields,
-  "componentLeft" | "componentRight"
+  "componentLeft" | "componentRight" | "internalName"
 > &
   ContentTypeField & {
     componentLeft: TextBlock | Callout | Image | Testimonial;
     componentRight: TextBlock | Callout | Image | Testimonial;
   };
 
-export type Menu = {
-  pageLinks: {
-    title: string;
-    link: string;
-  }[];
-  name: string;
+// * Project Card
+export type ProjectCard = Omit<
+  Contentful.TypeProjectCardFields,
+  "internalName"
+> &
+  ContentTypeField;
+
+// * Project Group
+export type ProjectGroup = Omit<
+  Contentful.TypeProjectsGroupFields,
+  "internalName" | "projectsCardsGroup"
+> & {
+  projectCardsGroup: Array<ProjectCard>;
 } & ContentTypeField;
 
-export type ProjectCard = Contentful.TypeProjectCardFields & ContentTypeField;
+// * Tag
+export type Tag = Omit<Contentful.TypeTagFields, "internalName"> &
+  ContentTypeField;
 
-export type Page = Omit<Contentful.TypePageFields, "content"> &
+// * Page
+export type Page = Omit<Contentful.TypePageFields, "content" | "internalName"> &
   ContentTypeField & {
     content: Array<
       | Image
@@ -81,3 +121,12 @@ export type Page = Omit<Contentful.TypePageFields, "content"> &
       | Duplex
     >;
   };
+
+// * Menu
+export type Menu = {
+  pageLinks: {
+    title: string;
+    link: string;
+  }[];
+  name: string;
+} & ContentTypeField;

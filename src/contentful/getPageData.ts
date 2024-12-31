@@ -11,6 +11,7 @@ import {
   Testimonial,
   Duplex,
   HeroSection,
+  Carousel,
 } from "@/types";
 
 /**
@@ -51,6 +52,7 @@ export const fetchPage = async (slug: string, locale = "en") => {
  * @throws Will throw an error if the fetch operation fails
  */
 export const fetchAllPages = async (locale = "en") => {
+  console.log("Enter fetch all pages");
   try {
     const response = await client.getEntries<EntrySkeletonType>({
       content_type: "page",
@@ -59,7 +61,10 @@ export const fetchAllPages = async (locale = "en") => {
     });
 
     if (response.items.length > 0) {
-      const processedPages = response.items.map((page) => processPage(page));
+      const processedPages = response.items.map((page) => {
+        processPage(page);
+        // TODO get a pageMap for the slugs and use it to make the project cards
+      });
       return processedPages;
     } else {
       // TODO Implement redirect or error handling
@@ -77,14 +82,30 @@ export const fetchAllPages = async (locale = "en") => {
  * @returns {Page} - The processed page data with mapped content types
  */
 const processPage = (data: any): Page => {
+  const pageColors =
+    data.fields.colorPalette && Object.keys(data.fields.colorPalette).length > 0
+      ? data.fields.colorPalette
+      : {
+          light: {
+            light: "#ffbab8",
+            main: "#ff6f6b",
+            dark: "#ce423e",
+          },
+          dark: {
+            light: "#ffbab8",
+            main: "#ff6f6b",
+            dark: "#ce423e",
+          },
+        };
+
   const content = data.fields.content.map((component: any) =>
-    mapObjectToType(component)
+    mapObjectToType(component, pageColors)
   );
 
   return {
     title: data.fields.title,
     slug: data.fields.slug,
-    mainColor: data.fields.mainColor || "",
+    pageColors: pageColors,
     content: content,
     _type: "page",
   };
@@ -95,7 +116,15 @@ const processPage = (data: any): Page => {
  * @param {any} component - The Contentful entry JSON object
  * @returns {any} - The mapped TypeScript type (e.g., TextBlock, Callout, Image)
  */
-const mapObjectToType = (component: any): any => {
+const mapObjectToType = (
+  component: any,
+  pageColors: any = null,
+  origin = ""
+): any => {
+  // console.log("------------ COMPONENT, from", origin, "----------------");
+  // console.log(component);
+  if (!component.sys && component._type) return component;
+
   switch (component.sys.contentType.sys.id) {
     case "heroSection":
       let mainImg = component.fields.mainImage
@@ -113,12 +142,14 @@ const mapObjectToType = (component: any): any => {
         mainHeading: component.fields.mainHeading || "",
         subheading: component.fields.subheading || "",
         textContent: component.fields.textContent || "",
-        mainImage: mainImg,
-        backgroundImage: bgImg,
-        usedImages: usedImgs,
-        style: component.fields.style,
+        mainImage: mainImg || null,
+        backgroundImage: bgImg || null,
+        usedImages: usedImgs || [],
+        style: component.fields.style || "basic",
+        pageColors,
         _type: "heroSection",
       } as HeroSection;
+
     case "projectInfo":
       const details = component.fields.details.map((labelValueObj: any) => {
         return {
@@ -126,71 +157,98 @@ const mapObjectToType = (component: any): any => {
           _type: "labelValuePair",
         } as LabelValuePair;
       });
-      component.fields.details = details;
-      return { ...component.fields, _type: "projectInfo" } as ProjectInfo;
+      component.fields.details = details || [];
+      return {
+        ...component.fields,
+        pageColors,
+        _type: "projectInfo",
+      } as ProjectInfo;
+
     case "sectionTitle":
-      return { ...component.fields, _type: "sectionTitle" } as SectionTitle;
+      return {
+        ...component.fields,
+        pageColors,
+        _type: "sectionTitle",
+      } as SectionTitle;
+
     case "textBlock":
-      return { ...component.fields, _type: "textBlock" } as TextBlock;
+      // * HANDLE SPECIAL EMBEDDED ASSETS
+      // * Make the image info more accessible to the textblock
+      // Maybe one day I'll have to do it with video
+      component.fields.textContent.content.map((node: any) => {
+        if (
+          node.nodeType == "embedded-asset-block" &&
+          node.data.target.fields.file.contentType.includes("image")
+        ) {
+          node.image = processImageAsset(node.data.target);
+        }
+      });
+
+      return {
+        ...component.fields,
+        pageColors,
+        _type: "textBlock",
+      } as TextBlock;
+
     case "duplexComponent":
       return {
         heading: component.fields.heading,
-        componentLeft: mapObjectToType(component.fields.componentLeft),
-        componentRight: mapObjectToType(component.fields.componentRight),
+        componentLeft: mapObjectToType(
+          component.fields.componentLeft,
+          pageColors
+        ),
+        componentRight: mapObjectToType(
+          component.fields.componentRight,
+          pageColors
+        ),
+        pageColors,
         _type: "duplex",
       } as Duplex;
-    case "callout":
-      let img = {
-        url: "https:" + component.fields.image.fields.file.url,
-        width: component.fields.image.fields.file.details.image.width,
-        height: component.fields.image.fields.file.details.image.height,
-        description: component.fields.image.fields.description,
-      };
 
+    case "callout":
+      let img = processImageAsset(component.fields.image);
       component.fields.image = img;
+
       return {
         ...component.fields,
+        pageColors,
         _type: "callout",
       } as Callout;
-    case "image":
-      // TODO Correct the type and mapping for image
-      const imageGrp = component.fields.imageGroup
-        ? component.fields.imageGroup.map((img: any) => {
-            return {
-              url: "https:" + img.fields.file.url,
-              width: img.fields.file.details.image.width,
-              height: img.fields.file.details.image.height,
-              description: img.fields.description,
-            };
-          })
-        : [];
-      return {
-        imageGroup: imageGrp,
-        _type: "image",
-      } as Image;
-    case "testimonial":
-      const pict = {
-        url: "https:" + component.fields.picture.fields.file.url,
-        width: component.fields.picture.fields.file.details.image.width,
-        height: component.fields.picture.fields.file.details.image.height,
-        description: component.fields.picture.fields.description,
-      };
 
+    case "simpleImage":
+      let image = processImageAsset(component.fields.image);
+      return { ...image, pageColors, _type: "simpleImage" } as Image;
+
+    case "image": // ! WARNING: This is actually the current Carousel type
+      const imageGrp = component.fields.imageGroup.map((img: any) => {
+        return processImageAsset(img);
+      });
+      return {
+        title: component.fields.title || "",
+        imageGroup: imageGrp || [],
+        slidesPerViewInit: component.fields.slidesPerView || 1,
+        scrollPerView: component.fields.scrollPerView || false,
+        imageFit: component.fields.imageFit || "none",
+        aspectRatio: component.fields.aspectRatio || "16:9",
+        pageColors,
+        _type: "image",
+      } as Carousel;
+
+    case "testimonial":
+      const pict = processImageAsset(component.fields.picture);
       component.fields.picture = pict;
 
-      return { ...component.fields, _type: "testimonial" } as Testimonial;
+      return {
+        ...component.fields,
+        pageColors,
+        _type: "testimonial",
+      } as Testimonial;
     case "projectCard":
-      // Get page slug
-      component.fields.page = component.fields.page.fields.slug;
-
+      // TODO Investigate problem caused by because of already processed component
+      // ? It seems like this is not actually working well for project groups: when I
+      // ? added a card that wasn't on the homepage, it made the whole thing freez and bug
       // Process image
-      const coverImg = {
-        url: "https:" + component.fields.coverImage.fields.file.url,
-        width: component.fields.coverImage.fields.file.details.image.width,
-        height: component.fields.coverImage.fields.file.details.image.height,
-        description: component.fields.coverImage.fields.description,
-      };
-
+      const coverImg = processImageAsset(component.fields.coverImage);
       component.fields.coverImage = coverImg;
 
       // Process Tags
@@ -203,43 +261,23 @@ const mapObjectToType = (component: any): any => {
 
       component.fields.tags = tags;
 
-      return { ...component.fields, _type: "projectCard" };
+      return { ...component.fields, pageColors, _type: "projectCard" };
 
     case "projectsGroup":
-      let projectCards = component.fields.projectCardsGroup.map((card) => {
-        // Get page slug
-        let pageSlug = card.fields.page.fields.slug;
-
-        // Process image
-        const coverImg = {
-          url: "https:" + card.fields.coverImage.fields.file.url,
-          width: card.fields.coverImage.fields.file.details.image.width,
-          height: card.fields.coverImage.fields.file.details.image.height,
-          description: card.fields.coverImage.fields.description,
-        };
-
-        // Get tags
-        const tags = card.fields.tags.map((tag: any) => {
-          return {
-            ...tag.fields,
-            _type: "tag",
-          };
-        });
-
-        return {
-          title: card.fields.title,
-          client: card.fields.client,
-          description: card.fields.description, // We may not need it
-          coverImage: coverImg,
-          page: pageSlug,
-          tags: tags,
-          _type: "projectCardSmall",
-        };
+      const cardsGroup = component.fields.projectCardsGroup.map((card: any) => {
+        // console.log("---------- CARD ----------");
+        // console.log(card);
+        return mapObjectToType(card, pageColors, "from project group");
       });
 
-      component.fields.projectCardsGroup = projectCards;
+      component.fields.projectCardsGroup = cardsGroup;
 
-      return { ...component.fields, _type: "projectsGroup" };
+      // console.log(
+      //   "component.fields.projectCardsGroup: ",
+      //   component.fields.projectCardsGroup
+      // );
+
+      return { ...component.fields, pageColors, _type: "projectsGroup" };
 
     default:
       // TODO Add error handling
@@ -248,11 +286,15 @@ const mapObjectToType = (component: any): any => {
   }
 };
 
-const processImageAsset = (imgAsset: any) => {
-  return {
-    url: "https:" + imgAsset.fields.file.url,
-    width: imgAsset.fields.file.details.image.width,
-    height: imgAsset.fields.file.details.image.height,
-    description: imgAsset.fields.description,
-  };
+export const processImageAsset = (imgAsset: any) => {
+  if (imgAsset) {
+    return {
+      url: "https:" + imgAsset.fields.file.url,
+      width: imgAsset.fields.file.details.image.width,
+      height: imgAsset.fields.file.details.image.height,
+      description: imgAsset.fields.description,
+    };
+  } else {
+    return null;
+  }
 };

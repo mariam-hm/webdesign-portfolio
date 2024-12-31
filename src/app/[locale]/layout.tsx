@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 export async function generateStaticParams() {
-  return locales.map((lng) => ({ lng }));
+  return locales.map((lang) => ({ lang }));
 }
 
 export default async function Layout({
@@ -20,8 +20,9 @@ export default async function Layout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
+  console.log("lang: ", params.locale);
   return (
-    <main className="prose">
+    <main>
       <Navbar locale={params.locale} />
       {children}
       <Footer />

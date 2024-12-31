@@ -76,49 +76,6 @@ export const fetchAllPages = async (locale = "en") => {
   }
 };
 
-// TODO Improve project cards logic
-// export const fetchProjectCards = async (locale = "en") => {
-//   try {
-//     const response = await client.getEntries<EntrySkeletonType>({
-//       content_type: "projectCard",
-//       include: 2, // Adjust based on the depth of nested fields you need
-//       locale: locale,
-//     });
-
-//     if (response.items.length > 0) {
-//       // Process each project card
-//       const projectCards = response.items.map((card) => {
-//         const processedImage = processImageAsset(card.fields.coverImage);
-
-//         // Map tags
-//         const processedTags = card.fields.tags.map((tag: any) => {
-//           return {
-//             ...tag.fields,
-//             _type: "tag",
-//           };
-//         });
-
-//         return {
-//           title: card.fields.title,
-//           client: card.fields.client,
-//           description: card.fields.description,
-//           coverImage: processedImage,
-//           pageSlug: card.fields.page?.fields?.slug || null, // Avoid circular reference in code
-//           tags: processedTags,
-//           _type: "projectCard",
-//         };
-//       });
-
-//       return projectCards;
-//     } else {
-//       console.log("No project cards found.");
-//     }
-//   } catch (error) {
-//     console.log("Failed to fetch project cards: ", error);
-//     // TODO Add proper error handling
-//   }
-// };
-
 /**
  *  Processes the raw page data from Contentful and outputs a page with the right types
  * @param {any} data - The full page JSON object from Contentful
@@ -164,8 +121,8 @@ const mapObjectToType = (
   pageColors: any = null,
   origin = ""
 ): any => {
-  console.log("------------ COMPONENT, from", origin, "----------------");
-  console.log(component);
+  // console.log("------------ COMPONENT, from", origin, "----------------");
+  // console.log(component);
   if (!component.sys && component._type) return component;
 
   switch (component.sys.contentType.sys.id) {
@@ -287,6 +244,9 @@ const mapObjectToType = (
         _type: "testimonial",
       } as Testimonial;
     case "projectCard":
+      // TODO Investigate problem caused by because of already processed component
+      // ? It seems like this is not actually working well for project groups: when I
+      // ? added a card that wasn't on the homepage, it made the whole thing freez and bug
       // Process image
       const coverImg = processImageAsset(component.fields.coverImage);
       component.fields.coverImage = coverImg;
@@ -304,14 +264,18 @@ const mapObjectToType = (
       return { ...component.fields, pageColors, _type: "projectCard" };
 
     case "projectsGroup":
-      // TODO Investigate: Creates an error, probably because of the circular reference or the nested one to pages to get the slug
       const cardsGroup = component.fields.projectCardsGroup.map((card: any) => {
-        console.log("---------- CARD ----------");
-        console.log(card);
-        mapObjectToType(card, pageColors, "from project group");
+        // console.log("---------- CARD ----------");
+        // console.log(card);
+        return mapObjectToType(card, pageColors, "from project group");
       });
 
       component.fields.projectCardsGroup = cardsGroup;
+
+      // console.log(
+      //   "component.fields.projectCardsGroup: ",
+      //   component.fields.projectCardsGroup
+      // );
 
       return { ...component.fields, pageColors, _type: "projectsGroup" };
 

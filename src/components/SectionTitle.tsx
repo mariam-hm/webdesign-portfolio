@@ -5,7 +5,7 @@ export default function SectionTitle({ heading, pageColors }: SectionTitle) {
     <div className="container">
       <h3
         style={{ borderColor: `${pageColors.light.main}` }}
-        className="flex justify-center align-middle pb-2 border-b"
+        className="flex justify-center items-center pb-2 border-b"
       >
         {heading}
       </h3>

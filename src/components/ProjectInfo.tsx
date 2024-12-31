@@ -12,7 +12,7 @@ export default function ProjectInfo({ details, pageColors }: ProjectInfo) {
           backgroundColor: `${pageColors.light.light}`,
           color: `${pageColors.light.dark}`,
         }}
-        className="flex flex-col p-8 gap-4 rounded"
+        className="flex flex-col px-16 py-16 gap-4 sm:gap-1 rounded"
       >
         {details.map((item: LabelValuePair) => (
           <ProjectInfoItem {...item} key={item.label} />

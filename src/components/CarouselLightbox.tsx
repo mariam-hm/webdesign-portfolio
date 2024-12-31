@@ -19,9 +19,10 @@ const CarouselLightbox = ({
 
   // Function to open the lightbox and set the initial index
   const openLightbox = (index) => {
-    console.log("open lightbox");
     setCurrentIndex(index);
-    setIsLightboxOpen(true);
+    if (typeof window !== "undefined" && window.innerWidth >= 640) {
+      setIsLightboxOpen(true);
+    }
   };
 
   // Function to close the lightbox

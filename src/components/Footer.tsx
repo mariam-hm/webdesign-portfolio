@@ -1,4 +1,8 @@
 export default function Footer() {
   // TODO Enter this in locale files
-  return <div>Homemade website © 2024</div>;
+  return (
+    <div className="mt-8 mb-2 text-center text-zinc-300">
+      Mariam Hammoud © 2024
+    </div>
+  );
 }

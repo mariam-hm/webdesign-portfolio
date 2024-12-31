@@ -269,7 +269,7 @@ export default function Carousel({
         </button>
       </div>
 
-      <div className="flex justify-center align-middle flex-row mt-2">
+      <div className="flex justify-center items-center flex-row mt-2">
         {Array.from({
           length:
             Math.ceil((slides.length - slidesPerView) / slidesToScroll) + 1,

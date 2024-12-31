@@ -13,7 +13,7 @@ export default function ProjectInfoItem(element: LabelValuePair) {
   };
 
   return (
-    <div className="flex justify-start align-center">
+    <div className="flex flex-col sm:flex-row justify-start align-center">
       <div className="font-calistoga text-lg min-w-32">{element.label}</div>
       {documentToReactComponents(element.value, options)}
     </div>

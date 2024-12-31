@@ -36,7 +36,7 @@ export default function Callout({
         }}
         className="flex flex-col p-8 gap-2 rounded my-12"
       >
-        <div className="flex justify-center align-middle">
+        <div className="flex justify-center items-center">
           {image && (
             <Image
               src={image.url}
@@ -49,7 +49,7 @@ export default function Callout({
           )}
         </div>
 
-        <h4 className="flex justify-center align-middle">{heading}</h4>
+        <h4 className="flex justify-center items-center">{heading}</h4>
         {documentToReactComponents(textContent!, options)}
       </div>
     </div>

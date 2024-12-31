@@ -13,7 +13,9 @@ const SimpleImage = ({ url, width, height, description, pageColors }) => {
 
   // Function to open the lightbox and set the initial index
   const openLightbox = () => {
-    setIsLightboxOpen(true);
+    if (typeof window !== "undefined" && window.innerWidth >= 640) {
+      setIsLightboxOpen(true);
+    }
   };
 
   // Function to close the lightbox
@@ -22,17 +24,19 @@ const SimpleImage = ({ url, width, height, description, pageColors }) => {
   };
 
   return (
-    <div className="container group cursor-pointer">
-      <Image
-        className="rounded-md group-hover:-translate-y-1 group-hover:drop-shadow-md transition ease-in-out duration-300"
-        src={url}
-        width={width}
-        height={height}
-        alt={description}
-        onClick={() => openLightbox()}
-      />
-      <div className="opacity-0 text-zinc-400 text-sm text-center italic -translate-y-2 group-hover:translate-y-0 group-hover:opacity-100 transition ease-in-out duration-300">
-        {description}
+    <div className="container flex items-center group cursor-pointer">
+      <div>
+        <Image
+          className="rounded-md group-hover:-translate-y-1 group-hover:drop-shadow-md transition ease-in-out duration-300"
+          src={url}
+          width={width}
+          height={height}
+          alt={description}
+          onClick={() => openLightbox()}
+        />
+        <div className="opacity-0 text-zinc-400 text-sm text-center italic -translate-y-2 group-hover:translate-y-0 group-hover:opacity-100 transition ease-in-out duration-300">
+          {description}
+        </div>
       </div>
 
       {isLightboxOpen && (

@@ -35,7 +35,7 @@ export default function LanguageSwitcher() {
       <MenuButton className="font-calistoga hover:text-light-primary uppercase transition duration-200">
         {locale}
       </MenuButton>
-      <MenuItems anchor="bottom" className="drop-shadow">
+      <MenuItems anchor="bottom" className="bg-white drop-shadow z-100">
         <MenuItem className="flex justify-start items-center px-4 py-2 bg-white hover:bg-zinc-100 font-calistoga text-zinc-700">
           <button
             onClick={() => handleLocaleChange("en")}

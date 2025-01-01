@@ -75,7 +75,6 @@ const GalleryModal = ({
     <Dialog
       open={true}
       onClose={() => {
-        console.log("CloseModal");
         if (singleImage) setCurrentSlideIndex(0);
         setIsOpen(false);
         resetZoomAndPosition();
@@ -115,7 +114,6 @@ const GalleryModal = ({
               </button> */}
               <button
                 onClick={() => {
-                  console.log("CloseModal");
                   if (singleImage) setCurrentSlideIndex(0);
                   setIsOpen(false);
                   resetZoomAndPosition();

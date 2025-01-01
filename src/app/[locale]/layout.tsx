@@ -20,7 +20,6 @@ export default async function Layout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  console.log("lang: ", params.locale);
   return (
     <main>
       <Navbar locale={params.locale} />

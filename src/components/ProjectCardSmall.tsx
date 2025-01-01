@@ -11,16 +11,7 @@ export default function ProjectCardSmall({
   pageSlug,
   tags,
 }: ProjectCard) {
-  console.log("ProjectCard: ", {
-    title,
-    client,
-    description,
-    coverImage,
-    pageSlug,
-    tags,
-  });
   return (
-    // <div>Project card small here !!!</div>
     <Link
       href={pageSlug}
       className="group max-w-80 no-underline text-zinc-700 hover:text-zinc-700"

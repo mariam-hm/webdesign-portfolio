@@ -12,8 +12,6 @@ const CarouselLightbox = ({
   aspectRatio,
   pageColors,
 }) => {
-  //console.log(imageGroup);
-
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 

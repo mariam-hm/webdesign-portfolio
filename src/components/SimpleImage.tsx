@@ -8,7 +8,6 @@ import Lightbox from "./Lightbox";
 import { useState } from "react";
 
 const SimpleImage = ({ url, width, height, description, pageColors }) => {
-  //console.log("simpleImage props: ", props);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   // Function to open the lightbox and set the initial index

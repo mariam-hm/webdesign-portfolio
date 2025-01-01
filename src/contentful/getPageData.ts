@@ -32,7 +32,8 @@ export const fetchPage = async (slug: string, locale = "en") => {
     });
 
     if (response.items.length > 0) {
-      return processPage(response.items[0]);
+      const processedPage = processPage(response.items[0]);
+      return processedPage;
     } else {
       // TODO Implement redirect or error handling
       console.log(`No page found with slug ${slug}`);
@@ -52,7 +53,6 @@ export const fetchPage = async (slug: string, locale = "en") => {
  * @throws Will throw an error if the fetch operation fails
  */
 export const fetchAllPages = async (locale = "en") => {
-  console.log("Enter fetch all pages");
   try {
     const response = await client.getEntries<EntrySkeletonType>({
       content_type: "page",
@@ -61,10 +61,10 @@ export const fetchAllPages = async (locale = "en") => {
     });
 
     if (response.items.length > 0) {
-      const processedPages = response.items.map((page) => {
-        processPage(page);
+      const processedPages = response.items.map(
+        (page) => processPage(page)
         // TODO get a pageMap for the slugs and use it to make the project cards
-      });
+      );
       return processedPages;
     } else {
       // TODO Implement redirect or error handling
@@ -98,9 +98,11 @@ const processPage = (data: any): Page => {
           },
         };
 
-  const content = data.fields.content.map((component: any) =>
-    mapObjectToType(component, pageColors)
-  );
+  const content = data.fields.content
+    ? data.fields.content.map((component: any) =>
+        mapObjectToType(component, pageColors)
+      )
+    : []; // TODO Add something to signal it's an empty page
 
   return {
     title: data.fields.title,
@@ -121,10 +123,6 @@ const mapObjectToType = (
   pageColors: any = null,
   origin = ""
 ): any => {
-  // console.log("------------ COMPONENT, from", origin, "----------------");
-  // console.log(component);
-  if (!component.sys && component._type) return component;
-
   switch (component.sys.contentType.sys.id) {
     case "heroSection":
       let mainImg = component.fields.mainImage
@@ -151,15 +149,22 @@ const mapObjectToType = (
       } as HeroSection;
 
     case "projectInfo":
-      const details = component.fields.details.map((labelValueObj: any) => {
-        return {
-          ...labelValueObj.fields,
-          _type: "labelValuePair",
-        } as LabelValuePair;
-      });
-      component.fields.details = details || [];
+      const projectInfo = { ...component.fields };
+
+      // TODO Maybe add comments to know what fields are required?
+      const details = component.fields.details
+        ? component.fields.details.map((labelValueObj: any) => {
+            return {
+              ...labelValueObj.fields,
+              _type: "labelValuePair",
+            } as LabelValuePair;
+          })
+        : [];
+
+      projectInfo.details = details;
+
       return {
-        ...component.fields,
+        ...projectInfo,
         pageColors,
         _type: "projectInfo",
       } as ProjectInfo;
@@ -172,10 +177,12 @@ const mapObjectToType = (
       } as SectionTitle;
 
     case "textBlock":
+      const textBlock = { ...component.fields };
+
       // * HANDLE SPECIAL EMBEDDED ASSETS
       // * Make the image info more accessible to the textblock
       // Maybe one day I'll have to do it with video
-      component.fields.textContent.content.map((node: any) => {
+      textBlock.textContent.content.map((node: any) => {
         if (
           node.nodeType == "embedded-asset-block" &&
           node.data.target.fields.file.contentType.includes("image")
@@ -185,7 +192,7 @@ const mapObjectToType = (
       });
 
       return {
-        ...component.fields,
+        ...textBlock,
         pageColors,
         _type: "textBlock",
       } as TextBlock;
@@ -206,11 +213,13 @@ const mapObjectToType = (
       } as Duplex;
 
     case "callout":
+      const callout = { ...component.fields };
+
       let img = processImageAsset(component.fields.image);
-      component.fields.image = img;
+      callout.image = img;
 
       return {
-        ...component.fields,
+        ...callout,
         pageColors,
         _type: "callout",
       } as Callout;
@@ -220,9 +229,13 @@ const mapObjectToType = (
       return { ...image, pageColors, _type: "simpleImage" } as Image;
 
     case "image": // ! WARNING: This is actually the current Carousel type
-      const imageGrp = component.fields.imageGroup.map((img: any) => {
-        return processImageAsset(img);
-      });
+      // It is a required field, but you never know
+      const imageGrp = component.fields.imageGroup
+        ? component.fields.imageGroup.map((img: any) => {
+            return processImageAsset(img);
+          })
+        : [];
+
       return {
         title: component.fields.title || "",
         imageGroup: imageGrp || [],
@@ -234,50 +247,65 @@ const mapObjectToType = (
         _type: "image",
       } as Carousel;
 
+    case "customImageLayout":
+      const customImageLayout = { ...component.fields };
+
+      const imgGroup = customImageLayout.imageGroup.map((image) =>
+        processImageAsset(image)
+      );
+
+      customImageLayout.imageGroup = imgGroup;
+
+      return { ...customImageLayout, pageColors, _type: "customImageLayout" };
+
     case "testimonial":
+      const testimonial = { ...component.fields };
+
       const pict = processImageAsset(component.fields.picture);
-      component.fields.picture = pict;
+      testimonial.image = pict;
 
       return {
-        ...component.fields,
+        ...testimonial,
         pageColors,
         _type: "testimonial",
       } as Testimonial;
+
     case "projectCard":
       // TODO Investigate problem caused by because of already processed component
       // ? It seems like this is not actually working well for project groups: when I
       // ? added a card that wasn't on the homepage, it made the whole thing freez and bug
+      const projectCard = { ...component.fields };
       // Process image
       const coverImg = processImageAsset(component.fields.coverImage);
-      component.fields.coverImage = coverImg;
+      projectCard.coverImage = coverImg;
 
       // Process Tags
-      const tags = component.fields.tags.map((tag: any) => {
-        return {
-          ...tag.fields,
-          _type: "tag",
-        };
-      });
+      const tags = component.fields.tags
+        ? component.fields.tags.map((tag: any) => {
+            return {
+              ...tag.fields,
+              _type: "tag",
+            };
+          })
+        : [];
 
-      component.fields.tags = tags;
+      projectCard.tags = tags;
 
-      return { ...component.fields, pageColors, _type: "projectCard" };
+      return { ...projectCard, pageColors, _type: "projectCard" };
 
     case "projectsGroup":
-      const cardsGroup = component.fields.projectCardsGroup.map((card: any) => {
-        // console.log("---------- CARD ----------");
-        // console.log(card);
-        return mapObjectToType(card, pageColors, "from project group");
-      });
+      const cardsGroup = component.fields.projectCardsGroup
+        ? component.fields.projectCardsGroup.map((card: any) => {
+            return mapObjectToType(card, pageColors, "from project group");
+          })
+        : [];
 
-      component.fields.projectCardsGroup = cardsGroup;
-
-      // console.log(
-      //   "component.fields.projectCardsGroup: ",
-      //   component.fields.projectCardsGroup
-      // );
-
-      return { ...component.fields, pageColors, _type: "projectsGroup" };
+      return {
+        textContent: component.fields.textContent || "",
+        projectCardsGroup: cardsGroup,
+        pageColors,
+        _type: "projectsGroup",
+      };
 
     default:
       // TODO Add error handling

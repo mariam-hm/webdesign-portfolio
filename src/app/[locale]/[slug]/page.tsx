@@ -14,6 +14,11 @@ import { ReactNode } from "react";
 export async function generateMetadata({ params }) {
   const page = await fetchPage(params.slug, params.locale);
 
+  if (!page) {
+    // TODO take care of not founds
+    return notFound();
+  }
+
   const title = page.title
     ? `${page.title} | Mariam Hammoud`
     : "Mariam Hammoud's Portfolio";
@@ -40,12 +45,10 @@ export async function generateStaticParams() {
   const paths = pagesPerLocale
     .map((pages, index) => {
       return pages?.map((page) => {
-        let res = {
+        return {
           slug: page.slug,
           locale: locales[index],
         };
-        console.log("Result: ", res);
-        return res;
       });
     })
     .flat(); // flat turns 2d arrays into 1, I can use flatMap too
@@ -55,9 +58,6 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: any) {
   const page = await fetchPage(params.slug, params.locale);
-
-  // console.log("======================= PAGE ====================");
-  // console.log(page);
 
   const RenderComponent = ({ component }: any) => {
     const Component = componentMap[component._type];

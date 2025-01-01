@@ -6,14 +6,14 @@ export default function ProjectInfo({ details, pageColors }: ProjectInfo) {
   const colorLight = "#ffbab8";
   const colorDark = "#ce423e";
   return (
-    <section className="container">
-      <div
-        style={{
-          backgroundColor: `${pageColors.light.light}`,
-          color: `${pageColors.light.dark}`,
-        }}
-        className="flex flex-col px-16 py-16 gap-4 sm:gap-1 rounded"
-      >
+    <section
+      className="mb-16"
+      style={{
+        backgroundColor: `${pageColors.light.light}`,
+        color: `${pageColors.light.dark}`,
+      }}
+    >
+      <div className="container flex flex-col px-16 py-16 gap-4 sm:gap-1 rounded">
         {details.map((item: LabelValuePair) => (
           <ProjectInfoItem {...item} key={item.label} />
         ))}

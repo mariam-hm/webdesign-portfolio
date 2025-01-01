@@ -7,6 +7,7 @@ export default function HeroSectionBasic({
   textContent,
   mainImage,
   backgroundImage,
+  pageColors,
 }) {
   return (
     <div
@@ -16,15 +17,20 @@ export default function HeroSectionBasic({
       }}
     >
       {/* Overlay */}
-      <div className="absolute inset-0 bg-zinc-950 bg-opacity-50 z-10"></div>
+      <div className="absolute inset-0 bg-zinc-950 bg-opacity-70"></div>
 
       {/* Content */}
-      <div className="relative z-20 text-white text-center flex flex-col justify-center items-center h-full">
+      <div className="relative text-white text-center flex flex-col justify-center items-center h-full">
         {subheading && (
-          <h4 className="text-lg font-medium mt-0 mb-2">{subheading}</h4>
+          <h4
+            className="text-lg font-medium mt-0 mb-2"
+            style={{ color: pageColors.light.main }}
+          >
+            {subheading}
+          </h4>
         )}
         {mainHeading && (
-          <h2 className="text-4xl font-bold mt-0 mb-6">{mainHeading}</h2>
+          <h2 className="text-3xl font-bold mt-0 mb-6">{mainHeading}</h2>
         )}
 
         {mainImage && (

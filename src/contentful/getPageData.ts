@@ -247,6 +247,17 @@ const mapObjectToType = (
         _type: "image",
       } as Carousel;
 
+    case "customImageLayout":
+      const customImageLayout = { ...component.fields };
+
+      const imgGroup = customImageLayout.imageGroup.map((image) =>
+        processImageAsset(image)
+      );
+
+      customImageLayout.imageGroup = imgGroup;
+
+      return { ...customImageLayout, pageColors, _type: "customImageLayout" };
+
     case "testimonial":
       const testimonial = { ...component.fields };
 

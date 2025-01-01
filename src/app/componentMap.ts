@@ -9,6 +9,7 @@ export const componentMap: any = {
   callout: dynamic(() => import("@/components/Callout")),
   testimonial: dynamic(() => import("@/components/Testimonial")),
   image: dynamic(() => import("@/components/CarouselLightbox")),
+  customImageLayout: dynamic(() => import("@/components/CustomImageLayout")),
   simpleImage: dynamic(() => import("@/components/SimpleImage")),
   duplex: dynamic(() => import("@/components/Duplex")),
   projectCard: dynamic(() => import("@/components/ProjectCardFeatured")),

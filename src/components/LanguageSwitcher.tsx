@@ -35,23 +35,25 @@ export default function LanguageSwitcher() {
       <MenuButton className="font-calistoga hover:text-light-primary uppercase transition duration-200">
         {locale}
       </MenuButton>
-      <MenuItems anchor="bottom" className="bg-white drop-shadow z-100">
-        <MenuItem className="flex justify-start items-center px-4 py-2 bg-white hover:bg-zinc-100 font-calistoga text-zinc-700">
-          <button
-            onClick={() => handleLocaleChange("en")}
-            className="block w-full text-left data-[focus]:bg-blue-100"
-          >
-            English
-          </button>
-        </MenuItem>
-        <MenuItem className="flex justify-start items-center px-4 py-2 bg-white hover:bg-zinc-100 font-calistoga text-zinc-700">
-          <button
-            onClick={() => handleLocaleChange("fr")}
-            className="block data-[focus]:bg-blue-100"
-          >
-            Français
-          </button>
-        </MenuItem>
+      <MenuItems anchor="bottom">
+        <div className="bg-white/100 drop-shadow z-100">
+          <MenuItem>
+            <button
+              onClick={() => handleLocaleChange("en")}
+              className="flex justify-start items-center px-4 py-2 bg-white/100 hover:bg-zinc-100/100 font-calistoga text-zinc-700"
+            >
+              English
+            </button>
+          </MenuItem>
+          <MenuItem>
+            <button
+              onClick={() => handleLocaleChange("fr")}
+              className="flex justify-start items-center px-4 py-2 bg-white/100 hover:bg-zinc-100/100 font-calistoga text-zinc-700"
+            >
+              Français
+            </button>
+          </MenuItem>
+        </div>
       </MenuItems>
     </Menu>
   );

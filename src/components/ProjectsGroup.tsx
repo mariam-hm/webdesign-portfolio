@@ -7,7 +7,6 @@ export default function ProjectsGroup({ textContent, projectCardsGroup }: any) {
       ? "lg:grid-cols-3"
       : "lg:grid-cols-" + projectCardsGroup.length.toString();
 
-  console.log("projectCardsGroup", projectCardsGroup);
   return (
     <section className="container flex justify-center items-start">
       <div

@@ -251,7 +251,7 @@ const mapObjectToType = (
       const testimonial = { ...component.fields };
 
       const pict = processImageAsset(component.fields.picture);
-      testimonial.picture = pict;
+      testimonial.image = pict;
 
       return {
         ...testimonial,

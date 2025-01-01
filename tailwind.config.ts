@@ -66,6 +66,7 @@ const config: Config = {
       "8xl": "clamp(7.4506rem, 6.6288rem + 2.7392vw, 8.3819rem)",
       "9xl": "clamp(9.3132rem, 8.286rem + 3.424vw, 10.4774rem)",
     },
+
     // * -------- Spacing Size Values --------
     // From: https://utopia.fyi/space/calculator?c=480,16,1.25,1024,20,1.25,10,2,&s=0.875|0.75|0.625|0.5|0.375|0.25|0.125,1.25|1.5|1.75|2|2.25|2.5|2.75|3|3.5|4|5|6|7|6|9|10|11|12|13|14|15|16|18|20|24,s-l&g=s,l,xl,10 */
     spacing: {
@@ -195,8 +196,13 @@ const config: Config = {
     }),
     plugin(function ({ addComponents, theme }: any) {
       addComponents({
+        // ".container": {
+        //   "@screen lg": {
+        //     padding: "0",
+        //   },
+        // },
         ".container": {
-          "@screen lg": {
+          "@media (min-width: 1096px)": {
             padding: "0",
           },
         },

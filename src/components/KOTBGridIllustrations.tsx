@@ -40,6 +40,7 @@ export default function KOTBGridIllustrations({ imageGroup, pageColors }: any) {
       <div className="container grid grid-cols-2 gap-4 my-8">
         {imageGroup.map((image: any, index: number) => (
           <div
+            key={index}
             className="relative h-[200px] bg-white rounded-md border hover:-translate-y-1 hover:drop-shadow-md transition ease-in-out duration-300"
             style={{ borderColor: pageColors.light.main }}
           >

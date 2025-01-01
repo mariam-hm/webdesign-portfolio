@@ -16,7 +16,7 @@ export default function ProjectCardSmall({
       href={pageSlug}
       className="group max-w-80 no-underline text-zinc-700 hover:text-zinc-700"
     >
-      <div className="rounded-md overflow-hidden hover:drop-shadow-md transition duration-300">
+      <div className="rounded-md overflow-hidden hover:drop-shadow-md transition duration-200">
         <Image
           src={coverImage.url}
           height={coverImage.height}
@@ -26,7 +26,7 @@ export default function ProjectCardSmall({
       </div>
 
       <div className="text-center pb-4 px-4">
-        <h5 className="text-base font-lato uppercase text-zinc-400 group-hover:text-light-primary">
+        <h5 className="text-base font-lato uppercase text-zinc-400 group-hover:text-light-primary transition duration-200">
           {client}
         </h5>
         <h4 className="mt-0 text-lg">{title}</h4>

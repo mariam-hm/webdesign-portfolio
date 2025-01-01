@@ -14,10 +14,10 @@ import { ReactNode } from "react";
 export async function generateMetadata({ params }) {
   const page = await fetchPage(params.slug, params.locale);
 
-  // if (!page) {
-  //   // TODO take care of not founds
-  //   return notFound();
-  // }
+  if (!page) {
+    // TODO take care of not founds
+    return notFound();
+  }
 
   const title = page.title
     ? `${page.title} | Mariam Hammoud`

@@ -120,69 +120,6 @@ const config: Config = {
           "2xl": "1024px",
         },
       },
-      // * BUILDING MY OWN THEME TO REDUCE INLINE CLASSES
-      // typography: (theme: any) => ({
-      //   DEFAULT: {
-      //     css: {
-      //       maxWidth: "100%",
-      //       fontFamily: theme("fontFamily.lato").join(", "),
-      //       fontSize: theme("fontSize.base"),
-      //       color: theme("colors.zinc.700"),
-
-      //       p: {
-      //         margin: 0,
-      //         lineHeight: 1.6,
-      //       },
-      //       ul: {
-      //         marginTop: 0.8,
-      //         marginBottom: 0.8,
-      //       },
-      //       li: {
-      //         marginTop: 0.2,
-      //         marginBottom: 0.2,
-      //       },
-      //       a: {
-      //         color: theme("colors.primary"),
-      //         textDecoration: "underline",
-      //       },
-      //       h1: {
-      //         fontFamily: theme("fontFamily.calistoga").join(", "),
-      //         fontSize: theme("fontSize.3xl"),
-      //         fontWeight: 400,
-      //         color: theme("colors.zinc.700"),
-      //       },
-      //       h2: {
-      //         fontFamily: theme("fontFamily.calistoga").join(", "),
-      //         fontSize: theme("fontSize.3xl"),
-      //         fontWeight: 400,
-      //         color: theme("colors.zinc.700"),
-      //       },
-      //       h3: {
-      //         fontFamily: theme("fontFamily.calistoga").join(", "),
-      //         fontSize: theme("fontSize.2xl"),
-      //         fontWeight: 400,
-      //         color: theme("colors.zinc.700"),
-      //       },
-      //       h4: {
-      //         fontFamily: theme("fontFamily.calistoga").join(", "),
-      //         fontSize: theme("fontSize.xl"),
-      //         fontWeight: 400,
-      //         color: theme("colors.zinc.700"),
-      //       },
-      //       h5: {
-      //         fontFamily: theme("fontFamily.calistoga").join(", "),
-      //         fontSize: theme("fontSize.lg"),
-      //         fontWeight: 400,
-      //         color: theme("colors.zinc.700"),
-      //       },
-      //       h6: {
-      //         fontFamily: theme("fontFamily.calistoga").join(", "),
-      //         fontWeight: 400,
-      //         color: theme("colors.zinc.700"),
-      //       },
-      //     },
-      //   },
-      // }),
     },
   },
   plugins: [

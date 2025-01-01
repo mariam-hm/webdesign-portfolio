@@ -105,7 +105,7 @@ const Lightbox = ({
 
             {imageGroup.length > 1 && (
               <div className="flex w-full justify-center mt-2">
-                <div className="flex justify-center space-x-2 h-[10vh]">
+                <div className="flex justify-center space-x-2 h-[10vh] w-4/5">
                   {imageGroup.map((img, index) => (
                     <div
                       key={img.description}

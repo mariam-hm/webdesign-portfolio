@@ -37,7 +37,7 @@ export default function ProjectCard({
       <div className="flex justify-center items-center order-1 lg:order-2">
         <Link href={pageSlug}>
           <Image
-            className="md:max-w-2xl md:max-h-80 rounded-lg hover:drop-shadow-md transition duration-300"
+            className="md:max-w-2xl md:max-h-96 rounded-lg hover:drop-shadow-md transition duration-300"
             src={coverImage.url}
             width={coverImage.width}
             height={coverImage.height}

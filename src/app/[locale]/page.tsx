@@ -4,8 +4,17 @@ import { fetchAllPages, fetchPage } from "@/contentful/getPageData";
 import { locales, LocaleTypes } from "@/app/i18n/settings";
 import { notFound } from "next/navigation";
 
-export async function generateMetadata({ params }) {
+interface Params {
+  locale: "en" | "fr";
+}
+
+export async function generateMetadata({ params }: { params: Params }) {
   const page = await fetchPage("home", params.locale);
+
+  if (!page) {
+    // TODO take care of not founds
+    return notFound();
+  }
 
   const title = page.title;
   const description = page.description || "";

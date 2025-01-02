@@ -13,7 +13,7 @@ export default function ProjectsGroup({ textContent, projectCardsGroup }: any) {
         className={`grid justify-center items-start gap-8 mt-8 grid-cols-1 ${columnsClass}`}
       >
         {projectCardsGroup.map((card: ProjectCard) => (
-          <ProjectCardSmall {...card} />
+          <ProjectCardSmall key={card.pageSlug} {...card} />
         ))}
       </div>
     </section>

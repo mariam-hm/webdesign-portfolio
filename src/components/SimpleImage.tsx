@@ -32,6 +32,7 @@ const SimpleImage = ({ url, width, height, description, pageColors }) => {
           height={height}
           alt={description}
           onClick={() => openLightbox()}
+          sizes="100vw"
         />
         <div className="opacity-0 text-zinc-400 text-sm text-center italic -translate-y-2 group-hover:translate-y-0 group-hover:opacity-100 transition ease-in-out duration-300">
           {description}

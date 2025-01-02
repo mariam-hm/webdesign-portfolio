@@ -25,6 +25,7 @@ function ImageSlide({
         alt={image.description}
         fill={true}
         style={{ objectFit: imageFit }}
+        sizes="90vw"
       />
     </div>
   ) : (
@@ -40,6 +41,7 @@ function ImageSlide({
         height={image.height}
         alt={image.description}
         className="rounded-lg overflow-hidden"
+        sizes="90vw"
       />
     </div>
   );

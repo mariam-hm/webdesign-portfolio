@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 export default function KOTBGridIllustrations({ imageGroup, pageColors }: any) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(1200);
 
   useEffect(() => {
     const handleResize = () => {
@@ -49,6 +49,7 @@ export default function KOTBGridIllustrations({ imageGroup, pageColors }: any) {
               alt={image.description}
               fill
               style={{ objectFit: imageFit }}
+              sizes="(min-width: 640px) 30vw, 50vw"
               onClick={() => openLightbox(index)}
             />
           </div>
@@ -81,11 +82,10 @@ export default function KOTBGridIllustrations({ imageGroup, pageColors }: any) {
         >
           <Image
             src={imageGroup[0].url}
-            //   width={imageGroup[0].width}
-            //   height={imageGroup[0].height}
             alt={imageGroup[0].description}
             fill
             style={{ objectFit: imageFit }}
+            sizes="(min-width: 640px) 30vw, 50vw"
             onClick={() => openLightbox(0)}
           />
           {/* <div className="opacity-0 text-zinc-400 text-sm text-center italic -translate-y-2 group-hover:translate-y-0 group-hover:opacity-100 transition ease-in-out duration-300">
@@ -102,6 +102,7 @@ export default function KOTBGridIllustrations({ imageGroup, pageColors }: any) {
             alt={imageGroup[1].description}
             fill
             style={{ objectFit: imageFit }}
+            sizes="(min-width: 640px) 30vw, 50vw"
             onClick={() => openLightbox(1)}
           />
         </div>
@@ -115,6 +116,7 @@ export default function KOTBGridIllustrations({ imageGroup, pageColors }: any) {
             alt={imageGroup[2].description}
             fill
             style={{ objectFit: imageFit }}
+            sizes="(min-width: 640px) 30vw, 50vw"
             onClick={() => openLightbox(2)}
           />
         </div>
@@ -128,6 +130,7 @@ export default function KOTBGridIllustrations({ imageGroup, pageColors }: any) {
             alt={imageGroup[3].description}
             fill
             style={{ objectFit: imageFit }}
+            sizes="(min-width: 640px) 30vw, 50vw"
             onClick={() => openLightbox(3)}
           />
         </div>
@@ -141,6 +144,7 @@ export default function KOTBGridIllustrations({ imageGroup, pageColors }: any) {
             alt={imageGroup[4].description}
             fill
             style={{ objectFit: imageFit }}
+            sizes="(min-width: 640px) 30vw, 50vw"
             onClick={() => openLightbox(4)}
           />
         </div>
@@ -154,6 +158,7 @@ export default function KOTBGridIllustrations({ imageGroup, pageColors }: any) {
             alt={imageGroup[5].description}
             fill
             style={{ objectFit: imageFit }}
+            sizes="(min-width: 640px) 30vw, 50vw"
             onClick={() => openLightbox(5)}
           />
         </div>
@@ -167,6 +172,7 @@ export default function KOTBGridIllustrations({ imageGroup, pageColors }: any) {
             alt={imageGroup[6].description}
             fill
             style={{ objectFit: imageFit }}
+            sizes="(min-width: 640px) 30vw, 50vw"
             onClick={() => openLightbox(6)}
           />
         </div>
@@ -180,6 +186,7 @@ export default function KOTBGridIllustrations({ imageGroup, pageColors }: any) {
             alt={imageGroup[7].description}
             fill
             style={{ objectFit: imageFit }}
+            sizes="(min-width: 640px) 30vw, 50vw"
             onClick={() => openLightbox(7)}
           />
         </div>
@@ -193,6 +200,7 @@ export default function KOTBGridIllustrations({ imageGroup, pageColors }: any) {
             alt={imageGroup[8].description}
             fill
             style={{ objectFit: imageFit }}
+            sizes="(min-width: 640px) 30vw, 50vw"
             onClick={() => openLightbox(8)}
           />
         </div>
@@ -206,6 +214,7 @@ export default function KOTBGridIllustrations({ imageGroup, pageColors }: any) {
             alt={imageGroup[9].description}
             fill
             style={{ objectFit: imageFit }}
+            sizes="(min-width: 640px) 30vw, 50vw"
             onClick={() => openLightbox(9)}
           />
         </div>
@@ -219,6 +228,7 @@ export default function KOTBGridIllustrations({ imageGroup, pageColors }: any) {
             alt={imageGroup[10].description}
             fill
             style={{ objectFit: imageFit }}
+            sizes="(min-width: 640px) 30vw, 50vw"
             onClick={() => openLightbox(10)}
           />
         </div>
@@ -232,6 +242,7 @@ export default function KOTBGridIllustrations({ imageGroup, pageColors }: any) {
             alt={imageGroup[11].description}
             fill
             style={{ objectFit: imageFit }}
+            sizes="(min-width: 640px) 30vw, 50vw"
             onClick={() => openLightbox(11)}
           />
         </div>
@@ -245,6 +256,7 @@ export default function KOTBGridIllustrations({ imageGroup, pageColors }: any) {
             alt={imageGroup[12].description}
             fill
             style={{ objectFit: imageFit }}
+            sizes="(min-width: 640px) 30vw, 50vw"
             onClick={() => openLightbox(12)}
           />
         </div>

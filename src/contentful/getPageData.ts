@@ -151,7 +151,8 @@ const mapObjectToType = (
     case "projectInfo":
       const projectInfo = { ...component.fields };
 
-      // TODO Maybe add comments to know what fields are required?
+      // TODO Maybe I should decompose the objects so I can see all the variables and
+      // TODO assign null values where needed and mark required values
       const details = component.fields.details
         ? component.fields.details.map((labelValueObj: any) => {
             return {

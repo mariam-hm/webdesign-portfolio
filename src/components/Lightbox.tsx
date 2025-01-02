@@ -95,6 +95,7 @@ const Lightbox = ({
                   alt={image.description}
                   fill={true}
                   style={{ objectFit: "contain" }}
+                  sizes="85vw"
                 />
               </motion.div>
             </div>
@@ -109,7 +110,7 @@ const Lightbox = ({
                   {imageGroup.map((img, index) => (
                     <div
                       key={img.description}
-                      className={`relative w-16 h-16 rounded-sm overflow-hidden cursor-pointer transition duration-200 ${
+                      className={`relative w-10 h-10 md:w-16 md:h-16 rounded-sm overflow-hidden cursor-pointer transition duration-200 ${
                         index === currentIndex ? "ring-2" : ""
                       }`}
                       style={{
@@ -126,6 +127,7 @@ const Lightbox = ({
                         fill={true}
                         className="object-cover"
                         alt={img.description}
+                        sizes="100px"
                       />
                     </div>
                   ))}

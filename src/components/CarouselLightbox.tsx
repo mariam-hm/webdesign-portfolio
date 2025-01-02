@@ -5,6 +5,7 @@ import Carousel from "./Carousel"; // Carousel Component
 import Lightbox from "./Lightbox"; // Lightbox Component
 
 const CarouselLightbox = ({
+  title,
   imageGroup,
   slidesPerViewInit,
   scrollPerView,
@@ -31,6 +32,7 @@ const CarouselLightbox = ({
   return (
     <div>
       <Carousel
+        title={title}
         imageGroup={imageGroup}
         slidesPerViewInit={slidesPerViewInit}
         scrollPerView={scrollPerView}
